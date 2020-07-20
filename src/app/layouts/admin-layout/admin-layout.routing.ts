@@ -8,14 +8,39 @@ import { IconsComponent } from '../../pages/icons/icons.component';
 import { MapsComponent } from '../../pages/maps/maps.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
+import { AuthGuardService } from 'app/auth/auth-guard.service';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user',           component: UserComponent },
-    { path: 'table',          component: TableComponent },
-    { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    {
+        path: 'dashboard', component: DashboardComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'user', component: UserComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'table', component: TableComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'typography', component: TypographyComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'icons', component: IconsComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'maps', component: MapsComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'notifications', component: NotificationsComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'upgrade', component: UpgradeComponent,
+        canActivate: [AuthGuardService]
+    }
 ];

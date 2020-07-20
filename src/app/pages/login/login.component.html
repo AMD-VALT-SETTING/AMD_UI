@@ -1,30 +1,38 @@
+
+<div class="row">
+  <div class="col">
+      <div class="alert alert-danger" *ngIf="loginError">
+        
+        <span *ngIf="loginError.error !== undefined && loginError.error.error !== undefined">
+          {{ loginError.error.error }}
+        </span>
+        
+          Si è verificato un errore di autenticazione. Controllare i log.
+      </div>
+  </div>
+</div>
+
+
+
 <div class="card card-user">
     <div class="card-header">
       <h5 class="card-title">Login</h5>
     </div>
     <div class="card-body">
-      <form>
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label>Username</label>
-              <input type="text" class="form-control" placeholder="Username" value="michael23">
-            </div>
-            </div>
+      <form #loginForm="ngForm" (ngSubmit)="submit()">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
+                placeholder="Enter username" name="username" [(ngModel)]="login.username" #username="ngModel" required>
         </div>
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Password</label>
-              <input type="password" class="form-control" placeholder="Password">
-            </div>
-          </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password"
+                name="password" [(ngModel)]="login.password" #password="ngModel" required minlength="5" maxlength="10">
         </div>
-        <div class="row">
-          <div class="update ml-auto mr-auto">
-            <button type="submit" class="btn btn-primary btn-round">Login</button>
-          </div>
-        </div>
-      </form>
+        <button type="submit" class="btn btn-primary btn-round" [disabled]="!loginForm.valid">Login</button>
+    </form>
     </div>
   </div>
+
+  
