@@ -14,20 +14,15 @@ const baseURL = `${AppConstants.SERVICES_BASE_URL}/rest/dashboard/login`;
 })
 export class AuthService {
 
+  private loginDataToken: LoginData;
   constructor(public httpClient: HttpClient, public jwtHelper: JwtHelperService) { }
-
-  createCorsHeader(headers: HttpHeaders) {
-    headers.append('Access-Control-Allow-Origin', '*');
-  }
 
   public authenticate(loginData: LoginData): Observable<LoginResult> {
     const headers: HttpHeaders = new HttpHeaders();
-    this.createCorsHeader(headers);
 
     return this.httpClient
-      .post<LoginResult>(baseURL, loginData, {
-        headers: headers
-      }).pipe(catchError(this.handleError));
+      .post<LoginResult>(baseURL, loginData)
+      .pipe(catchError(this.handleError));
   }
 
   public logout() {
@@ -36,31 +31,35 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const login: LoginResult = JSON.parse(localStorage.getItem(AppConstants.LOGIN_STORAGE));
-
-    if (!login) {
-      return false;
-    }
-
-    const token = login.token;
-
-    if (this.jwtHelper.isTokenExpired(token)) {
-      localStorage.setItem(AppConstants.LOGIN_STORAGE, null);
-    }
-
-    return !this.jwtHelper.isTokenExpired(token);
+    return login !== null && login !== undefined && login.token !== undefined
+                          && login.token !== undefined
+                          && login.token !== '';
   }
+
+  /*
+    public isAuthenticated(): boolean {
+      const login: LoginResult = JSON.parse(localStorage.getItem(AppConstants.LOGIN_STORAGE));
+
+      if (!login) {
+        return false;
+      }
+
+      const token = login.token;
+
+      if (this.jwtHelper.isTokenExpired(token)) {
+        localStorage.setItem(AppConstants.LOGIN_STORAGE, null);
+      }
+
+      return !this.jwtHelper.isTokenExpired(token);
+    }
+  */
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
-
       console.error('An error occurred:', error.error.message);
     } else {
-
       console.error(`Backend returned error: ${JSON.stringify(error)}`);
-
     }
-
     return throwError(error);
   }
-
 }

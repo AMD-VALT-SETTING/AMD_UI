@@ -2,6 +2,9 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 import { ROUTES } from '../../sidebar/sidebar.component';
 import { Router } from '@angular/router';
 import { Location} from '@angular/common';
+import { AuthService } from 'app/auth/auth.service';
+import { LoggedUser } from 'app/model/LoggedUser';
+import { AppConstants } from 'app/app.constants';
 
 @Component({
     moduleId: module.id,
@@ -15,11 +18,12 @@ export class NavbarComponent implements OnInit{
     private nativeElement: Node;
     private toggleButton;
     private sidebarVisible: boolean;
+    user: LoggedUser;
 
     public isCollapsed = true;
     @ViewChild("navbar-cmp", {static: false}) button;
 
-    constructor(location:Location, private renderer : Renderer2, private element : ElementRef, private router: Router) {
+    constructor(location:Location, private renderer : Renderer2, private element : ElementRef, private router: Router, private authService: AuthService) {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
@@ -32,6 +36,7 @@ export class NavbarComponent implements OnInit{
         this.router.events.subscribe((event) => {
           this.sidebarClose();
        });
+       this.getUsername()
     }
     getTitle(){
       var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -44,6 +49,11 @@ export class NavbarComponent implements OnInit{
           }
       }
       return 'Dashboard';
+    }
+    getUsername(){
+
+      this.user = JSON.parse(localStorage.getItem(AppConstants.LOGIN_STORAGE));
+
     }
     sidebarToggle() {
         if (this.sidebarVisible === false) {
@@ -90,6 +100,11 @@ export class NavbarComponent implements OnInit{
           navbar.classList.remove('bg-white');
         }
 
+      }
+
+      logout(): void {
+        this.authService.logout();
+        this.router.navigate(['login']);
       }
 
 }

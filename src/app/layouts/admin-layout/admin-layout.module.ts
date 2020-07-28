@@ -14,7 +14,12 @@ import { MapsComponent }            from '../../pages/maps/maps.component';
 import { NotificationsComponent }   from '../../pages/notifications/notifications.component';
 import { UpgradeComponent }         from '../../pages/upgrade/upgrade.component';
 
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PieTableComponent } from 'app/pages/dashboard/pie-table/pie-table.component';
+
+
+
 
 @NgModule({
   imports: [
@@ -22,6 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     NgbModule
+    
   ],
   declarations: [
     DashboardComponent,
@@ -32,6 +38,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
+    PieTableComponent, 
+    
   ]
 })
 
