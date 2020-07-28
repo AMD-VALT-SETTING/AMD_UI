@@ -1,4 +1,11 @@
 
+
+<div class="card w-50">
+    <div class="card-header">
+      <h5 class="card-title">Login</h5>
+    </div>
+    <div class="card-body">
+      
 <div class="row">
   <div class="col">
       <div class="alert alert-danger" *ngIf="loginError">
@@ -6,29 +13,21 @@
         <span *ngIf="loginError.error !== undefined && loginError.error.error !== undefined">
           {{ loginError.error.error }}
         </span>
-        
-          Si è verificato un errore di autenticazione. Controllare i log.
+          
+          Username o password errati
       </div>
   </div>
 </div>
-
-
-
-<div class="card card-user">
-    <div class="card-header">
-      <h5 class="card-title">Login</h5>
-    </div>
-    <div class="card-body">
-      <form #loginForm="ngForm" (ngSubmit)="submit()">
+      <form class="login-form" #loginForm="ngForm" (ngSubmit)="submit()">
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
-                placeholder="Enter username" name="username" [(ngModel)]="login.username" #username="ngModel" required>
+                placeholder="Enter username" name="username" [(ngModel)]="login.username" #email="ngModel" required>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" placeholder="Password"
-                name="password" [(ngModel)]="login.password" #password="ngModel" required minlength="5" maxlength="10">
+                name="password" [(ngModel)]="login.password" #password="ngModel" required minlength="1" maxlength="10">
         </div>
         <button type="submit" class="btn btn-primary btn-round" [disabled]="!loginForm.valid">Login</button>
     </form>
