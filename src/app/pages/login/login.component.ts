@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.authenticate(this.login).subscribe(
       (res) => {
-        console.log('SUBMIT' + res);
+        console.log('SUBMIT' + JSON.stringify(res));
 
         this.userLogged = {
           username: this.login.username,

@@ -26,10 +26,10 @@ export class PieTableComponent implements OnInit {
     });// pipe
   }
   */
-  loadAllTable(selectedCategory: number):Set<User> {
-    this.pieChartSetTable = this.dashboardService.findAllPieTable(selectedCategory);
+  loadAllTable(selectedCategory: number){
+    /*this.pieChartSetTable = this.dashboardService.findAllPieTable(selectedCategory);
     console.log(this.pieChartSetTable);
-    return  this.pieChartSetTable ;
+    return  this.pieChartSetTable ;*/
   }
 
 
