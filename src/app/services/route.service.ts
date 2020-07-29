@@ -11,7 +11,6 @@ declare interface RouteInfo {
 }
 
 export const ADMIN_ROUTES: RouteInfo[] = [
-  
   { path: '/maps', title: 'Maps', icon: 'nc-pin-3', class: '' },
   { path: '/notifications', title: 'Notifications', icon: 'nc-bell-55', class: '' },
   { path: '/user', title: 'User Profile', icon: 'nc-single-02', class: '' },
@@ -21,9 +20,7 @@ export const ADMIN_ROUTES: RouteInfo[] = [
 ];
 
 export const USER_ROUTES: RouteInfo[] = [
-  { path: '/dashboard', title: 'Dashboard', icon: 'dashboard', class: '' },
-  
-
+  { path: '/dashboard',     title: 'Dashboard',         icon: 'nc-chart-pie-36',       class: '' },
 ];
 
 @Injectable({
