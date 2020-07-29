@@ -3,13 +3,11 @@ import Chart from 'chart.js';
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from './dashboard.service';
 
-
 @Component({
-  selector: 'dashboard-cmp',
+  selector: "dashboard-cmp",
   moduleId: module.id,
-  templateUrl: 'dashboard.component.html'
+  templateUrl: 'dashboard.component.html',
 })
-
 export class DashboardComponent implements OnInit {
   public canvas: any;
   public ctx;
@@ -23,10 +21,8 @@ export class DashboardComponent implements OnInit {
     this.pieChart = new Chart(this.ctx, {
       type: 'pie',
       data: {
-        labels: [1, 2, 3, 4],
         datasets: [
           {
-            label: 'Devices',
             pointRadius: 0,
             pointHoverRadius: 0,
             backgroundColor: [],
@@ -34,11 +30,21 @@ export class DashboardComponent implements OnInit {
             data: [],
           },
         ],
+        labels: []
       },
 
       options: {
         legend: {
-          display: false,
+          display: true,
+        },
+
+        onClick: (evt, item) => {
+          if ( item.length > 0 ) {
+            let index = item[0]['_index'];
+            let label = item[0]['_chart'].data.labels[index];
+            let values = item[0]['_chart'].data.datasets[0].data[index];
+            alert(label);
+          }
         },
 
         pieceLabel: {
@@ -48,7 +54,7 @@ export class DashboardComponent implements OnInit {
         },
 
         tooltips: {
-          enabled: false,
+          enabled: true,
         },
 
         scales: {
@@ -79,18 +85,23 @@ export class DashboardComponent implements OnInit {
             },
           ],
         },
-      },
+      }
     });
     this.drawPieChart();
   }
 
   drawPieChart() {
-    this.dashboardService.getDataForPieChart().subscribe(res => {
+    this.dashboardService.getDataForPieChart().subscribe((res) => {
       console.log(JSON.stringify(res));
-      const values: number[] = res['listaPieChart'].map(item => item.value);
-      const colors: number[] = res['listaPieChart'].map(item => item.name.toLowerCase());
+      const labels: string[] = res['listaPieChart'].map((item) => item.description);
+      const values: number[] = res['listaPieChart'].map((item) => item.value);
+      const colors: number[] = res['listaPieChart'].map((item) =>
+        item.name.toLowerCase()
+      );
+      console.log(labels);
       console.log(values);
       console.log(colors);
+      this.pieChart.data.labels = labels;
       this.pieChart.data.datasets[0].backgroundColor = colors;
       this.pieChart.data.datasets[0].data = values;
       this.pieChart.update();
