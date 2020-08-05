@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'app/model/User';
 import { DashboardService } from '../dashboard.service';
 import { DashboardEvent } from '../DashboardEvent';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-pie-table',
@@ -12,7 +13,7 @@ export class PieTableComponent implements OnInit {
 
 
   dashboardfeedbackReceived: DashboardEvent;
-  userArraySelected: User[];
+  _userArraySelected: User[];
 
 
   constructor(private dashboardService: DashboardService) { }
@@ -20,6 +21,15 @@ export class PieTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get userArraySelected() {
+    return this._userArraySelected;
+  }
+
+  @Input()
+  set userArraySelected(u: User[]) {
+    this._userArraySelected = u;
+ 
+  }
 
   
   feedbackReceivedHandler(dEvent: DashboardEvent) {

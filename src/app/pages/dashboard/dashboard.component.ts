@@ -23,6 +23,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public pieChart;
   pieChartTableArray: User[];
   private sub: Subscription;
+  pos:number;
+ 
 
   constructor(private dashboardService: DashboardService) {
   }
@@ -55,6 +57,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             let index = item[0]['_index'];
             let label = item[0]['_chart'].data.labels[index];
             let values = item[0]['_chart'].data.datasets[0].data[index];
+            
             console.log('onClick dashboard= ' + label);
             this.buildPieChartTable(label);
 
@@ -132,17 +135,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   buildPieChartTable(label: any) {
-    let pos: number;
-    pos = 0;
-    console.log('build' + pos);
-    if (label === 'Utenze in Allarme') {
-      pos = 1;
+    
+   // this.pos=0;
+    console.log('buildP' + label);
+     if (label === 'Utenze in allarme') {
+      this.pos = 1;
     } else if (label === 'Utenze non localizzate') {
-      pos = 2;
+      this.pos = 2;
     } else if (label === 'Utenze con GPS ok') {
-      pos = 3;
+      this.pos = 3;
     } else if (label === 'Utenze inattive') {
-      pos = 4;
+      this.pos = 4;
     }
     /*
     this.dashboardService.findUsersForLabelPieTable(pos).subscribe((res) => {
@@ -151,8 +154,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
 */
     // -------------------------------------
-    console.log(pos);
-    if (pos === 1) {
+    console.log(this.pos);
+    if (this.pos === 1) {
       this.pieChartTableArray = [
         {
           userNameApp: 'MarioRossi',
@@ -161,35 +164,35 @@ export class DashboardComponent implements OnInit, OnDestroy {
         },
       ];
     }
-    if (pos === 2) {
+    if (this.pos === 2) {
       this.pieChartTableArray = [
         {
           userNameApp: 'MarioGiallo',
-          userAliasApp: 'M.Rossi',
+          userAliasApp: 'M.Giallo',
           phoneNumber: '11111111',
         },
       ];
     }
-    if (pos === 3) {
+    if (this.pos === 3) {
       this.pieChartTableArray = [
         {
           userNameApp: 'MarioVerde',
-          userAliasApp: 'M.Rossi',
+          userAliasApp: 'M.Verde',
           phoneNumber: '11111111',
         },
       ];
     }
-    if (pos === 4) {
+    if (this.pos === 4) {
       this.pieChartTableArray = [
         {
           userNameApp: 'MarioGrigio',
-          userAliasApp: 'M.Rossi',
+          userAliasApp: 'M.Grigio',
           phoneNumber: '11111111',
         },
       ];
     }
 
-    pos = 0;
+    //pos = 0;
   }
 
   ngOnDestroy() {

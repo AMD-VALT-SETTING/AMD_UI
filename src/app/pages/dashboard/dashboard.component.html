@@ -3,7 +3,7 @@
     <div class="card ">
       <div class="card-header ">
         <h5 class="card-title">Utenti</h5>
-        <p class="card-category">Dati dispositivi</p>
+        <p class="card-category">Dati dispositivi:</p>
       </div>
       <div class="card-body ">
         <canvas id="chartEmail"></canvas>
@@ -12,7 +12,8 @@
   </div>
 
   <div class="col-md-6">
-    <app-pie-table></app-pie-table>
+    <app-pie-table [userArraySelected]="pieChartTableArray"></app-pie-table>
+
   </div>
 </div>
 
