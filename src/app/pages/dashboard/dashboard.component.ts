@@ -3,14 +3,11 @@ import Chart from 'chart.js';
 import {
   Component,
   OnInit,
-  Output,
-  EventEmitter,
   OnDestroy,
 } from '@angular/core';
 import { DashboardService } from './dashboard.service';
-import { DashboardEvent } from './DashboardEvent';
 import { User } from 'app/model/User';
-import { Observable, Subscription, interval } from 'rxjs';
+import { Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'dashboard-cmp',
@@ -23,8 +20,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public pieChart;
   pieChartTableArray: User[];
   private sub: Subscription;
-  pos:number;
- 
+  pos: number;
 
   constructor(private dashboardService: DashboardService) {
   }
@@ -57,11 +53,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
             let index = item[0]['_index'];
             let label = item[0]['_chart'].data.labels[index];
             let values = item[0]['_chart'].data.datasets[0].data[index];
-            
+
             console.log('onClick dashboard= ' + label);
             this.buildPieChartTable(label);
-
-            //alert(label);
           }
         },
 
@@ -147,14 +141,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     } else if (label === 'Utenze inattive') {
       this.pos = 4;
     }
-    /*
-    this.dashboardService.findUsersForLabelPieTable(pos).subscribe((res) => {
 
-      this.pieChartTableArray = res;
-    });
-*/
-    // -------------------------------------
     console.log(this.pos);
+
     if (this.pos === 1) {
       this.pieChartTableArray = [
         {

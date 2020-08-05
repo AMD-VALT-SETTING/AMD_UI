@@ -17,8 +17,6 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AppConstants } from './app.constants';
 import { HttpClientModule } from '@angular/common/http';
 
-
-
 export function tokenGetter() {
   const loginStored: LoginResult = JSON.parse(localStorage.getItem(AppConstants.LOGIN_STORAGE));
   if (loginStored !== undefined && loginStored !== null) {
@@ -30,14 +28,7 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    PublicLayoutComponent,
-   
-   
-    
-   
-    
-    
-    
+    PublicLayoutComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -49,7 +40,7 @@ export function tokenGetter() {
     ToastrModule.forRoot(),
     FooterModule,
     FixedPluginModule,
-    JwtModule.forRoot({ 
+    JwtModule.forRoot({
     config: {
       tokenGetter,
       whitelistedDomains: ['red.valtellina.com:65088']

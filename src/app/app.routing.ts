@@ -28,7 +28,6 @@ export const routes: Routes = [
       path: '',
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
   }]},
-  
   {
     path: '**',
     redirectTo: 'dashboard'

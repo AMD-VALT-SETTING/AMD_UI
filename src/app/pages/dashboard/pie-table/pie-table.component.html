@@ -1,28 +1,23 @@
-
-    <div class="card ">
-        <div class="card-header ">
-          <h5 class="card-title">Dettaglio</h5>
-          <p class="card-category">Tabella dettaglio</p>
+<div class="card" *ngIf="userArraySelected">
+    <div class="card-header ">
+        <h5 class="card-title">Dettaglio categoria selezionata</h5>
+    </div>
+    <div class="card-body ">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <th>DS_UserNameApp</th>
+                    <th>DS_UserAliasApp</th>
+                    <th>CD_PhoneNumber</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of userArraySelected">
+                        <td>{{ p.userNameApp }}</td>
+                        <td>{{ p.userAliasApp }}</td>
+                        <td>{{ p.phoneNumber }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="card-body ">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>DS_UserNameApp</th>
-                            <th>DS_UserAliasApp</th>
-                            <th>CD_PhoneNumber</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let p of userArraySelected">
-                            <td>{{ p.userNameApp }}</td>
-                            <td>{{ p.userAliasApp }}</td>
-                            <td>{{ p.phoneNumber }}</td>
-        
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-      </div>
+    </div>
+</div>

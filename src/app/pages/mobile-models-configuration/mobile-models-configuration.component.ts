@@ -9,14 +9,15 @@ import { MobileModelsConfiguration } from './model/MobileModelsConfiguration';
   styleUrls: ['./mobile-models-configuration.component.css']
 })
 export class MobileModelsConfigurationComponent implements OnInit {
-  
-  confMofMobileTableArray: MobileModelsConfiguration[];
 
-  constructor(private ConfModMobService:MobileModelsConfigurationService) { }
+  confMofMobileTableArray: MobileModelsConfiguration[] = [];
+
+  constructor(private ConfModMobService: MobileModelsConfigurationService) { }
 
   ngOnInit(): void {
     this.loadAll();
   }
+
   loadAll() {
     this.ConfModMobService.loadAll().subscribe(res => {
 

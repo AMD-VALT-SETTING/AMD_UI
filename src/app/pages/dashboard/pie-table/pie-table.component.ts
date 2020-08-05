@@ -9,17 +9,10 @@ import { Input } from '@angular/core';
   templateUrl: './pie-table.component.html',
   styleUrls: ['./pie-table.component.css']
 })
-export class PieTableComponent implements OnInit {
-
+export class PieTableComponent {
 
   dashboardfeedbackReceived: DashboardEvent;
   _userArraySelected: User[];
-
-
-  constructor(private dashboardService: DashboardService) { }
-
-  ngOnInit(): void {
-  }
 
   get userArraySelected() {
     return this._userArraySelected;
@@ -28,22 +21,14 @@ export class PieTableComponent implements OnInit {
   @Input()
   set userArraySelected(u: User[]) {
     this._userArraySelected = u;
- 
   }
 
-  
   feedbackReceivedHandler(dEvent: DashboardEvent) {
-    console.log('arraypietable pre event'+ this.userArraySelected);
+    console.log('arraypietable pre event' + this.userArraySelected);
 
     this.dashboardfeedbackReceived = dEvent;
 
     this.userArraySelected = this.dashboardfeedbackReceived.dashboardEvent;
-    console.log('feedbackReceivedHandler pietable= '+ this.userArraySelected);
-
-
-    
+    console.log('feedbackReceivedHandler pietable= ' + this.userArraySelected);
   }
-
 }
-
-
