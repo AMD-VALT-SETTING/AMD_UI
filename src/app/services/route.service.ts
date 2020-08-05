@@ -11,16 +11,19 @@ declare interface RouteInfo {
 }
 
 export const ADMIN_ROUTES: RouteInfo[] = [
-  { path: '/maps', title: 'Maps', icon: 'nc-pin-3', class: '' },
-  { path: '/notifications', title: 'Notifications', icon: 'nc-bell-55', class: '' },
-  { path: '/user', title: 'User Profile', icon: 'nc-single-02', class: '' },
-  { path: '/table', title: 'Table List', icon: 'nc-tile-56', class: '' },
-  { path: '/typography', title: 'Typography', icon: 'nc-caps-small', class: '' },
-  { path: '/upgrade', title: 'Upgrade to PRO', icon: 'nc-spaceship', class: 'active-pro' }
+  
+  
+  { path: '/usersApp', title: 'UsersApp', icon: 'nc-pin-3', class: '' },
+  { path: '/usersWeb', title: 'UsersWeb', icon: 'nc-pin-3', class: '' },
+  { path: '/mobileModelsConfiguration', title: 'Mobile Configuration', icon: 'nc-pin-3', class: '' },
+  
 ];
 
 export const USER_ROUTES: RouteInfo[] = [
-  { path: '/dashboard',     title: 'Dashboard',         icon: 'nc-chart-pie-36',       class: '' },
+{ path: '/dashboard', title: 'Dashboard',icon: 'nc-chart-pie-36',class: '' },
+{ path: '/license', title: 'License', icon: 'nc-pin-3', class: '' },
+
+
 ];
 
 @Injectable({
@@ -34,7 +37,7 @@ export class RouteService {
   getRoutes() {
     const loggedUser: LoggedUser = JSON.parse(localStorage.getItem(AppConstants.LOGIN_STORAGE));
     if (loggedUser !== undefined && loggedUser !== null) {
-      const isAdminUser: boolean = loggedUser.authorities.includes('ADMIN');
+      const isAdminUser: boolean = loggedUser.authorities.includes('300');
       if (isAdminUser) {
         this.menuItems = USER_ROUTES.concat(ADMIN_ROUTES).filter(menuItem => menuItem);
       } else {

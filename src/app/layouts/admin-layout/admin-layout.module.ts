@@ -18,6 +18,14 @@ import { UpgradeComponent }         from '../../pages/upgrade/upgrade.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PieTableComponent } from 'app/pages/dashboard/pie-table/pie-table.component';
 
+import { BarChartComponent } from 'app/pages/dashboard/bar-chart/bar-chart.component';
+
+import { AllarmsComponent } from 'app/pages/dashboard/allarms/allarms.component';
+import { UsersAPPComponent } from 'app/pages/users-app/users-app.component';
+import { LicenseComponent } from 'app/pages/license/license.component';
+import { MobileModelsConfigurationComponent } from 'app/pages/mobile-models-configuration/mobile-models-configuration.component';
+import { MobModConfDetailComponent } from 'app/pages/mobile-models-configuration/mob-mod-conf-detail/mob-mod-conf-detail.component';
+
 
 
 
@@ -38,7 +46,14 @@ import { PieTableComponent } from 'app/pages/dashboard/pie-table/pie-table.compo
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    PieTableComponent, 
+    PieTableComponent,
+    UsersAPPComponent,
+    UsersAPPComponent,
+    MobileModelsConfigurationComponent,
+    MobModConfDetailComponent, 
+    BarChartComponent,
+    LicenseComponent,
+    AllarmsComponent
     
   ]
 })

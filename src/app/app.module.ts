@@ -10,13 +10,13 @@ import { FixedPluginModule} from './shared/fixedplugin/fixedplugin.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
-import * as $ from 'jquery';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
 import { LoginResult } from './auth/model/LoginResult';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AppConstants } from './app.constants';
 import { HttpClientModule } from '@angular/common/http';
+
 
 
 export function tokenGetter() {
@@ -31,6 +31,11 @@ export function tokenGetter() {
     AppComponent,
     AdminLayoutComponent,
     PublicLayoutComponent,
+   
+   
+    
+   
+    
     
     
   ],

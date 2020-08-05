@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'app/model/User';
 import { DashboardService } from '../dashboard.service';
+import { DashboardEvent } from '../DashboardEvent';
 
 @Component({
   selector: 'app-pie-table',
@@ -9,28 +10,30 @@ import { DashboardService } from '../dashboard.service';
 })
 export class PieTableComponent implements OnInit {
 
-  pieChartSetTable: Set<User>;
+
+  dashboardfeedbackReceived: DashboardEvent;
+  userArraySelected: User[];
+
 
   constructor(private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
-    this.loadAllTable(1);
-  }
-  // HEADER TOKEN
-  /*
-  loadAllTable(selectedCategory: number) {
-    this.dashboardService.findAllPieTable(selectedCategory).subscribe(res => {
-
-      this.pieChartSetTable = res;
-
-    });// pipe
-  }
-  */
-  loadAllTable(selectedCategory: number){
-    /*this.pieChartSetTable = this.dashboardService.findAllPieTable(selectedCategory);
-    console.log(this.pieChartSetTable);
-    return  this.pieChartSetTable ;*/
   }
 
+
+  
+  feedbackReceivedHandler(dEvent: DashboardEvent) {
+    console.log('arraypietable pre event'+ this.userArraySelected);
+
+    this.dashboardfeedbackReceived = dEvent;
+
+    this.userArraySelected = this.dashboardfeedbackReceived.dashboardEvent;
+    console.log('feedbackReceivedHandler pietable= '+ this.userArraySelected);
+
+
+    
+  }
 
 }
+
+

@@ -12,7 +12,7 @@ export class RoleGuardService implements CanActivate {
   canActivate(): boolean {
     const loggedUser: LoggedUser = JSON.parse(localStorage.getItem(AppConstants.LOGIN_STORAGE));
 
-    if ( !this.auth.isAuthenticated() || !loggedUser.authorities.includes('ADMIN') ) {
+    if ( !this.auth.isAuthenticated() || !loggedUser.authorities.includes('300') ) {// 300 sta per admin
       this.router.navigate(['dashboard']);
       return false;
     }

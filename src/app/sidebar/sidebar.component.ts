@@ -11,10 +11,15 @@ export interface RouteInfo {
     class: string;
 }
 //----------------------------------------------------------
-//  RIMANE PER NAVBAR
+//  RIMANE PER SIDEBAR
 export const ROUTES: RouteInfo[] = [
     { path: '/login',         title: 'Login',             icon: 'nc-key-25',       class: '' },
     { path: '/dashboard',     title: 'Dashboard',         icon: 'nc-chart-pie-36',       class: '' },
+    { path: '/license', title: 'License', icon: 'nc-pin-3', class: '' },
+    { path: '/usersApp', title: 'UsersApp', icon: 'nc-pin-3', class: '' },
+  { path: '/usersWeb', title: 'UsersWeb', icon: 'nc-pin-3', class: '' },
+  { path: '/mobileModelsConfiguration', title: 'Mobile Configuration', icon: 'nc-pin-3', class: '' },
+    
     { path: '/icons',         title: 'Icons',             icon: 'nc-diamond',    class: '' },
     { path: '/maps',          title: 'Maps',              icon: 'nc-pin-3',      class: '' },
     { path: '/notifications', title: 'Notifications',     icon: 'nc-bell-55',    class: '' },
@@ -46,6 +51,7 @@ export class SidebarComponent implements OnInit {
  
    ngOnInit() {
      this.menuItems = this.routeService.getRoutes();
+     
      //this.userName= JSON.parse(localStorage.getItem(AppConstants.LOGIN_STORAGE));
    }
  

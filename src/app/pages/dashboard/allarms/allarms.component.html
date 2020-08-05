@@ -1,0 +1,30 @@
+
+
+<table class="table3">
+
+  <tr>
+    <td>ID-ALLARM</td>
+    <td>DATA</td>
+    <td>ORA</td>
+    <td>TIPO DI ALLARME</td>
+    <td>USERNAME</td>
+
+    <td>ALIAS</td>
+    <td>TELEFONO</td>
+    <td>POSIZIONE</td>
+
+
+  </tr>
+  <tr *ngFor="let u of  user  ">
+    <td>{{u.idAllarm}}</td>
+    <td>{{u.date}}</td>
+    <td>{{u.time}}</td>
+    <td>{{u.allarmType}}</td>
+    <td>{{u.user}}</td>
+    <td>{{u.alias}}</td>
+    <td>{{u.phone}}</td>
+    <td><a color="red"
+      href="https://www.google.it/maps/place/12%C2%B045'56.7%22N+24%C2%B059'12.8%22E/@12.7657552,24.9846949,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d12.76575!4d24.986876">posizione</a>
+  </td>
+  </tr>
+</table>

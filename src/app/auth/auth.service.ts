@@ -36,23 +36,7 @@ export class AuthService {
                           && login.token !== '';
   }
 
-  /*
-    public isAuthenticated(): boolean {
-      const login: LoginResult = JSON.parse(localStorage.getItem(AppConstants.LOGIN_STORAGE));
-
-      if (!login) {
-        return false;
-      }
-
-      const token = login.token;
-
-      if (this.jwtHelper.isTokenExpired(token)) {
-        localStorage.setItem(AppConstants.LOGIN_STORAGE, null);
-      }
-
-      return !this.jwtHelper.isTokenExpired(token);
-    }
-  */
+  
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

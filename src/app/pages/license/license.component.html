@@ -1,0 +1,130 @@
+<div class="container">
+
+
+
+
+
+    <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal1,ciao)">Licenza Cloud</button>
+
+    <div class="modal-dialog modal-lg">
+
+        <ng-template #mymodal1 let-modal>
+
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modal-basic-title">-Licenza Cloud</h4>
+
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+
+                    <span aria-hidden="true">×</span>
+
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+                DS_CLicenseKey=  l1.licenseKey 
+                <div class="row">
+                  
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>DS_CLicenseKey</th>
+                                    <th>DS_CLicenseSaleContact</th>
+                                    <th>DS_CLicenseSupportContact</th>
+                                    <th>DT_CLicenseActivation</th>
+                                    <th>DT_CLicenseExpiration</th>
+                                    <th>NM_CLicenseRenawal</th>
+                                    <th>CD_AppVersion</th>
+                                    <th>DS_LinkAppDownload</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let l1 of licenseCloudTableArray">
+                                    
+                                    <td>{{ l1.licenseKey }}</td>
+                                    <td>{{ l1.licenseSaleContact }}</td>
+                                    <td>{{ l1.licenseSupportContact }}</td>
+                                    <td>{{ l1.licenseActivation }}</td>
+                                    <td>{{ l1.licenseExpiration }}</td>
+                                    <td>{{ l1.licenseRenawal }}</td>
+                                    <td>{{ l1.appVersion }}</td>
+                                    <td>{{ l1.linkAppDownload }}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+
+            </div>
+
+        </ng-template>
+    </div>
+    <br>
+    <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Licenza Mobile</button>
+
+
+
+    <ng-template #mymodal let-modal>
+
+        <div class="modal-header">
+
+            <h4 class="modal-title" id="modal-basic-title">Licenza Mobile</h4>
+
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+
+                <span aria-hidden="true">×</span>
+
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>DS_LicenseKey</th>
+                                <th>DT_LicenseActivation</th>
+                                <th>DT_LicenseExpiration</th>
+                                <th>NM_LicenseMaxUsers</th>
+                                <th>NM_LicenseFree</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let l2 of licenseMobileTableArray">
+                                <td>{{ l2.licenseKey }}</td>
+                                <td>{{ l2.licenseActivation }}</td>
+                                <td>{{ l2.licenseExpiration }}</td>
+                                <td>{{ l2.licenseMaxUsers }}</td>
+                                <td>{{ l2.lincenseFree }}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="modal-footer">
+
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+
+        </div>
+
+    </ng-template>
+
+</div>

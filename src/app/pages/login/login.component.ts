@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
           username: this.login.username,
           token: res.token,
           authorities: [res.role],
+          message:res.message
         };
         localStorage.setItem(
           AppConstants.LOGIN_STORAGE,

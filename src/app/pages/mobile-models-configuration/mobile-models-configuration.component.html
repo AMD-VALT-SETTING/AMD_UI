@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>CD_ModelBrand</th>
+                    <th>CD_Model</th>
+                    <th>CD_ModelVersion</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let m of confMofMobileTableArray">
+                    <td>{{ m.licenseKey }}</td>
+                    <td>{{ m.licenseActivation }}</td>
+                    <td>{{ m.licenseExpiration }}</td>
+                    <td>{{ m.licenseMaxUsers }}</td>
+                    <td>{{ m.lincenseFree }}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

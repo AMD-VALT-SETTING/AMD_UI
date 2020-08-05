@@ -7,6 +7,7 @@ import { PublicLayoutRoutes } from './public-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../../pages/login/login.component';
 
+
 @NgModule({
   imports: [
   CommonModule,
@@ -15,7 +16,8 @@ import { LoginComponent } from '../../pages/login/login.component';
     NgbModule
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+    
   ]
 })
 
