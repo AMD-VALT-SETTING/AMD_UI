@@ -1,45 +1,33 @@
-<div class="container">
-
-    <div class="row">
+<!--div class="row">
         <div class="col-sm-6">
             <dashboard-cmp (dashboardEvent)="feedbackReceivedHandler($event)"></dashboard-cmp>
 
         </div>
-    </div>
-    <div class="row">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>DS_UserNameApp</th>
-                    <th>DS_UserAliasApp</th>
-                    <th>CD_PhoneNumber</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let p of userArraySelected">
-                    <td>{{ p.userNameApp }}</td>
-                    <td>{{ p.userAliasApp }}</td>
-                    <td>{{ p.phoneNumber }}</td>
-
-                </tr>
-            </tbody>
-        </table>
-
-
-    </div>
-    
-    <div class="row">
-        <div class="col-sm-12">
-            <app-allarms> </app-allarms>
+    </div-->
+    <div class="card ">
+        <div class="card-header ">
+          <h5 class="card-title">Dettaglio</h5>
+          <p class="card-category">Tabella dettaglio</p>
         </div>
-
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-sm-12">
-            <app-bar-chart></app-bar-chart>
-
+        <div class="card-body ">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>DS_UserNameApp</th>
+                            <th>DS_UserAliasApp</th>
+                            <th>CD_PhoneNumber</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of userArraySelected">
+                            <td>{{ p.userNameApp }}</td>
+                            <td>{{ p.userAliasApp }}</td>
+                            <td>{{ p.phoneNumber }}</td>
+        
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-    </div>
-</div>
+      </div>

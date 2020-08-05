@@ -18,12 +18,8 @@ import { MobileModelsConfigurationComponent } from 'app/pages/mobile-models-conf
 
 
 export const AdminLayoutRoutes: Routes = [
-    /*{
-        path: 'dashboard', component: DashboardComponent,
-        canActivate: [AuthGuardService]
-    },*/
     {
-        path: 'dashboard', component: PieTableComponent,
+        path: 'dashboard', component: DashboardComponent,
         canActivate: [AuthGuardService]
     },
     {
