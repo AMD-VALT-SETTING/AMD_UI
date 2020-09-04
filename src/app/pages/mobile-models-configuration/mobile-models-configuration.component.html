@@ -1,22 +1,56 @@
 <div class="row">
-    <div class="col-sm-12">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>CD_ModelBrand</th>
-                    <th>CD_Model</th>
-                    <th>CD_ModelVersion</th>
-                    
+    <div class="col">
+        <div class="alert alert-danger" *ngIf="mobModConError">
+          
+          <span *ngIf="mobModConError.error !== undefined || mobModConError.error.error !== undefined">
+            {{ this.mobModConError.error.description}}
+          </span>
+        
+        </div>
+    </div>
+  </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card ">
+            <div class="card-header ">
+                <h5 class="card-title">Configurazione modelli mobile</h5>
+                <p class="card-category">Dati dispositivi:</p>
+            </div>
+            <div class="card-body ">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>CD_ModelBrand</th>
+                            <th>CD_Model</th>
+                            <th>CD_ModelVersion</th>
+                            <th>Detail</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let m of confMofMobileTableArray">
-                    <td>{{ m.modelBrand }}</td>
-                    <td>{{ m.model }}</td>
-                    <td>{{ m.modelVersion }}</td>
-                </tr>
-            </tbody>
-        </table>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let m of mobModConfTableArray">
+                            <td>{{ m.cdModelBrand }}</td>
+                            <td>{{ m.cdModel }}</td>
+                            <td>{{ m.cdModelVersion }}</td>
+                            <td><button class="btn btn-warning" (click)="seeDetail(m.idModel)">Detail</button></td>
+
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="row" *ngIf="mobModConfDetailSelected!=null">
+            <div class="col">
+
+                <app-mob-mod-conf-detail [detailResult]="mobModConfDetailSelected"></app-mob-mod-conf-detail>
+
+            </div>
+        </div>
+
     </div>
 </div>

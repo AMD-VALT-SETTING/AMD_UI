@@ -1,16 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
-import { Allarms } from '../model/Allarms';
+
 import { Observable, Subscription, interval } from 'rxjs';
+import { Alarms } from '../model/Alarms';
 
 @Component({
-  selector: 'app-allarms',
-  templateUrl: './allarms.component.html',
-  styleUrls: ['./allarms.component.css']
+  selector: 'app-alarms',
+  templateUrl: './alarms.component.html',
+  styleUrls: ['./alarms.component.css']
 })
-export class AllarmsComponent implements OnInit, OnDestroy {
+export class AlarmsComponent implements OnInit, OnDestroy {
 
-  allarms : Array<Allarms>;
+  allarms : Array<Alarms>;
   private sub: Subscription;
   
 
@@ -25,6 +26,11 @@ export class AllarmsComponent implements OnInit, OnDestroy {
         console.log(val);
 
         //this.loadAllarms();
+      });
+    
+      this.getAllAllarms();
+      this.allarms.map(res => {
+        res.position = res.position.split(' ').toString();
       });
   }
 
