@@ -32,11 +32,10 @@ export class LoginComponent implements OnInit {
 
   submit() {
     console.log(JSON.stringify(this.login));
-
+   
     this.authService.authenticate(this.login).subscribe(
       (res) => {
         console.log('SUBMIT' + JSON.stringify(res));
-
         this.userLogged = {
           username: this.login.username,
           token: res.token,
@@ -47,26 +46,14 @@ export class LoginComponent implements OnInit {
           AppConstants.LOGIN_STORAGE,
           JSON.stringify(this.userLogged)
         );
+        
         this.router.navigate(['dashboard']);
       },
       (error) => {
         console.log('ERRORE NEL SUBMIT');
         this.loginError = error;
-        if (error.status === 401) {
-          if (error.code === 104) {
-            this.loginError.message = 'Username o Password Errati';
-          }
-          if (error.code === 108) {
-            this.loginError.message =
-              'Utente già connesso e con diverso dispositivo mobile';
-          }
-          if (error.code === 120) {
-            this.loginError.message = 'Errore Imprevisto';
-          }
-          if (error.code === 101) {
-            this.loginError.message = 'Licenza scaduta';
-          }
-        }
+       
+       
       }
     );
   }

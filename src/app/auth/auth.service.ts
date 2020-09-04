@@ -19,21 +19,23 @@ export class AuthService {
 
   public authenticate(loginData: LoginData): Observable<LoginResult> {
     const headers: HttpHeaders = new HttpHeaders();
-
+    
     return this.httpClient
       .post<LoginResult>(baseURL, loginData)
       .pipe(catchError(this.handleError));
   }
-
+  
   public logout() {
     localStorage.setItem(AppConstants.LOGIN_STORAGE, null);
   }
 
   public isAuthenticated(): boolean {
     const login: LoginResult = JSON.parse(localStorage.getItem(AppConstants.LOGIN_STORAGE));
+   
     return login !== null && login !== undefined && login.token !== undefined
                           && login.token !== undefined
                           && login.token !== '';
+                          
   }
 
   

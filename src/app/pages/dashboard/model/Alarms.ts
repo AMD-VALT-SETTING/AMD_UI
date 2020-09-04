@@ -1,13 +1,15 @@
-export interface Allarms {
-    idAllarm: string;
+export interface Alarms {
+  
+  idValueAlarm: string;
     date: string;
     time: string;
-    allarmType:string;
-    user:string;
+    alarmType:string;
+    username:string;
     alias:string;
     phone:string;
     position:string;
     accuracy:string;
+    isRealAlarm:boolean;
    
   }
   

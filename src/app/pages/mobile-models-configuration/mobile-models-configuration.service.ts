@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MobileModelsConfiguration } from './model/MobileModelsConfiguration';
-import { MobileModelsConfigurationDetailData } from './model/MobileModelsConfigurationDetailData';
 import { MobileModelsConfigurationDetailResult } from './model/MobileModelsConfigurationDetailResult';
 
 
@@ -19,7 +18,7 @@ export class MobileModelsConfigurationService {
     return this.httpClient.get<MobileModelsConfiguration[]>(`${baseUrl}/rest/config/models`);
   }
 
-  loadDetail(detailData:MobileModelsConfigurationDetailData): Observable<MobileModelsConfigurationDetailResult> {
-    return this.httpClient.post<MobileModelsConfigurationDetailResult>(`${baseUrl}/rest/config/details`,detailData);
+  loadDetail(idModel:string): Observable<MobileModelsConfigurationDetailResult> {
+    return this.httpClient.post<MobileModelsConfigurationDetailResult>(`${baseUrl}/rest/config/details/`,idModel);
   }
 }

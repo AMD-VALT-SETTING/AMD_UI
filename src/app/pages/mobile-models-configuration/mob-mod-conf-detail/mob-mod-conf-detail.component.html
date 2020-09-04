@@ -1,13 +1,37 @@
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-md-12">
+        <div class="card ">
+            <div class="card-header ">
+                <h5 class="card-title">Mobile</h5>
+                <p class="card-category">Dettagli dispositivi:</p>
+            </div>
+            <div class="card-body ">
+                <div class="alert alert-danger" *ngIf="mobModConDetailError">
+
+                    <span
+                        *ngIf="mobModConDetailError.error !== undefined || mobModConDetailError.error.error !== undefined">
+                        {{ this.mobModConDetailError.error.description}}
+                    </span>
+
+                </div>
+            </div>
+        </div>
         <table class="table">
             <thead>
                 <tr>
                     <th>CD_ConfigVersion</th>
-                    <th>JS</th>
+                    <th>JS_Config</th>
+
+
+
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>{{ detailResult.configVersion }}</td>
+                    <td>{{ detailResult.config }}</td>
+
+                </tr>
             </tbody>
         </table>
     </div>

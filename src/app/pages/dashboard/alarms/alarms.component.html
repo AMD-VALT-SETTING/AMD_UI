@@ -1,0 +1,84 @@
+<div class="row" *ngIf="feedbackReceived && feedbackReceived.success">
+  <div class="col">
+    <div class="alert alert-success">
+      {{ feedbackReceived.message }}
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="feedbackReceived && !feedbackReceived.success">
+  <div class="col">
+    <div class="alert alert-danger">
+      {{ feedbackReceived.message }}
+
+    </div>
+  </div>
+</div>
+<div class="alert alert-danger" *ngIf="alarmsError">
+
+  <span *ngIf="alarmsError.error !== undefined || alarmsError.error.error !== undefined">
+    {{ this.alarmsError.error.description}}
+  </span>
+
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header ">
+        <div class="row">
+          <div class="col-md-6">
+            <h5 class="card-title">Tabella Allarmi Web</h5>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex justify-content-end">
+
+
+            </div>
+          </div>
+          <div class="col">
+            <div class="card-category">Allarmi:</div>
+          </div>
+
+        </div>
+        <div class="card-body ">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID-ALLARM</th>
+                  <th>DATA</th>
+                  <th>ORA</th>
+                  <th>TIPO DI ALLARME</th>
+                  <th>USERNAME</th>
+                  <th>ALIAS</th>
+                  <th>TELEFONO</th>
+                  <th>POSIZIONE</th>
+                  <th>AGGIORNA</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let u of alarms">
+                  <td>{{u.idValueAlarm}}</td>
+                  <td>{{u.date}}</td>
+                  <td>{{u.time}}</td>
+                  <td>{{u.alarmType}}</td>
+                  <td>{{u.username}}</td>
+                  <td>{{u.alias}}</td>
+                  <td>{{u.phone}}</td>
+                  <td><a href="https://www.google.com/maps/search/?api=1&query={{u.position}}">posizione</a>
+                  </td>
+                  <td>
+                    <app-modalarms [selectedUpdateAlarm]="u.idValueAlarm">
+                      </app-modalarms >
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>

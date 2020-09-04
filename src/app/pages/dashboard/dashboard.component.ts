@@ -118,7 +118,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       const colors: number[] = res['listaPieChart'].map((item) =>
         item.name.toLowerCase()
       );
-      console.log(labels);
+      console.log('labels'+labels);
       console.log(values);
       console.log(colors);
       this.pieChart.data.labels = labels;

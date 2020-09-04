@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError, pipe } from 'rxjs';
 import { User } from 'app/model/User';
 import { PieChartData } from './model/PieChartData';
-import { Allarms } from './model/Allarms';
+import { Alarms } from './model/Alarms';
+import { catchError } from 'rxjs/operators';
+import { UpdateAlarm } from './model/UpdateAlarm';
 
 
 const baseUrl = 'http://red.valtellina.com:65088';
@@ -13,10 +15,9 @@ const baseUrl = 'http://red.valtellina.com:65088';
 })
 export class DashboardService {
 
-  
-
   constructor(private httpClient: HttpClient) { }
 
+  
   getDataForPieChart (): Observable<PieChartData[]> {
     return this.httpClient.get<PieChartData[]>(`${baseUrl}/rest/dashboard/pie`);
   }
@@ -25,9 +26,27 @@ export class DashboardService {
     
     return this.httpClient.post<User[]>(`${baseUrl}/rest/dashboard/detail`,selectedCategory);
   }
-  getDataAllarms (): Observable<Allarms[]> {
-    return this.httpClient.get<Allarms[]>(`${baseUrl}/rest/dashboard/allarms`);
+  getDataAllarms (): Observable<Alarms[]> {
+    return this.httpClient.get<Alarms[]>(`${baseUrl}/rest/dashboard/switchAlarmOff`)
+    .pipe(catchError(this.handleError));
+  }
+
+  updateAlarm(idAlarm:UpdateAlarm):Observable<UpdateAlarm>{
+    return this.httpClient.put<UpdateAlarm>(baseUrl, idAlarm)
+    .pipe(catchError(this.handleError));
   }
   
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.error(`Backend returned error: ${JSON.stringify(error)}`);
+    }
+    return throwError(error);
+  }
+
+  
+
 }
 
