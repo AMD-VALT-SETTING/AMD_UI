@@ -1,27 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MobileModelsConfigurationService } from '../mobile-models-configuration.service';
-
+import { MobileModelsConfigurationDetail } from '../model/MobileModelsConfigurationDetail';
+import { Input } from '@angular/core';
 @Component({
   selector: 'app-mob-mod-conf-detail',
   templateUrl: './mob-mod-conf-detail.component.html',
   styleUrls: ['./mob-mod-conf-detail.component.css']
 })
-export class MobModConfDetailComponent {
+export class MobModConfDetailComponent implements OnInit {
 
-/*  detailData: MobileModelsConfigurationDetailData;
-  detailResult: MobileModelsConfigurationDetailResult;
-  confMofMobileDetailTableArray: MobileModelsConfigurationDetailResult[];*/
+  
+  _detailResult: MobileModelsConfigurationDetail;
+  mobModConDetailError: any;
+
+
 
   constructor(private ConfModMobService: MobileModelsConfigurationService) { }
 
-  /*ngOnInit(): void {
-    this.loadDetail(this.detailData);
+  ngOnInit(): void {}
+  
+  get detailResult() {
+    return this._detailResult;
   }
 
-  loadDetail(detailData: MobileModelsConfigurationDetailData) {
-    this.ConfModMobService.loadDetail(detailData).subscribe(res => {
+  @Input()
+  set detailResult(d: MobileModelsConfigurationDetail) {
+    this._detailResult = d;
+   
+  }
 
-      this.detailResult = res;
-    });
-  }*/
+  
+
 }

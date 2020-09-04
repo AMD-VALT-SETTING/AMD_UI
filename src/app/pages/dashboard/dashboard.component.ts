@@ -110,7 +110,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   drawPieChart() {
     this.dashboardService.getDataForPieChart().subscribe((res) => {
-      console.log(JSON.stringify(res));
+     
       const labels: string[] = res['listaPieChart'].map(
         (item) => item.description
       );
@@ -118,9 +118,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       const colors: number[] = res['listaPieChart'].map((item) =>
         item.name.toLowerCase()
       );
-      console.log(labels);
-      console.log(values);
-      console.log(colors);
+     
       this.pieChart.data.labels = labels;
       this.pieChart.data.datasets[0].backgroundColor = colors;
       this.pieChart.data.datasets[0].data = values;
@@ -130,8 +128,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   buildPieChartTable(label: any) {
     
-   // this.pos=0;
-    console.log('buildP' + label);
+   
      if (label === 'Utenze in allarme') {
       this.pos = 1;
     } else if (label === 'Utenze non localizzate') {

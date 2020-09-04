@@ -13,11 +13,10 @@
   <div class="col">
       <div class="alert alert-danger" *ngIf="loginError">
         
-        <span *ngIf="loginError.error !== undefined && loginError.error.error !== undefined">
-          {{ loginError.error.error }}
+        <span *ngIf="loginError.error !== undefined || loginError.error.error !== undefined">
+          {{ this.loginError.error.description}}
         </span>
-          
-          Username o password errati
+      
       </div>
   </div>
 </div>

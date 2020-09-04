@@ -1,0 +1,90 @@
+<!-------------------Modale add User------------------------------------------------->
+<ng-template #addUser let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add User</h4>
+        <img src="/assets/img/valtellina_logo.png" height="100px">
+
+    </div>
+    <div class="modal-body">
+        
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-danger" *ngIf="addUserError">
+
+                    <span *ngIf="addUserError.error !== undefined || addUserError.error.error !== undefined">
+                        {{ this.addUserError.error.description}}
+                    </span>
+
+                </div>
+            </div>
+        </div>
+
+        <form [formGroup]="usersWebFormAdd" class="form" (ngSubmit)="save()">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <label for="userName">Username</label>
+                        <input id="userName" class="form-control" type="text" formControlName="userName">
+                        <div class="alert alert-danger"
+                            *ngIf="!usersWebFormAdd.get('userName').valid && !usersWebFormAdd.get('userName').pristine">
+                            Il campo deve avere una lunghezza compresa tra 1 e 50 caratteri.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <label for="userEmail">Email</label>
+                        <input id="userEmail" class="form-control" type="text" formControlName="userEmail">
+                        <div class="alert alert-danger"
+                            *ngIf="!usersWebFormAdd.get('userEmail').valid && !usersWebFormAdd.get('userEmail').pristine">
+                            Il campo deve avere una lunghezza compresa tra 1 e 50 caratteri.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <label for="userAlias">User alias</label>
+                        <input id="userAlias" class="form-control" type="text" formControlName="userAlias">
+                        <div class="alert alert-danger"
+                            *ngIf="!usersWebFormAdd.get('userAlias').valid && !usersWebFormAdd.get('userAlias').pristine">
+                            Il campo deve avere una lunghezza compresa tra 1 e 50 caratteri.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                        <label for="role">Role</label>
+                        <select multiple name="role" class="form-control" id="role" formControlName="role">
+                            <option *ngFor="let r of roles" [ngValue]="r">
+                                {{r}}
+                            </option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-#e26868"
+                            (click)="modal.dismiss('Cross click')">Close</button>
+
+                        <button class="btn btn-success"  [disabled]="!usersWebFormAdd.valid">Salva</button>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<button type="button" class="btn btn-outline-primary mb-2 mr-2" (click)="openModal(addUser)">
+    <i class="nc-icon nc-simple-add"></i> Add User
+</button>

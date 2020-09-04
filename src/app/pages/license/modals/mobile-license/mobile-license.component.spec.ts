@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllarmsComponent } from './allarms.component';
+import { MobileLicenseComponent } from './mobile-license.component';
 
-describe('AlarmsComponent', () => {
-  let component: AllarmsComponent;
-  let fixture: ComponentFixture<AllarmsComponent>;
+describe('MobileLicenseComponent', () => {
+  let component: MobileLicenseComponent;
+  let fixture: ComponentFixture<MobileLicenseComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AllarmsComponent ]
+      declarations: [ MobileLicenseComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AllarmsComponent);
+    fixture = TestBed.createComponent(MobileLicenseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
