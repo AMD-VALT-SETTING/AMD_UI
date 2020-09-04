@@ -19,7 +19,8 @@ export class LicenseComponent implements OnInit {
     private modalService: NgbModal
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   loadAllLicense() {
     this.licenseService.loadAll().subscribe((res) => {
@@ -71,4 +72,6 @@ export class LicenseComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-}
+
+
+  }

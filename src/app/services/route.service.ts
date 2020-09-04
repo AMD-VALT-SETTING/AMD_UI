@@ -22,7 +22,7 @@ export const USER_ROUTES: RouteInfo[] = [
     icon: 'nc-chart-pie-36',
     class: '',
   },
-  { path: '/license', title: 'License', icon: 'nc-pin-3', class: '' },
+  { path: '/license', title: 'Licenze', icon: 'nc-pin-3', class: '' },
 ];
 
 @Injectable({

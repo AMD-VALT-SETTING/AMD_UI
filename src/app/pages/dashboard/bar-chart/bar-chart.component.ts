@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import Chart from 'chart.js';
 import { DashboardService } from '../dashboard.service';
 import { isNgTemplate } from '@angular/compiler';
-import { Allarms } from '../model/Allarms';
+import { Alarms } from '../model/Alarms';
 import { unique } from 'jquery';
 import { Observable, Subscription, interval } from 'rxjs';
 
@@ -27,7 +27,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
   allarmCrashes = new Array<number>();
   allarmCrashesCounter: number;
 
-  allarms: Allarms[];
+  allarms: Alarms[];
   dates: string[];
   datesU: string[];
   allarmsDateOrdered: string[];
@@ -95,7 +95,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
     this.dates = this.datesOrder(this.datesNoDuplicateDate(this.dates));
 
 
-    let allarms: Allarms[];
+    let allarms: Alarms[];
     allarms = [
       { idAllarm: 'AY-0928733', date: '3/08/2020', time: '10.10', allarmType: 'Caduta', user: 'peppe', alias: 'pippo', phone: '1111111', position: '11111 22222', accuracy: '1,5' },
       { idAllarm: 'AY-0928733', date: '3/08/2020', time: '10.10', allarmType: 'Caduta', user: 'peppe', alias: 'pippo', phone: '1111111', position: '11111 22222', accuracy: '1,5' },
@@ -170,7 +170,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
 
     return dates;
   }
-  allarmsCouter(allarms8Gg: Allarms[], datesO: string[]) {
+  allarmsCouter(allarms8Gg: Alarms[], datesO: string[]) {
     this.allarmFallsCounter = 0;
     this.allarmImmobilitiesCounter = 0;
     this.allarmCrashesCounter = 0;

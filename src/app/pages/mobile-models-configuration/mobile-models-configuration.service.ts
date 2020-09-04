@@ -19,7 +19,7 @@ export class MobileModelsConfigurationService {
     return this.httpClient.get<MobileModelsConfiguration[]>(`${baseUrl}/rest/config/models`);
   }
 
-  loadDetail(detailData:MobileModelsConfigurationDetailData): Observable<MobileModelsConfigurationDetailResult> {
-    return this.httpClient.post<MobileModelsConfigurationDetailResult>(`${baseUrl}/rest/config/details`,detailData);
+  loadDetail(idModel:string): Observable<MobileModelsConfigurationDetailResult> {
+    return this.httpClient.post<MobileModelsConfigurationDetailResult>(`${baseUrl}/rest/config/details`,idModel);
   }
 }

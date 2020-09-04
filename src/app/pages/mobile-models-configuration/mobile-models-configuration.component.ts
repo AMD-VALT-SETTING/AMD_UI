@@ -10,18 +10,30 @@ import { MobileModelsConfiguration } from './model/MobileModelsConfiguration';
 })
 export class MobileModelsConfigurationComponent implements OnInit {
 
-  confMofMobileTableArray: MobileModelsConfiguration[] = [];
+  mobModConfTableArray: MobileModelsConfiguration[];
+  selectedMobModConf: string;
 
   constructor(private ConfModMobService: MobileModelsConfigurationService) { }
 
   ngOnInit(): void {
-    this.loadAll();
+    // this.loadAll();
+    this.mobModConfTableArray = [
+      {id_Model: 'AB-1234', model: 'NOKIA', modelBrand: 'NKA10', modelVersion: 2},
+      {id_Model: 'AB-1234', model: '212', modelBrand: 'eeee', modelVersion: 2},
+    ];
   }
 
   loadAll() {
     this.ConfModMobService.loadAll().subscribe(res => {
 
-      this.confMofMobileTableArray = res;
+      this.mobModConfTableArray = res;
     });
   }
+
+  seeDetail(s: string) {
+
+    this.selectedMobModConf = s;
+  }
+
+ 
 }

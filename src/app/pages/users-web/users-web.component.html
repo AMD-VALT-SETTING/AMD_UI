@@ -1,1 +1,73 @@
-<p>utenti-web works!</p>
+<div class="row" *ngIf="feedbackReceived && feedbackReceived.success">
+    <div class="col">
+        <div class="alert alert-success">
+            {{ feedbackReceived.message }}
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="feedbackReceived && !feedbackReceived.success">
+    <div class="col">
+        <div class="alert alert-danger">
+            {{ feedbackReceived.message }}
+
+        </div>
+    </div>
+</div>
+<!-------------------Modale reset pwd------------------------------------------------->
+
+
+<!----------------------Modale add user--------........----------------------------------------------->
+
+<!------------------------------........----------------------------------------------->
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header ">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="card-title">Utenti Web</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-end">
+                            <app-add-user></app-add-user>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card-category">Dati utenti:</div>
+                </div>
+               
+            </div>
+            <div class="card-body ">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>UserName</th>
+                                <th>UserEmail</th>
+                                <th>UserAlias</th>
+                                <th>Ruolo</th>
+                                <th>Reset password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let u of usersWeb">
+                                <td>{{ u.userName }}</td>
+                                <td>{{ u.userEmail }}</td>
+                                <td>{{ u.userAlias }}</td>
+                                <td>{{ u.role }}</td>
+                                <td>
+                                    <app-reset-pwd></app-reset-pwd>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

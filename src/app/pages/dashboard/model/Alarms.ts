@@ -1,4 +1,4 @@
-export interface Allarms {
+export interface Alarms {
     idAllarm: string;
     date: string;
     time: string;

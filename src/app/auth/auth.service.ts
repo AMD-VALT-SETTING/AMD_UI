@@ -36,8 +36,6 @@ export class AuthService {
                           && login.token !== '';
   }
 
-  
-
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);

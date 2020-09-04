@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllarmsComponent } from './allarms.component';
+import { AllarmsComponent } from './alarms.component';
 
 describe('AlarmsComponent', () => {
   let component: AllarmsComponent;

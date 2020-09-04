@@ -1,5 +1,5 @@
 export interface User {
-    userNameApp: string;
+    usernameApp: string;
     userAliasApp: string;
     phoneNumber: string;
 }

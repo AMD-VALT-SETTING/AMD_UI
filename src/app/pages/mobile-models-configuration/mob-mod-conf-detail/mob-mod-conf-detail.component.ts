@@ -1,27 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MobileModelsConfigurationService } from '../mobile-models-configuration.service';
-
+import { MobileModelsConfigurationDetailData } from '../model/MobileModelsConfigurationDetailData';
+import { MobileModelsConfigurationDetailResult } from '../model/MobileModelsConfigurationDetailResult';
+import { Input } from '@angular/core';
 @Component({
   selector: 'app-mob-mod-conf-detail',
   templateUrl: './mob-mod-conf-detail.component.html',
   styleUrls: ['./mob-mod-conf-detail.component.css']
 })
-export class MobModConfDetailComponent {
+export class MobModConfDetailComponent implements OnInit {
 
-/*  detailData: MobileModelsConfigurationDetailData;
+  _idModel: string;
   detailResult: MobileModelsConfigurationDetailResult;
-  confMofMobileDetailTableArray: MobileModelsConfigurationDetailResult[];*/
+
+
 
   constructor(private ConfModMobService: MobileModelsConfigurationService) { }
 
-  /*ngOnInit(): void {
-    this.loadDetail(this.detailData);
+  ngOnInit(): void {
+    //this.loadDetail(this.idModel);
+
+  }
+  get idModel() {
+    return this._idModel;
   }
 
-  loadDetail(detailData: MobileModelsConfigurationDetailData) {
-    this.ConfModMobService.loadDetail(detailData).subscribe(res => {
+  @Input()
+  set idModel(i: string) {
+    this._idModel = i;
+    this.loadDetail(this.idModel)
 
-      this.detailResult = res;
-    });
-  }*/
+  }
+
+
+
+  loadDetail(idModel: string) {
+    /* this.ConfModMobService.loadDetail(idModel).subscribe(res => {
+   
+       this.detailResult = res;
+     });
+    */
+   console.log(idModel);
+   let i='AB-1234'
+    if (idModel===i) {
+      this.detailResult = { configVersion: '1', config: '{jsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjson}' };
+    }
+
+  }
+
 }

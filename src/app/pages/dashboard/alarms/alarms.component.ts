@@ -1,16 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
-import { Allarms } from '../model/Allarms';
+
 import { Observable, Subscription, interval } from 'rxjs';
+import { Alarms } from '../model/Alarms';
 
 @Component({
-  selector: 'app-allarms',
-  templateUrl: './allarms.component.html',
-  styleUrls: ['./allarms.component.css']
+  selector: 'app-alarms',
+  templateUrl: './alarms.component.html',
+  styleUrls: ['./alarms.component.css']
 })
-export class AllarmsComponent implements OnInit, OnDestroy {
+export class AlarmsComponent implements OnInit, OnDestroy {
 
-  allarms : Array<Allarms>;
+  allarms : Array<Alarms>;
   private sub: Subscription;
   
 
@@ -26,6 +27,11 @@ export class AllarmsComponent implements OnInit, OnDestroy {
 
         //this.loadAllarms();
       });
+    
+      this.getAllAllarms();
+      this.allarms.map(res => {
+        res.position = res.position.split(' ').toString();
+      });
   }
 
   loadAllarms() {
@@ -33,6 +39,15 @@ export class AllarmsComponent implements OnInit, OnDestroy {
       this.allarms = res;
     });
   
+}
+
+getAllAllarms() {
+  this.allarms = [
+    { idAllarm: 'XY-0928733', date: '23/05/2015', time: '10:30', allarmType: 'Caduta', user: 'Mario', alias: 'MarioLavoro', phone: '36748987', position: '47.5951518 -122.3316393', accuracy: '' },
+    { idAllarm: 'ZA-0828453', date: '18/04/2017', time: '12:30', allarmType: 'Immobilità', user: 'Paolo', alias: 'PaoloUtente', phone: '32748977', position: '41.489535 13.833756', accuracy: '' },
+    { idAllarm: 'WY-0768987', date: '06/04/2009', time: '11:30', allarmType: 'Schianto', user: 'Andrea', alias: 'And85', phone: '36148387', position: '', accuracy: '' },
+    { idAllarm: 'QP-0967453', date: '14/09/2020', time: '14:30', allarmType: 'Caduta', user: 'Giorgio', alias: 'Super', phone: '31728989', position: '', accuracy: '' }
+  ];
 }
 
 Allarms:[]

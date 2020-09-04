@@ -1,4 +1,16 @@
 <div class="row">
+  <div class="col">
+      <div class="alert alert-danger" *ngIf="dashboardError">
+        
+        <span *ngIf="!dashboardError.error !== undefined && !dashboardError.error.error !== undefined">
+          {{ loginError.error.error }}
+        </span>
+          Errore recupero dati dispositivi
+      </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-md-6">
     <div class="card ">
       <div class="card-header ">
@@ -18,7 +30,7 @@
 
 <div class="row">
   <div class="col">
-    <app-allarms></app-allarms>
+    <app-alarms></app-alarms>
   </div>
 </div>
 
