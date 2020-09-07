@@ -1,0 +1,35 @@
+<ng-template #UpdateAlarm let-modal>
+    <div class="modal-header">
+        <div class="alert alert-danger" *ngIf="errorAlarm">
+            <span *ngIf="errorAlarm.error !== undefined || errorAlarm.error.error !== undefined">
+                {{ errorAlarm.statusText}}
+            </span>
+        </div>
+
+        <div>
+            <h4 class="modal-title" id="modal-basic-title">Aggiorna-allarmi</h4>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div>
+            <p>Vuoi disattivare l'allarme?</p>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-#e26868"
+                        (click)="modal.dismiss('Cross click')">Close</button>
+                    <button type="button" class="btn btn-outline-#e26868" (click)="updateAlarm()">Disattiva</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<div class="row">
+    <div class="col-sm-1">
+        <button type="button" class="btnMod btnMod1 mb-2 mr-2 btn-lg" (click)="openModal(UpdateAlarm)">
+            AGGIORNA
+        </button>
+
+    </div>
+</div>

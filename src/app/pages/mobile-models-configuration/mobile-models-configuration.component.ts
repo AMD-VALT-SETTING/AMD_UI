@@ -10,7 +10,6 @@ import { MobileModelsConfigurationDetail } from './model/MobileModelsConfigurati
   styleUrls: ['./mobile-models-configuration.component.css']
 })
 export class MobileModelsConfigurationComponent implements OnInit {
-
   mobModConfTableArray: MobileModelsConfiguration[];
   mobModConfDetailSelected: MobileModelsConfigurationDetail;
   selectedMobModConf: string;
@@ -32,7 +31,7 @@ export class MobileModelsConfigurationComponent implements OnInit {
   }
 
   seeDetail(idModel: string) {
-    this.ConfModMobService.loadDetail(idModel).subscribe((res:any) => {
+    this.ConfModMobService.loadDetail(idModel).subscribe((res: any) => {
       this.mobModConfDetailSelected = res;
     },
       (error) => {
@@ -40,4 +39,5 @@ export class MobileModelsConfigurationComponent implements OnInit {
         this.mobModConError = error;
       });
   }
+
 }
