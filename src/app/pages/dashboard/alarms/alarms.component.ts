@@ -16,39 +16,33 @@ export class AlarmsComponent implements OnInit, OnDestroy {
   alarmsError:any;
   alarms : Array<Alarms>;
   private sub: Subscription;
-  
 
-   constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
-    //this.loadAllarms();
-    
+    this.loadAllarms();
+
     this.sub = interval(120000)
       .subscribe((val) => {
         console.log('refresh  allarms table called');
         console.log(val);
 
-        //this.loadAllarms();
+        this.loadAllarms();
+      }, (error) => {
+        console.log('ERRORE NEL SUBMIT');
+        this.alarmsError = error;
       });
   }
 
   loadAllarms() {
-    this.dashboardService.getDataAllarms().subscribe(res => {
-      this.allarms = res;
+    this.dashboardService.getDataAllarms().subscribe((res: any) => {
+      this.alarms = res.listaAlarms;
     });
-  
-}
 
-Allarms:[]
-user = [
-  { idAllarm: 'XY-0928733', date: '23/05/2015', time: '10:30',allarmType:'Caduta',user:'Mario',alias:'MarioLavoro',phone:36748987,position:''  },
-  { idAllarm: 'ZA-0828453', date: '18/04/2017', time: '12:30',allarmType:'Immobilità',user:'Paolo',alias:'PaoloUtente',phone:32748977,position:''  },
-  { idAllarm: 'WY-0768987', date: '06/04/2009', time: '11:30',allarmType:'Schianto',user:'Andrea',alias:'And85',phone:36148387,position:''  },
-  { idAllarm: 'QP-0967453', date: '14/09/2020', time: '14:30',allarmType:'Caduta',user:'Giorgio',alias:'Super',phone:31728989,position:''  },
-];
+  }
 
-ngOnDestroy() {
-  this.sub.unsubscribe();
-}
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 
 }
