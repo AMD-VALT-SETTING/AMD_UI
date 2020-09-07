@@ -1,4 +1,15 @@
 <div class="row">
+    <div class="col">
+        <div class="alert alert-danger" *ngIf="mobModConError">
+          
+          <span *ngIf="mobModConError.error !== undefined || mobModConError.error.error !== undefined">
+            {{ this.mobModConError.error.description}}
+          </span>
+        
+        </div>
+    </div>
+  </div>
+<div class="row">
     <div class="col-md-12">
         <div class="card ">
             <div class="card-header ">
@@ -19,10 +30,13 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let m of mobModConfTableArray">
-                            <td>{{ m.modelBrand }}</td>
-                            <td>{{ m.model }}</td>
-                            <td>{{ m.modelVersion }}</td>
-                            <td><button class="btn btn-warning" (click)="seeDetail(m.id_Model)">Detail</button></td>
+                            <td>{{ m.cdModelBrand }}</td>
+                            <td>{{ m.cdModel }}</td>
+                            <td>{{ m.cdModelVersion }}</td>
+                            <td><button class="btn btn-warning" (click)="seeDetail(m.idModel)">Detail</button></td>
+
+
+
                         </tr>
                     </tbody>
                 </table>
@@ -30,10 +44,10 @@
 
         </div>
 
-        <div class="row" *ngIf="selectedMobModConf!=null">
+        <div class="row" *ngIf="mobModConfDetailSelected!=null">
             <div class="col">
 
-                <app-mob-mod-conf-detail [idModel]="selectedMobModConf"></app-mob-mod-conf-detail>
+                <app-mob-mod-conf-detail [detailResult]="mobModConfDetailSelected"></app-mob-mod-conf-detail>
 
             </div>
         </div>

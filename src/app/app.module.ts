@@ -13,9 +13,9 @@ import { AppRoutingModule } from './app.routing';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
 import { LoginResult } from './auth/model/LoginResult';
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AppConstants } from './app.constants';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 
 
 export function tokenGetter() {
@@ -44,9 +44,9 @@ export function tokenGetter() {
     JwtModule.forRoot({
     config: {
       tokenGetter,
-      headerName: 'token',
+      headerName: `${AppConstants.HEADER_TOKEN}`,
       authScheme: '',
-      whitelistedDomains: ['red.valtellina.com:65088']
+      whitelistedDomains: [`${AppConstants.DOMAIN}`, ]
     }
   })
   ],

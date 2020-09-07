@@ -19,8 +19,8 @@ import { MobModConfDetailComponent } from 'app/pages/mobile-models-configuration
 import { AlarmsComponent } from 'app/pages/dashboard/alarms/alarms.component';
 import { UsersWebComponent } from 'app/pages/users-web/users-web.component';
 import { AddUserComponent } from 'app/pages/users-web/modals/add-user/add-user.component';
-import { ResetPwdComponent } from 'app/pages/users-web/modals/reset-pwd/reset-pwd.component';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { CloudLicenseComponent } from 'app/pages/license/modals/cloud-license/cloud-license.component';
+import { MobileLicenseComponent } from 'app/pages/license/modals/mobile-license/mobile-license.component';
 
 @NgModule({
   imports: [
@@ -29,7 +29,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FormsModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
     Ng2SearchPipeModule
   ],
   declarations: [
@@ -45,9 +45,11 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MobModConfDetailComponent,
     BarChartComponent,
     LicenseComponent,
+    CloudLicenseComponent,
+    MobileLicenseComponent,
     AlarmsComponent,
     AddUserComponent,
-    ResetPwdComponent,
+    
   ]
 })
 

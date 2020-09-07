@@ -122,7 +122,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   drawPieChart() {
     this.dashboardService.getDataForPieChart().subscribe((res) => {
-      console.log(JSON.stringify(res));
+
       const labels: string[] = res['listaPieChart'].map(
         (item) => item.description
       );

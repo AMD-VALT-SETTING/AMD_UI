@@ -6,24 +6,46 @@
                 <p class="card-category">Dettagli dispositivi:</p>
             </div>
             <div class="card-body ">
-                <table class="table">
+                <div class="alert alert-danger" *ngIf="mobModConDetailError">
+
+                    <span
+                        *ngIf="mobModConDetailError.error !== undefined || mobModConDetailError.error.error !== undefined">
+                        {{ this.mobModConDetailError.error.description}}
+                    </span>
+
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table" col=12>
                     <thead>
                         <tr>
                             <th>CD_ConfigVersion</th>
                             <th>JS_Config</th>
+
+
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{ detailResult.configVersion }}</td>
-                            <td>{{ detailResult.config }}</td>
-                        </tr>
+                            <td>
+                                {{ detailResult.configVersion }}
+                            </td>
 
+                            <td class="col-sm-6">
+                                <textarea rows="5" cols="30" readonly>
+                                {{ detailResult.config.BoostFrontFall | json }}
+                            </textarea>
+                            </td>
+
+                        </tr>
                     </tbody>
-<!--                     <tfoot>
+                    <!--                     <tfoot>
                         <button type="button" class="btn btn-outline-#e26868" (click)="dismissTable()">Close</button>
                     </tfoot> -->
                 </table>
+            </div>
+        </div>
             </div>
         </div>
     </div>

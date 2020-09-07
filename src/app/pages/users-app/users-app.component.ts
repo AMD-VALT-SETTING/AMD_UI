@@ -7,6 +7,7 @@ import { UserAppRequest } from './model/userAppRequest';
 import { UsersApp } from './model/userApp'
 import { Clist } from './model/clist';
 
+
 @Component({
   selector: 'app-users-app',
   templateUrl: './users-app.component.html',
@@ -75,6 +76,73 @@ export class UsersAPPComponent implements OnInit {
         }
         if (error.code === 107) {
           this.usersAppError.message = 'Licenza ha raggiunto la max capacità';
+          alert(this.usersAppError.message);
+        }
+        if (error.code === 120) {
+          this.usersAppError.message = 'Errore imprevisto';
+          alert(this.usersAppError.message);
+        }
+      }
+    });
+  }
+
+  enable(user: UsersApp) {
+    user.enabledLicense = true;
+    this.userAppService.enableUser(user).subscribe(() => {
+
+    },
+    (error) => {
+      console.error('ERRORE ABILITAZIONE LICENZA');
+      this.usersAppError = error;
+      if (error.status === 401) {
+        if (error.code === 102) {
+          this.usersAppError.message = 'Utente non valido';
+          alert(this.usersAppError.message);
+        }
+        if (error.code === 107) {
+          this.usersAppError.message = 'Licenza ha raggiunto la max capacità';
+          alert(this.usersAppError.message);
+        }
+        if (error.code === 120) {
+          this.usersAppError.message = 'Errore imprevisto';
+          alert(this.usersAppError.message);
+        }
+      }
+    });
+  }
+
+  openModal(user: UsersApp, userModalReset) {
+    this.userModal = user;
+    this.modalService.open(userModalReset);
+  }
+
+  resetPwd() {
+    this.userModal.resetPassword = true;
+    this.userAppService.resetPassword(this.userModal).subscribe(() => {
+
+    },
+    (error) => {
+      console.error('ERRORE RESET PASSWORD');
+      this.usersAppError = error;
+      if (error.status === 401) {
+        if (error.code === 102) {
+          this.usersAppError.message = 'Utente non valido';
+          alert(this.usersAppError.message);
+        }
+        if (error.code === 107) {
+          this.usersAppError.message = 'Licenza ha raggiunto la max capacità';
+          alert(this.usersAppError.message);
+        }
+        if (error.code === 120) {
+          this.usersAppError.message = 'Errore imprevisto';
+          alert(this.usersAppError.message);
+        }
+      }
+    });
+    this.modalService.dismissAll();
+  }
+}
+
           alert(this.usersAppError.message);
         }
         if (error.code === 120) {
