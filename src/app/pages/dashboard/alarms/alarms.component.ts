@@ -11,8 +11,10 @@ import { Alarms } from '../model/Alarms';
 })
 export class AlarmsComponent implements OnInit, OnDestroy {
 
-  alarmsError: any;
-  alarms: Array<Alarms>;
+  
+
+  alarmsError:any;
+  alarms : Array<Alarms>;
   private sub: Subscription;
 
   constructor(private dashboardService: DashboardService) { }

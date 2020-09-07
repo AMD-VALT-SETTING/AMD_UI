@@ -43,7 +43,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
       type: 'bar',
 
       data: {
-        labels: [], 
+        labels: [],
         datasets: [
 
           { label: 'Caduta', backgroundColor: '#FF0000', data: this.allarmFalls },
@@ -94,13 +94,15 @@ export class BarChartComponent implements OnInit, OnDestroy {
     });
   }
 
+
+
   datesNoDuplicateDate(dates: string[]): string[] {
 
     // Prima rimuovo i doppioni
     for (let d = 0; d < dates.length; d++) {
 
       if (this.datesU == undefined) { this.datesU = [dates[d]] }
-      else if (this.datesU.includes(dates[d])) {  }
+      else if (this.datesU.includes(dates[d])) { }
       else { this.datesU.push(dates[d]); }
     }
 
@@ -120,6 +122,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
     }
     return dates;
   }
+
   allarmsCouter(allarms8Gg: Alarms[], datesO: string[]) {
     this.allarmFallsCounter = 0;
     this.allarmImmobilitiesCounter = 0;
@@ -132,7 +135,9 @@ export class BarChartComponent implements OnInit, OnDestroy {
           this.allarmFallsCounter++;
         }
         else if (a.date === d && a.alarmType === 'Immobilità') {
+
           this.allarmImmobilitiesCounter++;
+
         }
         else if (a.date === d && a.alarmType === 'Schianto') {
           this.allarmCrashesCounter++;
@@ -151,4 +156,10 @@ export class BarChartComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
+
 }
+
+
+
+
+

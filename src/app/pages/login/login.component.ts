@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
           AppConstants.LOGIN_STORAGE,
           JSON.stringify(this.userLogged)
         );
+        
         this.router.navigate(['dashboard']);
       },
       (error) => {

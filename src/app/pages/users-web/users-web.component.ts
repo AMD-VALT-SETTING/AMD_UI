@@ -36,7 +36,7 @@ export class UsersWebComponent implements OnInit {
 
   loadAllUsersWeb() {
     this.userWebService.loadAllUsersWeb().subscribe((res) => {
-    this.usersWeb = res['listaUtenti'];
+      this.usersWeb = res['listaUtenti'];
     });
   }
 
@@ -57,4 +57,3 @@ export class UsersWebComponent implements OnInit {
     this.userWeb = null;
   }
 }
-

@@ -18,6 +18,7 @@ import { AppConstants } from './app.constants';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 
 
+
 export function tokenGetter() {
   const loginStored: LoginResult = JSON.parse(localStorage.getItem(AppConstants.LOGIN_STORAGE));
   if (loginStored !== undefined && loginStored !== null) {
@@ -31,6 +32,7 @@ export function tokenGetter() {
     AdminLayoutComponent,
     PublicLayoutComponent,
   ],
+  
   imports: [
     BrowserAnimationsModule,
     RouterModule,
@@ -48,6 +50,7 @@ export function tokenGetter() {
       authScheme: '',
       whitelistedDomains: [`${AppConstants.DOMAIN}`, ]
     }
+    
   })
   ],
   providers: [],
