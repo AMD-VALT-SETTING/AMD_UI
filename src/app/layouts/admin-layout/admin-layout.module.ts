@@ -30,7 +30,6 @@ import { MobileLicenseComponent } from 'app/pages/license/modals/mobile-license/
     NgbModule,
     FormsModule,
     ReactiveFormsModule
-    Ng2SearchPipeModule
   ],
   declarations: [
     DashboardComponent,
