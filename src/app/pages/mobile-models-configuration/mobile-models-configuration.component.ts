@@ -38,21 +38,6 @@ export class MobileModelsConfigurationComponent implements OnInit {
       (error) => {
         console.log('ERRORE NELL NEL CARICARE I DETAILS DEI MOBILE MODELS');
         this.mobModConError = error;
-       
       });
   }
-  seeDetail(idModel: string) {
-
-    this.ConfModMobService.loadDetail(idModel).subscribe((res:any) => {
-
-      this.mobModConfDetailSelected = res;
-    },
-      (error) => {
-        console.log('ERRORE NELL NEL CARICARE I DETAILS DEI MOBILE MODELS');
-        this.mobModConError = error;
-
-      });
-  }
-
-
 }

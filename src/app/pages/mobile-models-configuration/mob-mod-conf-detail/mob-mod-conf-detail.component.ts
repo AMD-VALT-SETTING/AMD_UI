@@ -9,12 +9,8 @@ import { Input } from '@angular/core';
 })
 export class MobModConfDetailComponent implements OnInit {
 
-
   _detailResult: MobileModelsConfigurationDetail;
   mobModConDetailError: any;
-
-
-
 
   constructor(private ConfModMobService: MobileModelsConfigurationService) { }
 
@@ -28,8 +24,4 @@ export class MobModConfDetailComponent implements OnInit {
   set detailResult(d: MobileModelsConfigurationDetail) {
     this._detailResult = d;
   }
-  }
-
-  
-
 }

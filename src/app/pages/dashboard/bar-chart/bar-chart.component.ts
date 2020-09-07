@@ -82,8 +82,6 @@ export class BarChartComponent implements OnInit, OnDestroy {
   }
 
   drawBarChart() {
-      
-     
     this.dashboardService.getDataAllarms().subscribe((res) => {
       this.allarms = res['listaAlarms'];
       let dates: string[] = this.allarms.map((item) => item.date);
@@ -91,7 +89,6 @@ export class BarChartComponent implements OnInit, OnDestroy {
       this.allarmsCouter(this.allarms, dates);
       this.barChart.data.labels = datesY;
       this.barChart.update();
-    });
     });
   }
 
