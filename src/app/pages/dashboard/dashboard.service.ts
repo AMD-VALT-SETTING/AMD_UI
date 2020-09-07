@@ -4,8 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { User } from 'app/model/User';
 import { PieChartData } from './model/PieChartData';
 import { Alarms } from './model/Alarms';
-
-const baseUrl = 'http://red.valtellina.com:65088';
+import { AppConstants } from 'app/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -15,19 +14,18 @@ export class DashboardService {
   constructor(private httpClient: HttpClient) {
   }
 
-  
   getDataForPieChart (): Observable<PieChartData[]> {
-    return this.httpClient.get<PieChartData[]>(`${baseUrl}/rest/dashboard/pie`);
+    return this.httpClient.get<PieChartData[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/pie`);
   }
 
   findUsersForLabelPieTable(selectedCategory: number): Observable<any> {
-    return this.httpClient.get<User[]>(`${baseUrl}/rest/dashboard/detail/` + selectedCategory);
+    return this.httpClient.get<User[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/detail/` + selectedCategory);
   }
 
   getDataAllarms (): Observable<Alarms[]> {
-    return this.httpClient.get<Alarms[]>(`${baseUrl}/rest/dashboard/alarms`);
+    return this.httpClient.get<Alarms[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/alarms`);
   }
-  
+
 }
 
 

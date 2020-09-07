@@ -17,9 +17,6 @@ import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AppConstants } from './app.constants';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 
-//let head=new HttpHeaders({'token': tokenGetter()});
-
-
 export function tokenGetter() {
   const loginStored: LoginResult = JSON.parse(localStorage.getItem(AppConstants.LOGIN_STORAGE));
   if (loginStored !== undefined && loginStored !== null) {
@@ -32,12 +29,7 @@ export function tokenGetter() {
     AppComponent,
     AdminLayoutComponent,
     PublicLayoutComponent,
- 
-    
-    
-    
   ],
-  
   imports: [
     BrowserAnimationsModule,
     RouterModule,
@@ -51,11 +43,10 @@ export function tokenGetter() {
     JwtModule.forRoot({
     config: {
       tokenGetter,
-      headerName: 'token',
-      authScheme:'',
-      whitelistedDomains: ['red.valtellina.com:65088',]
+      headerName: `${AppConstants.HEADER_TOKEN}`,
+      authScheme: '',
+      whitelistedDomains: [`${AppConstants.DOMAIN}`, ]
     }
-    
   })
   ],
   providers: [],

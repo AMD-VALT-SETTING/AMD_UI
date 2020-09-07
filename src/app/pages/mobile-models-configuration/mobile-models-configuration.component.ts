@@ -39,9 +39,6 @@ export class MobileModelsConfigurationComponent implements OnInit {
       (error) => {
         console.log('ERRORE NELL NEL CARICARE I DETAILS DEI MOBILE MODELS');
         this.mobModConError = error;
-
       });
   }
-
-
 }

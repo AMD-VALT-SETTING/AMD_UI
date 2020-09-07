@@ -3,8 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { UsersApp } from './model/userApp';
 import { UserAppRequest } from './model/userAppRequest';
-
-const baseUrl = 'http://red.valtellina.com:65088';
+import { AppConstants } from 'app/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +11,22 @@ const baseUrl = 'http://red.valtellina.com:65088';
 export class UsersAppService {
   userError: any;
 
-
   constructor(private httpClient: HttpClient) { }
 
   getUserApp(userAppRequest: UserAppRequest): Observable<UsersApp[]> {
-    return this.httpClient.post<UsersApp[]>(`${baseUrl}/rest/manage/search`, userAppRequest);
+    return this.httpClient.post<UsersApp[]>(`${AppConstants.SERVICES_BASE_URL}/rest/manage/search`, userAppRequest);
   }
 
   disableUser(user: UsersApp) {
-    return this.httpClient.put<UsersApp[]>(`${baseUrl}/rest/manage/update`, user);
+    return this.httpClient.put<UsersApp[]>(`${AppConstants.SERVICES_BASE_URL}/rest/manage/update`, user);
   }
 
   enableUser(user: UsersApp) {
-    return this.httpClient.put<UsersApp[]>(`${baseUrl}/rest/manage/update`, user);
+    return this.httpClient.put<UsersApp[]>(`${AppConstants.SERVICES_BASE_URL}/rest/manage/update`, user);
   }
 
   resetPassword(user: UsersApp) {
-    return this.httpClient.put<UsersApp[]>(`${baseUrl}/rest/manage/update`, user);
+    return this.httpClient.put<UsersApp[]>(`${AppConstants.SERVICES_BASE_URL}/rest/manage/update`, user);
   }
 
   private handleError(error: HttpErrorResponse) {

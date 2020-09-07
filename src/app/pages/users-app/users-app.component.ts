@@ -40,8 +40,6 @@ export class UsersAPPComponent implements OnInit {
 
   }
 
-
-
   find() {
     this.loadAll();
   }

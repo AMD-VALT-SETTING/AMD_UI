@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         legend: {
           display: true,
         },
-        
+
         onClick: (evt, item) => {
           if (item.length > 0) {
             let index = item[0]['_index'];
@@ -122,7 +122,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   drawPieChart() {
     this.dashboardService.getDataForPieChart().subscribe((res) => {
-     
+
       const labels: string[] = res['listaPieChart'].map(
         (item) => item.description
       );
