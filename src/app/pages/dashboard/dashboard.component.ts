@@ -8,6 +8,7 @@ import {
 import { DashboardService } from './dashboard.service';
 import { User } from 'app/model/User';
 import { Subscription, interval } from 'rxjs';
+import { PieChartData } from './model/PieChartData';
 
 @Component({
   selector: 'dashboard-cmp',
@@ -17,12 +18,21 @@ import { Subscription, interval } from 'rxjs';
 export class DashboardComponent implements OnInit, OnDestroy {
   public canvas: any;
   public ctx;
-  public pieChart;
+  public pieChart: Chart;
   pieChartTableArray: User[];
   private sub: Subscription;
   pos: number;
+  charts: PieChartData[];
+  dashboardError: any;
 
   constructor(private dashboardService: DashboardService) {
+  }
+
+  getAllchart() {
+    this.dashboardService.getDataForPieChart().subscribe(res => {
+      this.charts = res;
+    });
+    console.log(JSON.stringify(this.charts));
   }
 
   ngOnInit() {
@@ -54,8 +64,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
             let label = item[0]['_chart'].data.labels[index];
             let values = item[0]['_chart'].data.datasets[0].data[index];
 
-            console.log('onClick dashboard= ' + label);
-            this.buildPieChartTable(label);
+            console.log('onClick dashboard label= ' + label);
+            console.log('onClick dashboard index= ' + index);
+            console.log('onClick dashboard values= ' + values);
+            this.buildPieChartTable(label, index);
           }
         },
 
@@ -110,7 +122,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   drawPieChart() {
     this.dashboardService.getDataForPieChart().subscribe((res) => {
-     
+
       const labels: string[] = res['listaPieChart'].map(
         (item) => item.description
       );
@@ -118,67 +130,42 @@ export class DashboardComponent implements OnInit, OnDestroy {
       const colors: number[] = res['listaPieChart'].map((item) =>
         item.name.toLowerCase()
       );
-     
       this.pieChart.data.labels = labels;
       this.pieChart.data.datasets[0].backgroundColor = colors;
       this.pieChart.data.datasets[0].data = values;
       this.pieChart.update();
+    },
+    (error) => {
+      console.error('ERRORE RECUPERO PIECHART');
+      this.dashboardError = error;
+      if (error.status === 401) {
+        if (error.code === 120) {
+          this.dashboardError.message = 'Errore imprevisto';
+          alert(this.dashboardError.message);
+        }
+        if (error.code === 102) {
+          this.dashboardError.message = 'Utente non valido';
+          alert(this.dashboardError.message);
+        }
+      }
     });
   }
 
-  buildPieChartTable(label: any) {
-    
-   
-     if (label === 'Utenze in allarme') {
-      this.pos = 1;
-    } else if (label === 'Utenze non localizzate') {
-      this.pos = 2;
-    } else if (label === 'Utenze con GPS ok') {
-      this.pos = 3;
-    } else if (label === 'Utenze inattive') {
-      this.pos = 4;
-    }
-
-    console.log(this.pos);
-
-    if (this.pos === 1) {
-      this.pieChartTableArray = [
-        {
-          userNameApp: 'MarioRossi',
-          userAliasApp: 'M.Rossi',
-          phoneNumber: '11111111',
-        },
-      ];
-    }
-    if (this.pos === 2) {
-      this.pieChartTableArray = [
-        {
-          userNameApp: 'MarioGiallo',
-          userAliasApp: 'M.Giallo',
-          phoneNumber: '11111111',
-        },
-      ];
-    }
-    if (this.pos === 3) {
-      this.pieChartTableArray = [
-        {
-          userNameApp: 'MarioVerde',
-          userAliasApp: 'M.Verde',
-          phoneNumber: '11111111',
-        },
-      ];
-    }
-    if (this.pos === 4) {
-      this.pieChartTableArray = [
-        {
-          userNameApp: 'MarioGrigio',
-          userAliasApp: 'M.Grigio',
-          phoneNumber: '11111111',
-        },
-      ];
-    }
-
-    //pos = 0;
+  buildPieChartTable(label: any, index: number) {
+    this.dashboardService.findUsersForLabelPieTable(index + 1).subscribe((res: any) => {
+      this.pieChartTableArray = res.listaUserCategory;
+      console.log(this.pieChartTableArray);
+    },
+    (error) => {
+      console.error('ERRORE RECUPERO USER DETAIL PIECHART');
+      this.dashboardError = error;
+      if (error.status === 401) {
+        if (error.code === 120) {
+          this.dashboardError.message = 'Errore imprevisto';
+          alert(this.dashboardError.message);
+        }
+      }
+    });
   }
 
   ngOnDestroy() {

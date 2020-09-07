@@ -9,16 +9,17 @@ import { Input } from '@angular/core';
 })
 export class MobModConfDetailComponent implements OnInit {
 
-  
+
   _detailResult: MobileModelsConfigurationDetail;
   mobModConDetailError: any;
+
 
 
 
   constructor(private ConfModMobService: MobileModelsConfigurationService) { }
 
   ngOnInit(): void {}
-  
+
   get detailResult() {
     return this._detailResult;
   }
@@ -26,7 +27,7 @@ export class MobModConfDetailComponent implements OnInit {
   @Input()
   set detailResult(d: MobileModelsConfigurationDetail) {
     this._detailResult = d;
-   
+  }
   }
 
   

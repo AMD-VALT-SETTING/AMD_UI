@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="table-mob-mod-conf-detail">
     <div class="col-md-12">
         <div class="card ">
             <div class="card-header ">
@@ -33,13 +33,16 @@
                             </td>
 
                             <td class="col-sm-6">
-                                <textarea rows="5" cols="30"readonly>
+                                <textarea rows="5" cols="30" readonly>
                                 {{ detailResult.config.BoostFrontFall | json }}
                             </textarea>
                             </td>
 
                         </tr>
                     </tbody>
+                    <!--                     <tfoot>
+                        <button type="button" class="btn btn-outline-#e26868" (click)="dismissTable()">Close</button>
+                    </tfoot> -->
                 </table>
             </div>
         </div>

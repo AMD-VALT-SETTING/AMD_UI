@@ -22,6 +22,10 @@ export class UsersWebComponent implements OnInit {
   @Output()
   feedbackEvent: EventEmitter<FeedbackMessage>;
 
+  constructor(private userWebService: UsersWebService, private modalService: NgbModal, private fb: FormBuilder,) {
+    this.feedbackEvent = new EventEmitter();
+  }
+
 
   constructor(private userWebService: UsersWebService, private modalService: NgbModal, private fb: FormBuilder,) {
 
@@ -30,7 +34,7 @@ export class UsersWebComponent implements OnInit {
 
   }
   ngOnInit(): void {
-
+    this.loadAllUsersWeb();
     this.loadAllUsersWeb();
   }
 
@@ -76,4 +80,31 @@ export class UsersWebComponent implements OnInit {
 
 
 
+  openModal(content) {
+    this.modalService.open(content);
+  }
+
+  loadAllUsersWeb() {
+    this.userWebService.loadAllUsersWeb().subscribe((res) => {
+    this.usersWeb = res['listaUtenti'];
+    });
+  }
+
+  deleteUserWeb(idUser: string) {
+    let userDelete = new UserDeleteRequest;
+    userDelete.idUser = idUser;
+    this.userWebService.deleteUserWeb(userDelete).subscribe(res => {
+      alert('Utente eliminato');
+      this.loadAllUsersWeb()
+    });
+  }
+
+  feedbackReceivedHandler(fm: FeedbackMessage) {
+    this.feedbackReceived = fm;
+    if (this.feedbackReceived.success) {
+      this.loadAllUsersWeb();
+    }
+    this.userWeb = null;
+  }
 }
+

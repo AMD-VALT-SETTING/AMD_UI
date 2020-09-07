@@ -23,13 +23,20 @@ export class MobileModelsConfigurationComponent implements OnInit {
   }
   loadAll() {
     this.ConfModMobService.loadAll().subscribe(res => {
-
       this.mobModConfTableArray = res['modelList'];
-     
-    }
-      ,
+    },
       (error) => {
         console.log('ERRORE NELL NEL CARICARE I MOBILE MODELS');
+        this.mobModConError = error;
+      });
+  }
+
+  seeDetail(idModel: string) {
+    this.ConfModMobService.loadDetail(idModel).subscribe((res:any) => {
+      this.mobModConfDetailSelected = res;
+    },
+      (error) => {
+        console.log('ERRORE NELL NEL CARICARE I DETAILS DEI MOBILE MODELS');
         this.mobModConError = error;
        
       });

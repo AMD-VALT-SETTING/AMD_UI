@@ -3,22 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MobileModelsConfiguration } from './model/MobileModelsConfiguration';
 import { MobileModelsConfigurationDetail } from './model/MobileModelsConfigurationDetail';
-
-
-const baseUrl = 'http://red.valtellina.com:65088';
+import { AppConstants } from 'app/app.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MobileModelsConfigurationService {
-  
+
   constructor(private httpClient: HttpClient) { }
- 
+
   loadAll(): Observable<MobileModelsConfiguration[]> {
-    return this.httpClient.get<MobileModelsConfiguration[]>(`${baseUrl}/rest/config/models`);
+    return this.httpClient.get<MobileModelsConfiguration[]>(`${AppConstants.SERVICES_BASE_URL}/rest/config/models`);
   }
 
-  loadDetail(idModel:string): Observable<MobileModelsConfigurationDetail> {
-    return this.httpClient.get<MobileModelsConfigurationDetail>(`${baseUrl}/rest/config/details/`+idModel);
+  loadDetail(idModel: string): Observable<MobileModelsConfigurationDetail> {
+    return this.httpClient.get<MobileModelsConfigurationDetail>(`${AppConstants.SERVICES_BASE_URL}/rest/config/details/` + idModel);
   }
 }

@@ -82,24 +82,17 @@ export class BarChartComponent implements OnInit, OnDestroy {
   }
 
   drawBarChart() {
-
-    this.dashboardService.getDataAllarms().subscribe((res) => {
-     
-      this.allarms = res['listaAlarms'];
       
-      let dates :string[]= this.allarms.map((item) => item.date);
-
-     const datesY = this.datesOrder(this.datesNoDuplicateDate(dates));
      
-
+    this.dashboardService.getDataAllarms().subscribe((res) => {
+      this.allarms = res['listaAlarms'];
+      let dates: string[] = this.allarms.map((item) => item.date);
+      const datesY = this.datesOrder(this.datesNoDuplicateDate(dates));
       this.allarmsCouter(this.allarms, dates);
-   
-      this.barChart.data.labels=datesY;
+      this.barChart.data.labels = datesY;
       this.barChart.update();
-
-
     });
-  
+    });
   }
 
   datesNoDuplicateDate(dates: string[]): string[] {
@@ -126,9 +119,6 @@ export class BarChartComponent implements OnInit, OnDestroy {
         }
       }
     }
-    
-
-
     return dates;
   }
   allarmsCouter(allarms8Gg: Alarms[], datesO: string[]) {
@@ -136,11 +126,9 @@ export class BarChartComponent implements OnInit, OnDestroy {
     this.allarmImmobilitiesCounter = 0;
     this.allarmCrashesCounter = 0;
 
-
     for (let d of datesO) { //per ogni data
 
       for (let a of allarms8Gg) { //per ogni allarme
-
         if (a.date === d && a.alarmType === 'Caduta') {
           this.allarmFallsCounter++;
         }
@@ -149,25 +137,17 @@ export class BarChartComponent implements OnInit, OnDestroy {
           this.allarmImmobilitiesCounter++;
 
         }
-
         else if (a.date === d && a.alarmType === 'Schianto') {
           this.allarmCrashesCounter++;
-
         }
 
       }
-   
-
       this.allarmFalls.push(this.allarmFallsCounter);
       this.allarmFallsCounter = 0;
-
-
       this.allarmImmobilities.push(this.allarmImmobilitiesCounter);
       this.allarmImmobilitiesCounter = 0;
-
       this.allarmCrashes.push(this.allarmCrashesCounter);
       this.allarmCrashesCounter = 0;
-
     }
   }
 
