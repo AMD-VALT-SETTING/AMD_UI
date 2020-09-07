@@ -1,34 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError, pipe } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { User } from 'app/model/User';
 import { PieChartData } from './model/PieChartData';
 import { Alarms } from './model/Alarms';
-import { catchError } from 'rxjs/operators';
+import { AppConstants } from 'app/app.constants';
 import { UpdateAlarm } from './model/UpdateAlarm';
-
-
-const baseUrl = 'http://red.valtellina.com:65088';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   
   getDataForPieChart (): Observable<PieChartData[]> {
-    return this.httpClient.get<PieChartData[]>(`${baseUrl}/rest/dashboard/pie`);
+    return this.httpClient.get<PieChartData[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/pie`);
   }
 
-  findUsersForLabelPieTable(selectedCategory: number): Observable<User[]> {
-    
-    return this.httpClient.post<User[]>(`${baseUrl}/rest/dashboard/detail`,selectedCategory);
+  findUsersForLabelPieTable(selectedCategory: number): Observable<any> {
+    return this.httpClient.get<User[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/detail/` + selectedCategory);
   }
+
   getDataAllarms (): Observable<Alarms[]> {
-    return this.httpClient.get<Alarms[]>(`${baseUrl}/rest/dashboard/switchAlarmOff`)
-    .pipe(catchError(this.handleError));
+    return this.httpClient.get<Alarms[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/alarms`);
   }
 
   updateAlarm(idAlarm:UpdateAlarm):Observable<UpdateAlarm>{
@@ -49,4 +46,6 @@ export class DashboardService {
   
 
 }
+
+
 

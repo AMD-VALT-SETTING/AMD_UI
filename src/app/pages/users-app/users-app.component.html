@@ -1,1 +1,128 @@
-<p>utenti-app works!</p>
+<div class="conatiner-fluid">
+    <div class="row">
+        <div class="col-3">
+            <input class="form-control inputcontrol" type="text" name="username_search" [(ngModel)]="Rsearch_UserName"
+                placeholder="Ricerca Username">
+        </div>
+        <div class="col-3">
+            <input class="form-control inputcontrol" type="text" name="alias_search" [(ngModel)]="Rsearch_Alias"
+                placeholder="Ricerca Alias">
+        </div>
+        <div class="col-3">
+            <input class="form-control inputcontrol" type="text" name="telefono_search" [(ngModel)]="Rsearch_UserPhone"
+                placeholder="Ricerca Telefono">
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-success inputbotton" (click)=find()>Cerca</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-danger" *ngIf="usersAppError">
+              
+              <span *ngIf="!usersAppError.error !== undefined && !usersAppError.error.error !== undefined">
+                {{ usersAppError.error.error }}
+              </span>
+                Errore recupero Utenti App
+            </div>
+        </div>
+      </div>
+
+    <ng-template #userModalReset let-modal>
+        <div>
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Reset Password</h4>
+                <img src="/assets/img/valtellina_logo.png" height="100px">
+            </div>
+            <div class="modal-body">
+                <p>Sei sicuro di voler resettare la password?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-#e26868" (click)="modal.dismiss('Cross click')">Annulla</button>
+                <button type="button" class="btn btn-outline-#e26868" (click)="resetPwd()">Reset</button>
+            </div>
+        </div>
+
+    </ng-template>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="card-title">Users App</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body ">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>Vers.App</td>
+                                    <td>Vers.Cfg</td>
+                                    <td>Modello</td>
+                                    <td>ID Android</td>
+                                    <td>ID Licenza</td>
+                                    <td>Username</td>
+                                    <td>Nome/Cognome</td>
+                                    <td>Telefono</td>
+                                    <td>Contatti</td>
+                                    <td>Vers.OS</td>
+                                    <td>Abilitato?</td>
+                                    <td>Reset Password</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let u of usersApp">
+                                    <td>{{u.appVersion}}</td>
+                                    <td>{{u.configVersion}}</td>
+                                    <td>{{u.model}}</td>
+                                    <td>{{u.androidID}}</td>
+                                    <td>{{u.license}}</td>
+                                    <td>{{u.userNameApp}}</td>
+                                    <td>{{u.userAliasApp}}</td>
+                                    <td>{{u.phoneNumber}}</td>
+                                    <td>
+                                        <thead>
+                                            <tr>
+                                                <td>Nome</td>
+                                                <td>Cognome</td>
+                                                <td>Telefono</td>
+                                                <td>Email</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let p of u.clist">
+                                                <td>{{p.name}}</td>
+                                                <td>{{p.surname}}</td>
+                                                <td>{{p.phone}}</td>
+                                                <td>{{p.email}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </td>
+                                    <td>{{u.osVersion}}</td>
+                                    <td>
+                                        <div *ngIf="u.enabledLicense; else abilita">
+                                            <button type="button" class="btn btn-danger" (click)="disable(u)">Disabilita</button>
+                                        </div>
+                                        <ng-template #abilita>
+                                            <button type="button" class="btn btn-primary" (click)="enable(u)">Abilita</button>
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-outline-danger mb-2 mr-2"
+                                            (click)="openModal(u, userModalReset)">Reset</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

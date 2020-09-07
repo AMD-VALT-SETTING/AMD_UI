@@ -1,6 +1,5 @@
 export interface Alarms {
-  
-  idValueAlarm: string;
+    idValueAlarm: string;
     date: string;
     time: string;
     alarmType:string;

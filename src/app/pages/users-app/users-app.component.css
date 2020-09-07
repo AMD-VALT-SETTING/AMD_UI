@@ -1,0 +1,132 @@
+/*
+.table3 th{
+    font-style:black;
+  
+}
+
+.table3 {
+   text-decoration-color: #2D2020;
+        border-radius: 10px;
+border-spacing: 0;
+text-align: center;
+font-style: italic;
+}
+.table3 th {
+background: #eebcad;
+color: #eebcad;
+text-shadow: 0 1px 1px #2D2020;
+padding: 10px 20px;
+}
+.table3 th, .table3 td {
+border-style: solid;
+border-width: 0 1px 1px 0;
+border-color: white;
+}
+.table3 th:first-child, .table3 td:first-child {
+text-align: left;
+}
+.table3 th:first-child {
+border-top-left-radius: 10px;
+}
+.table3 th:last-child {
+border-top-right-radius: 10px;
+border-right: none;
+}
+.table3 td {
+padding: 10px 20px;
+background: #d8b4b0;
+}
+.table3 tr:last-child td:first-child {
+border-radius: 0 0 0 10px;
+}
+.table3 tr:last-child td:last-child {
+border-radius: 0 0 10px 0;
+}
+.table3 tr,  .table3 td:last-child {
+border-right: none;
+}
+*/
+/*TOGGLE*/
+
+/*
+.switch {
+position: relative;
+display: inline-block;
+width: 40px;
+height: 18px;
+}
+
+.switch input { 
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 12px;
+width: 12px;
+left: 4px;
+bottom: 4px;
+background-color: white;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+input:checked + .slider {
+background-color: #e26868;
+}
+
+input:focus + .slider {
+box-shadow: 0 0 1px #e26868;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(26px);
+-ms-transform: translateX(26px);
+transform: translateX(26px);
+}
+*/
+
+/* Rounded sliders */
+/*
+.slider.round {
+border-radius: 34px;
+}
+
+.slider.round:before {
+border-radius: 50%;
+}
+*
+
+/* Change Password */
+/*
+.modal-header{
+    background:#eebcad;
+}
+
+.btn-outline-danger {
+    background: #dc35453b;
+    border: 2px solid #dc35453b !important;
+    color: #4e4d4c;
+    opacity: 1;
+
+}
+*/
+.inputcontrol {
+    margin-top: 10px;
+    padding-bottom: 11px;
+}

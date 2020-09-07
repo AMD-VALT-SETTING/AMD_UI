@@ -46,9 +46,9 @@ export function tokenGetter() {
     JwtModule.forRoot({
     config: {
       tokenGetter,
-      headerName: 'token',
-      authScheme:'',
-      whitelistedDomains: ['red.valtellina.com:65088',]
+      headerName: `${AppConstants.HEADER_TOKEN}`,
+      authScheme: '',
+      whitelistedDomains: [`${AppConstants.DOMAIN}`, ]
     }
     
   })

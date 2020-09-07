@@ -14,12 +14,7 @@
         </div>
     </div>
 </div>
-<!-------------------Modale reset pwd------------------------------------------------->
 
-
-<!----------------------Modale add user--------........----------------------------------------------->
-
-<!------------------------------........----------------------------------------------->
 
 
 <div class="row">
@@ -32,14 +27,14 @@
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex justify-content-end">
-                            <app-add-user></app-add-user>
+                            <app-add-user (feedbackEvent)="feedbackReceivedHandler($event)"></app-add-user>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card-category">Dati utenti:</div>
                 </div>
-               
+
             </div>
             <div class="card-body ">
                 <div class="table-responsive">
@@ -50,7 +45,8 @@
                                 <th>User Email</th>
                                 <th>User Alias</th>
                                 <th>Ruolo</th>
-                                <th>Reset password</th>
+                                <th>Elimina</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -59,12 +55,16 @@
                                 <td>{{ u.dsUseremail }}</td>
                                 <td>{{ u.dsUseralias }}</td>
                                 <td>{{ u.idValue }}</td>
-                                <td>
-                                    <app-reset-pwd></app-reset-pwd>
+                                <td><button class="btn btn-danger" (click)="deleteUserWeb(u.idUser)">Elimina</button>
                                 </td>
-
                             </tr>
                         </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
                     </table>
                 </div>
             </div>

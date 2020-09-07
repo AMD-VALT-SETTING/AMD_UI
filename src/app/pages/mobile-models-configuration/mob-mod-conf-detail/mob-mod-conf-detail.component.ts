@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MobileModelsConfigurationService } from '../mobile-models-configuration.service';
-import { MobileModelsConfigurationDetailData } from '../model/MobileModelsConfigurationDetailData';
-import { MobileModelsConfigurationDetailResult } from '../model/MobileModelsConfigurationDetailResult';
+import { MobileModelsConfigurationDetail } from '../model/MobileModelsConfigurationDetail';
+import { Input } from '@angular/core';
 import { Input } from '@angular/core';
 @Component({
   selector: 'app-mob-mod-conf-detail',
@@ -10,26 +10,29 @@ import { Input } from '@angular/core';
 })
 export class MobModConfDetailComponent implements OnInit {
 
-  _idModel: string;
-  detailResult: MobileModelsConfigurationDetailResult;
+
+  _detailResult: MobileModelsConfigurationDetail;
   mobModConDetailError: any;
+
+
+
 
 
 
   constructor(private ConfModMobService: MobileModelsConfigurationService) { }
 
-  ngOnInit(): void {
-    //this.loadDetail(this.idModel);
+  ngOnInit(): void {}
 
-  }
+  get detailResult() {
+    return this._detailResult;
   get idModel() {
     return this._idModel;
   }
 
   @Input()
-  set idModel(i: string) {
-    this._idModel = i;
-    // this.loadDetail(this.idModel)
+  set detailResult(d: MobileModelsConfigurationDetail) {
+    this._detailResult = d;
+  }
 
   }
 
@@ -51,13 +54,11 @@ export class MobModConfDetailComponent implements OnInit {
   loadDetail(idModel: string) {
     this.ConfModMobService.loadDetail(idModel).subscribe(res => {
    
-       this.detailResult = res;
      },
       (error) => {
         console.log('ERRORE NELL NEL CARICARE I DETAILS DEI MOBILE MODELS');
         this.mobModConError = error;
       
-      });
    
    console.log(idModel);
    let i='AB-1234'
@@ -65,6 +66,5 @@ export class MobModConfDetailComponent implements OnInit {
       this.detailResult = { configVersion: '1', config: '{jsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjson}' };
     }
 
-  } */
 
 }

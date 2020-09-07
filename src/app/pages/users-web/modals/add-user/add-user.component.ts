@@ -27,13 +27,12 @@ export class AddUserComponent implements OnInit {
     this.feedbackEvent = new EventEmitter();
     this.usersWebFormAdd = this.fb.group(
       {
-
         userName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
         userPassword: ['pwd', ''],
         confirmPassword: ['pwd', ''],
         userEmail: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
         userAlias: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-        role:['',[Validators.required]]
+        role: ['', [Validators.required]]
       }
     );
   }
@@ -49,51 +48,42 @@ export class AddUserComponent implements OnInit {
   @Input()
   set user(u: UsersWeb) {
     this._user = u;
-
     this.usersWebFormAdd.get('userName').setValue(u.userName);
     this.usersWebFormAdd.get('userPassword').setValue(u.userPassword);
     this.usersWebFormAdd.get('confirmPassword').setValue(u.confirmPassword);
     this.usersWebFormAdd.get('userEmail').setValue(u.userEmail);
     this.usersWebFormAdd.get('userAlias').setValue(u.userAlias);
     this.usersWebFormAdd.get('role').setValue(u.role);
-  
   }
+
   openModal(content) {
     this.modalService.open(content);
   }
 
   save() {
-
     var userWeb: UsersWeb = this.usersWebFormAdd.value;
 
-    for(let s of userWeb.role)
-    {
-      userWeb.role=s;
+    for (let s of userWeb.role) {
+      userWeb.role = s;
     }
-    console.log('User '+JSON.stringify(userWeb));
+    console.log('User ' + JSON.stringify(userWeb));
     this.userWebService.addUser(userWeb).subscribe(res => {
       console.log('User Added');
-      alert('User Added');
-
-      alert('User Added');
       console.log(JSON.stringify(userWeb));
       this.usersWebFormAdd.reset();
-
       this.feedbackEvent.emit(new FeedbackMessage(true,
-        'userWeb aggiunto con successo.'));
-
+        'User aggiunto con successo.'));
       this._user = null;
-
-
     },
       (error) => {
         console.log('ERRORE NELL AGGIUNGERE UN UTENTE');
         this.addUserError = error;
-       
+
       }
 
     );
-
+    this.modalService.dismissAll();
   }
+
 
 }

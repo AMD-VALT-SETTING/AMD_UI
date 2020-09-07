@@ -9,19 +9,17 @@ import { CloudLicense } from '../../model/CloudLicense';
 })
 export class CloudLicenseComponent implements OnInit {
 
- 
-  _licenseCloud:any;
+  _licenseCloud: any;
 
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    
   }
+
   openModal(content) {
     this.modalService.open(content);
-    console.log(this._licenseCloud);
   }
-  
+
   get licenseCloud() {
     return this._licenseCloud;
   }

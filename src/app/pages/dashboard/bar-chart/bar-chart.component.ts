@@ -28,7 +28,6 @@ export class BarChartComponent implements OnInit, OnDestroy {
   allarmCrashesCounter: number;
 
   allarms: Alarms[];
-  //dates: string[];
   datesU: string[];
   allarmsDateOrdered: string[];
 
@@ -44,7 +43,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
       type: 'bar',
 
       data: {
-        labels: [], //'3/08/2020', '4/08/2020', '5/08/2020
+        labels: [], 
         datasets: [
 
           { label: 'Caduta', backgroundColor: '#FF0000', data: this.allarmFalls },
@@ -84,25 +83,18 @@ export class BarChartComponent implements OnInit, OnDestroy {
 
   drawBarChart() {
 
-    this.dashboardService.getDataAllarms().subscribe((res) => {
-      console.log(JSON.stringify(res));
       this.allarms = res['listaAlarms'];
       let dates :string[]= this.allarms.map((item) => item.date);
-
-
       
-      console.log('Date ' + dates);
-     const datesY = this.datesOrder(this.datesNoDuplicateDate(dates));
-     
-
+    this.dashboardService.getDataAllarms().subscribe((res) => {
+      this.allarms = res['listaAlarms'];
+      let dates: string[] = this.allarms.map((item) => item.date);
+      const datesY = this.datesOrder(this.datesNoDuplicateDate(dates));
       this.allarmsCouter(this.allarms, dates);
-   
-      this.barChart.data.labels=datesY;
+      this.barChart.data.labels = datesY;
       this.barChart.update();
-
-
     });
-  
+    });
   }
 
   datesNoDuplicateDate(dates: string[]): string[] {
@@ -111,7 +103,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
     for (let d = 0; d < dates.length; d++) {
 
       if (this.datesU == undefined) { this.datesU = [dates[d]] }
-      else if (this.datesU.includes(dates[d])) { console.log('già c è'); }
+      else if (this.datesU.includes(dates[d])) {  }
       else { this.datesU.push(dates[d]); }
     }
 
@@ -129,9 +121,6 @@ export class BarChartComponent implements OnInit, OnDestroy {
         }
       }
     }
-    console.log('finale= ' + dates);
-
-
     return dates;
   }
   allarmsCouter(allarms8Gg: Alarms[], datesO: string[]) {
@@ -139,11 +128,9 @@ export class BarChartComponent implements OnInit, OnDestroy {
     this.allarmImmobilitiesCounter = 0;
     this.allarmCrashesCounter = 0;
 
-
     for (let d of datesO) { //per ogni data
 
       for (let a of allarms8Gg) { //per ogni allarme
-
         if (a.date === d && a.alarmType === 'Caduta') {
           this.allarmFallsCounter++;
         }
@@ -152,25 +139,17 @@ export class BarChartComponent implements OnInit, OnDestroy {
           this.allarmImmobilitiesCounter++;
 
         }
-
         else if (a.date === d && a.alarmType === 'Schianto') {
           this.allarmCrashesCounter++;
-
         }
 
       }
-      console.log('Stop');
-
       this.allarmFalls.push(this.allarmFallsCounter);
       this.allarmFallsCounter = 0;
-
-
       this.allarmImmobilities.push(this.allarmImmobilitiesCounter);
       this.allarmImmobilitiesCounter = 0;
-
       this.allarmCrashes.push(this.allarmCrashesCounter);
       this.allarmCrashesCounter = 0;
-
     }
   }
 

@@ -9,7 +9,7 @@ import { MobileLicense } from '../../model/MobileLicense';
 })
 export class MobileLicenseComponent implements OnInit {
 
-  _licenseMobile:any;
+  _licenseMobile: any;
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -17,11 +17,10 @@ export class MobileLicenseComponent implements OnInit {
   }
   openModal(content) {
     this.modalService.open(content);
-    console.log(this._licenseMobile);
   }
+
   get licenseMobile() {
     return this._licenseMobile;
-    
   }
 
   @Input()
