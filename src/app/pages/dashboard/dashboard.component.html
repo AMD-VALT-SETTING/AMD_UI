@@ -3,7 +3,7 @@
       <div class="alert alert-danger" *ngIf="dashboardError">
         
         <span *ngIf="!dashboardError.error !== undefined && !dashboardError.error.error !== undefined">
-          {{ loginError.error.error }}
+          {{ dashboardError.error.error }}
         </span>
           Errore recupero dati dispositivi
       </div>
