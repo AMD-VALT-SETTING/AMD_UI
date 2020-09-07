@@ -19,29 +19,21 @@ export class MobileModelsConfigurationComponent implements OnInit {
   constructor(private ConfModMobService: MobileModelsConfigurationService) { }
 
   ngOnInit(): void {
-    // this.loadAll();
-    this.mobModConfTableArray = [
-      {id_Model: 'AB-1234', model: 'NOKIA', modelBrand: 'NKA10', modelVersion: 2},
-      {id_Model: 'AB-1234', model: '212', modelBrand: 'eeee', modelVersion: 2},
-    ];
+    this.loadAll();
   }
+
   loadAll() {
     this.ConfModMobService.loadAll().subscribe(res => {
-
       this.mobModConfTableArray = res['modelList'];
-     
-    }
-      ,
+    },
       (error) => {
         console.log('ERRORE NELL NEL CARICARE I MOBILE MODELS');
         this.mobModConError = error;
-       
       });
   }
+
   seeDetail(idModel: string) {
-
     this.ConfModMobService.loadDetail(idModel).subscribe((res:any) => {
-
       this.mobModConfDetailSelected = res;
     },
       (error) => {

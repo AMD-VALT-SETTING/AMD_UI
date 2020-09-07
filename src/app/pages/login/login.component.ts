@@ -31,11 +31,8 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    console.log(JSON.stringify(this.login));
-   
     this.authService.authenticate(this.login).subscribe(
       (res) => {
-        console.log('SUBMIT' + JSON.stringify(res));
         this.userLogged = {
           username: this.login.username,
           token: res.token,
@@ -46,7 +43,6 @@ export class LoginComponent implements OnInit {
           AppConstants.LOGIN_STORAGE,
           JSON.stringify(this.userLogged)
         );
-        
         this.router.navigate(['dashboard']);
       },
       (error) => {

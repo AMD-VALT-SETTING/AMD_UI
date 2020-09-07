@@ -34,7 +34,7 @@
                 <div class="col">
                     <div class="card-category">Dati utenti:</div>
                 </div>
-               
+
             </div>
             <div class="card-body ">
                 <div class="table-responsive">
@@ -46,7 +46,7 @@
                                 <th>User Alias</th>
                                 <th>Ruolo</th>
                                 <th>Elimina</th>
-                               
+
                             </tr>
                         </thead>
                         <tbody>
@@ -55,18 +55,12 @@
                                 <td>{{ u.dsUseremail }}</td>
                                 <td>{{ u.dsUseralias }}</td>
                                 <td>{{ u.idValue }}</td>
-                                <td><button class="btn btn-danger"  (click)="deleteUserWeb(u.idUser)">Elimina</button></td>
-
-                                
-
+                                <td><button class="btn btn-danger" (click)="deleteUserWeb(u.idUser)">Elimina</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
             </div>
         </div>
     </div>
