@@ -1,19 +1,4 @@
-<div class="row" *ngIf="feedbackReceived && feedbackReceived.success">
-  <div class="col">
-    <div class="alert alert-success">
-      {{ feedbackReceived.message }}
-    </div>
-  </div>
-</div>
 
-<div class="row" *ngIf="feedbackReceived && !feedbackReceived.success">
-  <div class="col">
-    <div class="alert alert-danger">
-      {{ feedbackReceived.message }}
-
-    </div>
-  </div>
-</div>
 <div class="alert alert-danger" *ngIf="alarmsError">
 
   <span *ngIf="alarmsError.error !== undefined || alarmsError.error.error !== undefined">
