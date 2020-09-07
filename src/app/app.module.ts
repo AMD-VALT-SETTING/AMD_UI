@@ -17,8 +17,6 @@ import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AppConstants } from './app.constants';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 
-
-
 export function tokenGetter() {
   const loginStored: LoginResult = JSON.parse(localStorage.getItem(AppConstants.LOGIN_STORAGE));
   if (loginStored !== undefined && loginStored !== null) {
@@ -30,7 +28,7 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    PublicLayoutComponent,
+    PublicLayoutComponent
   ],
   
   imports: [
@@ -50,7 +48,6 @@ export function tokenGetter() {
       authScheme: '',
       whitelistedDomains: [`${AppConstants.DOMAIN}`, ]
     }
-    
   })
   ],
   providers: [],

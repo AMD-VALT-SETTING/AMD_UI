@@ -32,6 +32,11 @@ export class UsersAPPComponent implements OnInit {
   userEmergency: Clist;
   userEmergencyList: Clist[] = [];
 
+  userSelect: UsersApp;
+
+  totalRecords: number;
+  page: number = 1;
+
   constructor(private modalService: NgbModal, private fb: FormBuilder, private userAppService: UsersAppService) {
     this.feedbackEvent = new EventEmitter();
   }
@@ -48,6 +53,7 @@ export class UsersAPPComponent implements OnInit {
     this.userAppRequest = new UserAppRequest(this.Rsearch_UserName, this.Rsearch_Alias, this.Rsearch_UserPhone);
     this.userAppService.getUserApp(this.userAppRequest).subscribe((res: any) => {
       this.usersApp = res.listaDevices;
+      this.totalRecords = this.usersApp.length;
     },
     (error) => {
       console.error('ERRORE RECUPERO USERAPP DETAIL');
@@ -141,5 +147,11 @@ export class UsersAPPComponent implements OnInit {
     });
     this.modalService.dismissAll();
   }
+
+  selectedUser(u: UsersApp, userSelected) {
+    this.userSelect = u;
+    this.modalService.open(userSelected);
+  }
+
 }
 
