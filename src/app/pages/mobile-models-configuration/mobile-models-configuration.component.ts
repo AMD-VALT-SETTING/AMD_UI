@@ -10,17 +10,15 @@ import { MobileModelsConfigurationDetail } from './model/MobileModelsConfigurati
   styleUrls: ['./mobile-models-configuration.component.css']
 })
 export class MobileModelsConfigurationComponent implements OnInit {
-  
   mobModConfTableArray: MobileModelsConfiguration[];
   mobModConfDetailSelected: MobileModelsConfigurationDetail;
   selectedMobModConf: string;
   mobModConError: any;
 
-  constructor(private ConfModMobService:MobileModelsConfigurationService) { }
+  constructor(private ConfModMobService: MobileModelsConfigurationService) { }
 
   ngOnInit(): void {
     this.loadAll();
-   // this.mobModConfTableArray=[{id_Model:'AB-1234',model:'NOKIA',modelBrand:'NKA10',modelVersion:2}]
   }
 
   loadAll() {
@@ -34,34 +32,13 @@ export class MobileModelsConfigurationComponent implements OnInit {
   }
 
   seeDetail(idModel: string) {
-    this.ConfModMobService.loadDetail(idModel).subscribe((res:any) => {
+    this.ConfModMobService.loadDetail(idModel).subscribe((res: any) => {
       this.mobModConfDetailSelected = res;
     },
       (error) => {
         console.log('ERRORE NELL NEL CARICARE I DETAILS DEI MOBILE MODELS');
         this.mobModConError = error;
-         
-          if (error.code === 120) {
-            this.mobModConError.message = 'Errore imprevisto';
-          }
-
-        }
       });
   }
-  /* seeDetail(s:string){
 
-    this.selectedMobModConf=s;
-    
-    this.ConfModMobService.loadDetail(this.selectedMobModConf).subscribe(res => {
-
-      this.mobModConfTableDetail = res;
-    },
-      (error) => {
-        console.log('ERRORE NELL NEL CARICARE I DETAILS DEI MOBILE MODELS');
-        this.mobModConError = error;
-      
-      });
-  } */
-
- 
 }

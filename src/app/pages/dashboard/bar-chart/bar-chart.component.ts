@@ -43,7 +43,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
       type: 'bar',
 
       data: {
-        labels: [], 
+        labels: [],
         datasets: [
 
           { label: 'Caduta', backgroundColor: '#FF0000', data: this.allarmFalls },
@@ -83,9 +83,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
 
   drawBarChart() {
 
-      this.allarms = res['listaAlarms'];
-      let dates :string[]= this.allarms.map((item) => item.date);
-      
+
     this.dashboardService.getDataAllarms().subscribe((res) => {
       this.allarms = res['listaAlarms'];
       let dates: string[] = this.allarms.map((item) => item.date);
@@ -94,8 +92,9 @@ export class BarChartComponent implements OnInit, OnDestroy {
       this.barChart.data.labels = datesY;
       this.barChart.update();
     });
-    });
   }
+
+
 
   datesNoDuplicateDate(dates: string[]): string[] {
 
@@ -103,7 +102,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
     for (let d = 0; d < dates.length; d++) {
 
       if (this.datesU == undefined) { this.datesU = [dates[d]] }
-      else if (this.datesU.includes(dates[d])) {  }
+      else if (this.datesU.includes(dates[d])) { }
       else { this.datesU.push(dates[d]); }
     }
 
@@ -123,6 +122,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
     }
     return dates;
   }
+
   allarmsCouter(allarms8Gg: Alarms[], datesO: string[]) {
     this.allarmFallsCounter = 0;
     this.allarmImmobilitiesCounter = 0;
@@ -156,6 +156,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
+
 }
 
 

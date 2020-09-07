@@ -25,61 +25,18 @@ export class UsersWebComponent implements OnInit {
   constructor(private userWebService: UsersWebService, private modalService: NgbModal, private fb: FormBuilder,) {
     this.feedbackEvent = new EventEmitter();
   }
-  
-  usersWebForm: FormGroup;
-  feedbackReceived: FeedbackMessage;
-  @Output()
-  feedbackEvent: EventEmitter<FeedbackMessage>;
 
-
-  
-    
-
-
-  constructor(private userWebService: UsersWebService,private modalService: NgbModal,private fb: FormBuilder,) {  
-   
-
-    this.feedbackEvent = new EventEmitter();
-    
-  }
   ngOnInit(): void {
     this.loadAllUsersWeb();
-   this.loadAllUsersWeb();
   }
- 
+
   openModal(content) {
     this.modalService.open(content);
   }
 
   loadAllUsersWeb() {
-    //this.usersWeb=[{idUser:'', userName:'pippo',userPassword:'pwd',confirmPassword:'pwd', userEmail:'pippo.pluto@gmail.com', userAlias:'Pippo', role:'Admin'}];//admin='300'
-   
     this.userWebService.loadAllUsersWeb().subscribe((res) => {
-
       this.usersWeb = res['listaUtenti'];
-      console.log(this.usersWeb);
-
-    });
-  }
-  /*
-  resetPwd(u:UsersWeb){
-    this.userWeb=u;
-
-  }
-  */
-  feedbackReceivedHandler(fm: FeedbackMessage) {
-    this.loadAllUsersWeb();
-    this.feedbackReceived = fm;
-    this.userWeb = null;
-  }
-  
- 
-  
-  }
-
-  loadAllUsersWeb() {
-    this.userWebService.loadAllUsersWeb().subscribe((res) => {
-    this.usersWeb = res['listaUtenti'];
     });
   }
 
@@ -100,4 +57,3 @@ export class UsersWebComponent implements OnInit {
     this.userWeb = null;
   }
 }
-

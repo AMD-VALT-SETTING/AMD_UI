@@ -6,6 +6,7 @@ import { PieChartData } from './model/PieChartData';
 import { Alarms } from './model/Alarms';
 import { AppConstants } from 'app/app.constants';
 import { UpdateAlarm } from './model/UpdateAlarm';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -28,11 +29,10 @@ export class DashboardService {
     return this.httpClient.get<Alarms[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/alarms`);
   }
 
-  updateAlarm(idAlarm:UpdateAlarm):Observable<UpdateAlarm>{
-    return this.httpClient.put<UpdateAlarm>(baseUrl, idAlarm)
-    .pipe(catchError(this.handleError));
+  updateAlarm(idAlarm: UpdateAlarm): Observable<UpdateAlarm> {
+    return this.httpClient.put<UpdateAlarm>(`${AppConstants.SERVICES_BASE_URL}`, idAlarm).pipe(catchError(this.handleError));
   }
-  
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
