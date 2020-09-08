@@ -31,12 +31,9 @@ export class LicenseComponent implements OnInit {
 
   loadAllLicense() {
     this.licenseService.loadAll().subscribe((res) => {
-      this.licenseTableArray=res;
+      this.licenseTableArray = res;
       this.licenseCloudTableArray = this.licenseTableArray.mainLicense;
       this.licenseMobileTableArray = this.licenseTableArray.mobileLicense;
-      this.licenseMobileTableArray = this.licenseTableArray.mobileLicense;
-    
-
     },
       (error) => {
         console.log('ERRORE NELL ACQUISIZIONE DELLE LICENSE');
