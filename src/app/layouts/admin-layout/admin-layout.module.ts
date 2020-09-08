@@ -24,6 +24,7 @@ import { CloudLicenseComponent } from 'app/pages/license/modals/cloud-license/cl
 import { MobileLicenseComponent } from 'app/pages/license/modals/mobile-license/mobile-license.component';
 import { ModalarmsComponent } from 'app/pages/dashboard/alarms/modalarms/modalarms.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ConfirmDeleteUserComponent } from 'app/pages/users-web/modals/confirm-delete-user/confirm-delete-user.component';
 
 @NgModule({
   imports: [
