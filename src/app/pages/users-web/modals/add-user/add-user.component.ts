@@ -28,7 +28,7 @@ export class AddUserComponent implements OnInit {
     this.usersWebFormAdd = this.fb.group(
       {
         userName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-        userPassword: [' ', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+        userPassword: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]], 
         userEmail: [' ', [Validators.required,Validators.email]],
         userAlias: [' ', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
