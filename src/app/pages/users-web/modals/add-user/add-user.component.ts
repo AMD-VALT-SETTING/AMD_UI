@@ -69,7 +69,6 @@ export class AddUserComponent implements OnInit {
     console.log('User ' + JSON.stringify(userWeb));
     this.userWebService.addUser(userWeb).subscribe(res => {
       console.log('User Added');
-      console.log(JSON.stringify(userWeb));
       this.usersWebFormAdd.reset();
       this.feedbackEvent.emit(new FeedbackMessage(true,
         'User aggiunto con successo.'));

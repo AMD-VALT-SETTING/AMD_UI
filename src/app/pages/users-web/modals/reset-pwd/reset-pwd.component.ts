@@ -55,7 +55,6 @@ export class ResetPwdComponent implements OnInit {
       console.log('SAVE SUCCESS');
 */
     this.usersWebFormReset.reset();
-    console.log(JSON.stringify(userWeb));
     this.feedbackEvent.emit(new FeedbackMessage(true,
       'userWeb aggiunto con successo.'));
     this._user = null;
