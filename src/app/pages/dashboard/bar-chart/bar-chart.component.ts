@@ -76,9 +76,6 @@ export class BarChartComponent implements OnInit, OnDestroy {
     });
     this.sub = interval(86400000)//24h
       .subscribe((val) => {
-        console.log('refresh BarChart called');
-        console.log(val);
-
         this.drawBarChart();
       });
   }

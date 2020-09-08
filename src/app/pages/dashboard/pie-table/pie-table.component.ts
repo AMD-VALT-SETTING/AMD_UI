@@ -24,11 +24,7 @@ export class PieTableComponent {
   }
 
   feedbackReceivedHandler(dEvent: DashboardEvent) {
-    console.log('arraypietable pre event' + this.userArraySelected);
-
     this.dashboardfeedbackReceived = dEvent;
-
     this.userArraySelected = this.dashboardfeedbackReceived.dashboardEvent;
-    console.log('feedbackReceivedHandler pietable= ' + this.userArraySelected);
   }
 }
