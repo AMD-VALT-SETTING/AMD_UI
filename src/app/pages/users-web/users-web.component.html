@@ -31,9 +31,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card-category">Dati utenti:</div>
-                </div>
+               
 
             </div>
             <div class="card-body ">
@@ -42,8 +40,8 @@
                         <thead>
                             <tr>
                                 <th>Username</th>
-                                <th>User Email</th>
-                                <th>User Alias</th>
+                                <th>Email</th>
+                                <th>Nome cognome</th>
                                 <th>Ruolo</th>
                                 <th>Elimina</th>
 
@@ -55,7 +53,7 @@
                                 <td>{{ u.dsUseremail }}</td>
                                 <td>{{ u.dsUseralias }}</td>
                                 <td>{{ u.idValue }}</td>
-                                <td><button class="btn btn-danger" (click)="deleteUserWeb(u.idUser)">Elimina</button>
+                                <td><app-confirm-delete-user (feedbackEvent)="feedbackReceivedHandler($event)" [idUserDelete]="u.idUser"></app-confirm-delete-user>
                                 </td>
                             </tr>
                         </tbody>

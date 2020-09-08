@@ -29,12 +29,16 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+<<<<<<< HEAD
     PublicLayoutComponent
+=======
+    PublicLayoutComponent,
    
  
     
     
     
+>>>>>>> feature/Andrea
   ],
   
   imports: [

@@ -20,7 +20,6 @@ export class MobileModelsConfigurationComponent implements OnInit {
   ngOnInit(): void {
     this.loadAll();
   }
-
   loadAll() {
     this.ConfModMobService.loadAll().subscribe(res => {
       this.mobModConfTableArray = res['modelList'];
