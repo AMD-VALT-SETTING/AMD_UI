@@ -53,7 +53,8 @@ import { ConfirmDeleteUserComponent } from 'app/pages/users-web/modals/confirm-d
     MobileLicenseComponent,
     AlarmsComponent,
     AddUserComponent,
-    ConfirmDeleteUserComponent,
+    ModalarmsComponent,
+    ConfirmDeleteUserComponent
   ]
 })
 
