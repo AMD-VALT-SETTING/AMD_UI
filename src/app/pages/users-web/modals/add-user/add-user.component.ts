@@ -58,10 +58,11 @@ export class AddUserComponent implements OnInit {
   }
 
   openModal(content) {
+    this.usersWebFormAdd.reset();
     this.modalService.open(content);
   }
   closeModal(content) {
-    this._user = null;
+    this.usersWebFormAdd.reset();
     this.modalService.dismissAll(content);
   }
 
