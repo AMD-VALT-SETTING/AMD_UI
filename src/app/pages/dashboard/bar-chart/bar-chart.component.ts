@@ -27,9 +27,11 @@ export class BarChartComponent implements OnInit, OnDestroy {
   allarmCrashes = new Array<number>();
   allarmCrashesCounter: number;
 
-  allarms: Alarms[];
+  allarms: Alarms[]= [];
   datesU: string[];
   allarmsDateOrdered: string[];
+
+  barChartError:any;
 
   constructor(private dashboardService: DashboardService) { }
 
@@ -82,16 +84,20 @@ export class BarChartComponent implements OnInit, OnDestroy {
   }
 
   drawBarChart() {
-
-
     this.dashboardService.getDataAllarms().subscribe((res) => {
       this.allarms = res['listaAlarms'];
       let dates: string[] = this.allarms.map((item) => item.date);
-      const datesY = this.datesOrder(this.datesNoDuplicateDate(dates));
-      this.allarmsCouter(this.allarms, dates);
-      this.barChart.data.labels = datesY;
+      if(dates == undefined){
+        const datesY = this.datesOrder(this.datesNoDuplicateDate(dates));
+        this.allarmsCouter(this.allarms, dates);
+        this.barChart.data.labels = datesY;
+      }
       this.barChart.update();
+    },(error) => {
+      console.log('ERRORE RECUPERO BAR CHART');
+      this.barChartError = error;
     });
+    
   }
 
 
