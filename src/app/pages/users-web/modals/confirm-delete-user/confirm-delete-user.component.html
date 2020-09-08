@@ -1,0 +1,44 @@
+<ng-template #deleteConf let-modal>
+    <div class="modal-header">
+        <div class="alert alert-danger" *ngIf="deleteConfError">
+            <span *ngIf="deleteConfError.error !== undefined || deleteConfError.error.error !== undefined">
+                {{ deleteConfError.statusText}}
+            </span>
+        </div>
+
+      
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-danger" *ngIf="confDeleteError">
+
+                    <span *ngIf="confDeleteError.error !== undefined || confDeleteError.error.error !== undefined">
+                        {{ this.confDeleteError.error.description}}
+                    </span>
+
+                </div>
+            </div>
+        </div>
+        <div>
+            <p>Sicuro/a di voler cancellare l'utente?</p>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-#e26868"
+                        (click)="modal.dismiss('Cross click')">Chiudi</button>
+                    <button type="button" class="btn btn-danger" (click)="deleteUserWeb()">Cancella</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<div class="row">
+    <div class="col-sm-1">
+        <button type="button" class="btn btn-danger" (click)="openModal(deleteConf)">
+            Cancella
+        </button>
+
+    </div>
+</div>

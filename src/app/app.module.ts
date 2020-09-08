@@ -16,6 +16,7 @@ import { LoginResult } from './auth/model/LoginResult';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AppConstants } from './app.constants';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { ConfirmDeleteUserComponent } from './pages/users-web/modals/confirm-delete-user/confirm-delete-user.component';
 
 //let head=new HttpHeaders({'token': tokenGetter()});
 
@@ -31,6 +32,7 @@ export function tokenGetter() {
     AppComponent,
     AdminLayoutComponent,
     PublicLayoutComponent,
+   
  
     
     

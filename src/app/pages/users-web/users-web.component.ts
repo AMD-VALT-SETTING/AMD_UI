@@ -41,14 +41,7 @@ export class UsersWebComponent implements OnInit {
     });
   }
 
-  deleteUserWeb(idUser: string) {
-    let userDelete = new UserDeleteRequest;
-    userDelete.idUser = idUser;
-    this.userWebService.deleteUserWeb(userDelete).subscribe(res => {
-      alert('Utente eliminato');
-      this.loadAllUsersWeb()
-    });
-  }
+  
 
   feedbackReceivedHandler(fm: FeedbackMessage) {
     this.feedbackReceived = fm;

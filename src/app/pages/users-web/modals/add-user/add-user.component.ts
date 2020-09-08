@@ -28,10 +28,10 @@ export class AddUserComponent implements OnInit {
     this.usersWebFormAdd = this.fb.group(
       {
         userName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-        userPassword: ['pwd', ''],
-        confirmPassword: ['pwd', ''],
-        userEmail: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-        userAlias: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+        userPassword: [' ', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]], 
+        userEmail: [' ', [Validators.required,Validators.email]],
+        userAlias: [' ', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
         role: ['', [Validators.required]]
       }
     );
@@ -39,6 +39,7 @@ export class AddUserComponent implements OnInit {
 
 
   ngOnInit(): void {
+   
   }
 
   get user() {
@@ -59,6 +60,11 @@ export class AddUserComponent implements OnInit {
   openModal(content) {
     this.modalService.open(content);
   }
+  closeModal(content) {
+    this._user = null;
+    this.modalService.dismissAll(content);
+  }
+
 
   save() {
     var userWeb: UsersWeb = this.usersWebFormAdd.value;
@@ -66,23 +72,25 @@ export class AddUserComponent implements OnInit {
     for (let s of userWeb.role) {
       userWeb.role = s;
     }
-    console.log('User ' + JSON.stringify(userWeb));
+    
     this.userWebService.addUser(userWeb).subscribe(res => {
       console.log('User Added');
-      console.log(JSON.stringify(userWeb));
+    
       this.usersWebFormAdd.reset();
       this.feedbackEvent.emit(new FeedbackMessage(true,
         'User aggiunto con successo.'));
       this._user = null;
+      this.modalService.dismissAll();
     },
       (error) => {
         console.log('ERRORE NELL AGGIUNGERE UN UTENTE');
         this.addUserError = error;
+        
 
       }
 
     );
-    this.modalService.dismissAll();
+    
   }
 
 

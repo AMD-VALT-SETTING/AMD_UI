@@ -23,6 +23,7 @@ import { ResetPwdComponent } from 'app/pages/users-web/modals/reset-pwd/reset-pw
 import { CloudLicenseComponent } from 'app/pages/license/modals/cloud-license/cloud-license.component';
 import { MobileLicenseComponent } from 'app/pages/license/modals/mobile-license/mobile-license.component';
 import { ModalarmsComponent } from 'app/pages/dashboard/alarms/modalarms/modalarms.component';
+import { ConfirmDeleteUserComponent } from 'app/pages/users-web/modals/confirm-delete-user/confirm-delete-user.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,7 @@ import { ModalarmsComponent } from 'app/pages/dashboard/alarms/modalarms/modalar
     MobileLicenseComponent,
     AlarmsComponent,
     AddUserComponent,
-    
+    ConfirmDeleteUserComponent,
     ModalarmsComponent,
   ]
 })
