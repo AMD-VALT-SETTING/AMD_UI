@@ -1,12 +1,19 @@
+<div class="alert alert-danger" *ngIf="barChartError">
+
+    <span *ngIf="barChartError.error !== undefined || barChartError.error.error !== undefined">
+        {{ this.barChartError.error.description}}
+    </span>
+
+</div>
 <div class="row">
     <div class="col">
         <div class="card ">
             <div class="card-header ">
-                <h5 class="card-title">Allarmi</h5>
-                <p class="card-category">Istogramma Allarmi:</p>
+                <h5 class="card-title">Allarmi Storici</h5>
+                <p class="card-category"></p>
             </div>
             <div class="card-body ">
-                <canvas id="myChart" ></canvas>
+                <canvas id="myChart"></canvas>
             </div>
         </div>
     </div>

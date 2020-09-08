@@ -18,19 +18,19 @@ export class DashboardService {
 
   
   getDataForPieChart (): Observable<PieChartData[]> {
-    return this.httpClient.get<PieChartData[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/pie`);
+    return this.httpClient.get<PieChartData[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/pie`).pipe(catchError(this.handleError));
   }
 
   findUsersForLabelPieTable(selectedCategory: number): Observable<any> {
-    return this.httpClient.get<User[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/detail/` + selectedCategory);
+    return this.httpClient.get<User[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/detail/` + selectedCategory).pipe(catchError(this.handleError));
   }
 
   getDataAllarms (): Observable<Alarms[]> {
-    return this.httpClient.get<Alarms[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/alarms`);
+    return this.httpClient.get<Alarms[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/alarms`).pipe(catchError(this.handleError));
   }
 
   updateAlarm(idAlarm: UpdateAlarm): Observable<UpdateAlarm> {
-    return this.httpClient.put<UpdateAlarm>(`${AppConstants.SERVICES_BASE_URL}`, idAlarm).pipe(catchError(this.handleError));
+    return this.httpClient.put<UpdateAlarm>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/switchAlarmOff`, idAlarm).pipe(catchError(this.handleError));
   }
 
 
