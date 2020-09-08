@@ -23,7 +23,7 @@ export class UsersAppService {
   }
 
   enableUser(user: UsersApp) {
-    return this.httpClient.put<UsersApp[]>(`${AppConstants.SERVICES_BASE_URL}/rest/manage/updat`, user).pipe(catchError(this.handleError));
+    return this.httpClient.put<UsersApp[]>(`${AppConstants.SERVICES_BASE_URL}/rest/manage/update`, user).pipe(catchError(this.handleError));
   }
 
   resetPassword(user: UsersApp) {

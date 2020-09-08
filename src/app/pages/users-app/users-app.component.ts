@@ -95,7 +95,6 @@ export class UsersAPPComponent implements OnInit {
   enable(user: UsersApp) {
     user.enabledLicense = true;
     this.userAppService.enableUser(user).subscribe(() => {
-
     },
     (error) => {
       console.error('ERRORE ABILITAZIONE LICENZA');
