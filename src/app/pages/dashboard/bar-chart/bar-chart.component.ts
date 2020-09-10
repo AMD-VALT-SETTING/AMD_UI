@@ -43,7 +43,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
   alarmsDateOrdered: string[]; //LE DATE SONO ORDINATE?
   dates: string[] = [];
 
-  barChartError:any;
+
 
   constructor(private dashboardService: DashboardService) { }
 
