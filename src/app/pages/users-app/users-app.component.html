@@ -1,128 +1,189 @@
-<div class="conatiner-fluid">
-    <div class="row">
-        <div class="col-3">
-            <input class="form-control inputcontrol" type="text" name="username_search" [(ngModel)]="Rsearch_UserName"
-                placeholder="Ricerca Username">
-        </div>
-        <div class="col-3">
-            <input class="form-control inputcontrol" type="text" name="alias_search" [(ngModel)]="Rsearch_Alias"
-                placeholder="Ricerca Alias">
-        </div>
-        <div class="col-3">
-            <input class="form-control inputcontrol" type="text" name="telefono_search" [(ngModel)]="Rsearch_UserPhone"
-                placeholder="Ricerca Telefono">
-        </div>
-        <div class="col-2">
-            <button type="button" class="btn btn-success inputbotton" (click)=find()>Cerca</button>
-        </div>
+<div class="row">
+    <div class="col-sm-8 col-md-3">
+        <label for="input-username" class="labelinput">Ricerca Username</label>
+        <input class="form-control inputcontrol" type="text" id="input-username" name="username_search"
+            [(ngModel)]="Rsearch_UserName" placeholder="Ricerca Username*">
     </div>
+    <div class="col-sm-8 col-md-3">
+        <label for="input-alias" class="labelinput">Ricerca Nome o Cognome</label>
+        <input class="form-control inputcontrol" type="text" id="input-alias" name="alias_search"
+            [(ngModel)]="Rsearch_Alias" placeholder="Ricerca Nome o Cognome*">
+    </div>
+    <div class="col-sm-8 col-md-3">
+        <label for="input-phone" class="labelinput">Ricerca Telefono</label>
+        <input class="form-control inputcontrol" type="text" id="input-phone" name="telefono_search"
+            [(ngModel)]="Rsearch_UserPhone" placeholder="Ricerca Telefono*">
+    </div>
+    <div class="col-sm-8 col-md-3">
+        <button type="button" class="btn btn-success inputbotton" (click)=find()>Cerca</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-5">
+        <small id="help-input" class="form-text text-muted">*Nei campi di input è possibile specificare parte del
+            testo</small>
+    </div>
+</div>
 
-    <div class="row">
-        <div class="col">
-            <div class="alert alert-danger" *ngIf="usersAppError">
-              
-              <span *ngIf="!usersAppError.error !== undefined && !usersAppError.error.error !== undefined">
+<div class="row">
+    <div class="col">
+        <div class="alert alert-danger" *ngIf="usersAppError">
+
+            <span *ngIf="!usersAppError.error !== undefined && !usersAppError.error.error !== undefined">
                 {{ usersAppError.error.error }}
-              </span>
-                Errore recupero Utenti App
+            </span>
+            Errore recupero Utenti App
+        </div>
+    </div>
+</div>
+
+<ng-template #userModalReset let-modal>
+    <div>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Reset Password</h4>
+            <img src="/assets/img/valtellina_logo.png" height="100px">
+        </div>
+        <div class="modal-body">
+            <p>Sei sicuro di voler resettare la password?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-#e26868"
+                (click)="modal.dismiss('Cross click')">Annulla</button>
+            <button type="button" class="btn btn-outline-#e26868" (click)="resetPwd()">Reset</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #userInfo let-modal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title2">Informazioni Utente</h4>
+        </div>
+        <div class="modal-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>Vers.App</td>
+                            <td>{{userSelect.appVersion}}</td>
+                        </tr>
+                        <tr>
+                            <td>Vers.Cfg</td>
+                            <td>{{userSelect.configVersion}}</td>
+                        </tr>
+                        <tr>
+                            <td>Modello</td>
+                            <td>{{userSelect.model}}</td>
+                        </tr>
+                        <tr>
+                            <td>ID Android</td>
+                            <td>{{userSelect.androidID}}</td>
+                        </tr>
+                        <tr>
+                            <td>ID Licenza</td>
+                            <td>{{userSelect.license}}</td>
+                        </tr>
+                        <tr>
+                            <td>Username</td>
+                            <td>{{userSelect.userNameApp}}</td>
+                        </tr>
+                        <tr>
+                            <td>Nome/Cognome</td>
+                            <td>{{userSelect.userAliasApp}}</td>
+                        </tr>
+                        <tr>
+                            <td>Telefono</td>
+                            <td>{{userSelect.phoneNumber}}</td>
+                        </tr>
+                        <tr>
+                            <td>Contatti</td>
+                            <td>
+                                <thead>
+                                    <tr>
+                                        <td>Nome</td>
+                                        <td>Cognome</td>
+                                        <td>Telefono</td>
+                                        <td>Email</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let p of userSelect.clist">
+                                        <td>{{p.name}}</td>
+                                        <td>{{p.surname}}</td>
+                                        <td>{{p.phone}}</td>
+                                        <td>{{p.email}}</td>
+                                    </tr>
+                                </tbody>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Vers.OS</td>
+                            <td>{{userSelect.osVersion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-      </div>
-
-    <ng-template #userModalReset let-modal>
-        <div>
-            <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">Reset Password</h4>
-                <img src="/assets/img/valtellina_logo.png" height="100px">
-            </div>
-            <div class="modal-body">
-                <p>Sei sicuro di voler resettare la password?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-#e26868" (click)="modal.dismiss('Cross click')">Annulla</button>
-                <button type="button" class="btn btn-outline-#e26868" (click)="resetPwd()">Reset</button>
-            </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-#e26868" (click)="modal.dismiss('Cross click')">Chiudi</button>
         </div>
+    </div>
+</ng-template>
 
-    </ng-template>
-
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header ">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h5 class="card-title">Users App</h5>
-                        </div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header ">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="card-title">Users App</h5>
                     </div>
                 </div>
-                <div class="card-body ">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <td>Vers.App</td>
-                                    <td>Vers.Cfg</td>
-                                    <td>Modello</td>
-                                    <td>ID Android</td>
-                                    <td>ID Licenza</td>
-                                    <td>Username</td>
-                                    <td>Nome/Cognome</td>
-                                    <td>Telefono</td>
-                                    <td>Contatti</td>
-                                    <td>Vers.OS</td>
-                                    <td>Abilitato?</td>
-                                    <td>Reset Password</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let u of usersApp">
-                                    <td>{{u.appVersion}}</td>
-                                    <td>{{u.configVersion}}</td>
-                                    <td>{{u.model}}</td>
-                                    <td>{{u.androidID}}</td>
-                                    <td>{{u.license}}</td>
-                                    <td>{{u.userNameApp}}</td>
-                                    <td>{{u.userAliasApp}}</td>
-                                    <td>{{u.phoneNumber}}</td>
-                                    <td>
-                                        <thead>
-                                            <tr>
-                                                <td>Nome</td>
-                                                <td>Cognome</td>
-                                                <td>Telefono</td>
-                                                <td>Email</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let p of u.clist">
-                                                <td>{{p.name}}</td>
-                                                <td>{{p.surname}}</td>
-                                                <td>{{p.phone}}</td>
-                                                <td>{{p.email}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </td>
-                                    <td>{{u.osVersion}}</td>
-                                    <td>
-                                        <div *ngIf="u.enabledLicense; else abilita">
-                                            <button type="button" class="btn btn-danger" (click)="disable(u)">Disabilita</button>
-                                        </div>
-                                        <ng-template #abilita>
-                                            <button type="button" class="btn btn-primary" (click)="enable(u)">Abilita</button>
-                                        </ng-template>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-outline-danger mb-2 mr-2"
-                                            (click)="openModal(u, userModalReset)">Reset</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+            </div>
+            <div class="card-body ">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>Username</td>
+                                <td>Nome/Cognome</td>
+                                <td>Telefono</td>
+                                <td>Dettagli</td>
+                                <td>Abilitazione</td>
+                                <td>Reset Password</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let u of usersApp | paginate: {id: 'listing_pagination', itemsPerPage: 10, currentPage: page}">
+                                <td>{{u.userNameApp}}</td>
+                                <td>{{u.userAliasApp}}</td>
+                                <td>{{u.phoneNumber}}</td>
+                                <td>
+                                    <button class="btn btn-primary"
+                                        (click)="selectedUser(u, userInfo)">Dettaglio</button>
+                                </td>
+                                <td>
+                                    <div *ngIf="u.enabledLicense; else abilita">
+                                        <button type="button" class="btn btn-danger"
+                                            (click)="disable(u)">Disabilita</button>
+                                    </div>
+                                    <ng-template #abilita>
+                                        <button type="button" class="btn btn-primary"
+                                            (click)="enable(u)">Abilita</button>
+                                    </ng-template>
+                                </td>
+                                <td>
+                                    <button class="btn btn-outline-danger mb-2 mr-2"
+                                        (click)="openModal(u, userModalReset)">Reset</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>

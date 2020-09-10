@@ -30,10 +30,9 @@ export class ModalarmsComponent implements OnInit {
 
   updateAlarm(){
     let upAlarm= new UpdateAlarm();
-    console.log(this._selectedUpdateAlarm)
     upAlarm.idAlarm =this._selectedUpdateAlarm;
     this.updateAlarmService.updateAlarm(upAlarm).subscribe((res) => {
-      alert('allarme disattivato');
+     
     },(error) => {
       console.log('ERRORE ALLARME');
       this.errorAlarm = error;

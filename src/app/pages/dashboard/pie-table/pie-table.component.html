@@ -1,14 +1,14 @@
-<div class="card" *ngIf="userArraySelected">
+<div class="card" *ngIf="userArraySelected" id="card-usercolor-info">
     <div class="card-header ">
         <h5 class="card-title">Dettaglio categoria selezionata</h5>
     </div>
-    <div class="card-body ">
-        <div class="table-responsive">
+    <div class="card-body">
+        <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
             <table class="table">
                 <thead>
-                    <th>UserNameApp</th>
-                    <th>UserAliasApp</th>
-                    <th>PhoneNumber</th>
+                    <th>USERNAME</th>
+                    <th>NOME COGNOME</th>
+                    <th>TELEFONO</th>
                 </thead>
                 <tbody>
                     <tr *ngFor="let p of userArraySelected">

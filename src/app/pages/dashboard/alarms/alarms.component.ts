@@ -24,9 +24,6 @@ export class AlarmsComponent implements OnInit, OnDestroy {
 
     this.sub = interval(120000)
       .subscribe((val) => {
-        console.log('refresh  allarms table called');
-        console.log(val);
-
         this.loadAllarms();
       }, (error) => {
         console.log('ERRORE NEL SUBMIT');

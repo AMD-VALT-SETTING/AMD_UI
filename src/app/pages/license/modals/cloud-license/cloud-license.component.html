@@ -1,78 +1,62 @@
 <ng-template #CloudLicense let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Cloud license</h4>
+        <h4 class="modal-title" id="modal-basic-title">Licenza Principale</h4>
     </div>
     <div class="modal-body">
-
-
         <div class="table-responsive" >
-
-
             <table class="table">
                 <thead></thead>
                 <tbody>
-
                     <tr>
-                        <td>DS_CLicenseKey</td>
+                        <td>Chiave della Licenza</td>
                         <td>{{ licenseCloud.dsClicenseKey}}</td>
                     </tr>
-
                     <tr>
-                        <td>DS_CLicenseSaleContact </td>
+                        <td>Nominativo di contatto vendita</td>
                         <td>{{ licenseCloud.dsClicenseSaleContract}}</td>
-
                     </tr>
                     <tr>
-                        <td>DS_CLicenseSupportContact</td>
+                        <td>Nominativo di contatto supporto</td>
                         <td>{{ licenseCloud.dsClicenseSupportContract}}</td>
-
                     </tr>
                     <tr>
-                        <td>DT_CLicenseActivation</td>
+                        <td>Data Attivazione Licenza</td>
                         <td>{{ licenseCloud.dsClicenseActivation}}</td>
-
                     </tr>
                     <tr>
-                        <td>DT_CLicenseExpiration</td>
+                        <td>Data Termine Licenza</td>
                         <td>{{ licenseCloud.dsClicenseExpiration}}</td>
                     </tr>
                     <tr>
-                        <td>NM_CLicenseRenawal</td>
+                        <td>Numero rinnovi licenza</td>
                         <td>{{ licenseCloud. nmClicenseRenawal}}</td>
                     </tr>
                     <tr>
-                        <td>CD_AppVersion</td>
+                        <td>Versione più recente dell’App</td>
                         <td>{{ licenseCloud.cdAppVersion}}</td>
                     </tr>
                     <tr>
-                        <td>DS_LinkAppDownload</td>
+                        <td>Link alla versione più recente</td>
                         <td>{{ licenseCloud.dsLinkAppDownload}}</td>
                     </tr>
                 </tbody>
             </table>
-
         </div>
-
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-#e26868"
-                        (click)="modal.dismiss('Cross click')">Close</button>
-
-
+                        (click)="modal.dismiss('Cross click')">Chiudi</button>
                 </div>
             </div>
         </div>
-
     </div>
 </ng-template>
 <div class="row">
-    <div class="col-sm-1">
-        <button type="button" class="btnMod btnMod1 mb-2 mr-2 btn-lg" (click)="openModal(CloudLicense)">
-    
-            Cloud license
-
+    <div class="col-sm-6">
+        <button type="button" class="btnMod btnMod1 mb-2 mr-2 btn-lg" id="buttonLicenzaPrincipale" (click)="openModal(CloudLicense)">
+            Licenza Principale
         </button>
 
     </div>

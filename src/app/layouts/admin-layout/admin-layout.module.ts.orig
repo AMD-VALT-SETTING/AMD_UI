@@ -23,8 +23,11 @@ import { ResetPwdComponent } from 'app/pages/users-web/modals/reset-pwd/reset-pw
 import { CloudLicenseComponent } from 'app/pages/license/modals/cloud-license/cloud-license.component';
 import { MobileLicenseComponent } from 'app/pages/license/modals/mobile-license/mobile-license.component';
 import { ModalarmsComponent } from 'app/pages/dashboard/alarms/modalarms/modalarms.component';
+<<<<<<< HEAD
 import { NgxPaginationModule } from 'ngx-pagination';
+=======
 import { ConfirmDeleteUserComponent } from 'app/pages/users-web/modals/confirm-delete-user/confirm-delete-user.component';
+>>>>>>> feature/Andrea
 
 @NgModule({
   imports: [
@@ -53,8 +56,12 @@ import { ConfirmDeleteUserComponent } from 'app/pages/users-web/modals/confirm-d
     MobileLicenseComponent,
     AlarmsComponent,
     AddUserComponent,
+<<<<<<< HEAD
+    ModalarmsComponent
+=======
+    ConfirmDeleteUserComponent,
     ModalarmsComponent,
-    ResetPwdComponent
+>>>>>>> feature/Andrea
   ]
 })
 

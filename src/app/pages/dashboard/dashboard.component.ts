@@ -14,6 +14,7 @@ import { PieChartData } from './model/PieChartData';
   selector: 'dashboard-cmp',
   moduleId: module.id,
   templateUrl: 'dashboard.component.html',
+  styleUrls: ['dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   public canvas: any;
@@ -32,7 +33,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.dashboardService.getDataForPieChart().subscribe(res => {
       this.charts = res;
     });
-    console.log(JSON.stringify(this.charts));
   }
 
   ngOnInit() {
@@ -57,16 +57,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         legend: {
           display: true,
         },
-
+        
         onClick: (evt, item) => {
           if (item.length > 0) {
             let index = item[0]['_index'];
             let label = item[0]['_chart'].data.labels[index];
             let values = item[0]['_chart'].data.datasets[0].data[index];
-
-            console.log('onClick dashboard label= ' + label);
-            console.log('onClick dashboard index= ' + index);
-            console.log('onClick dashboard values= ' + values);
             this.buildPieChartTable(label, index);
           }
         },
@@ -113,9 +109,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
     this.drawPieChart();
     this.sub = interval(120000).subscribe((val) => {
-      console.log('refresh PieChart called');
-      console.log(val);
-
       this.drawPieChart();
     });
   }
@@ -154,7 +147,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   buildPieChartTable(label: any, index: number) {
     this.dashboardService.findUsersForLabelPieTable(index + 1).subscribe((res: any) => {
       this.pieChartTableArray = res.listaUserCategory;
-      console.log(this.pieChartTableArray);
     },
     (error) => {
       console.error('ERRORE RECUPERO USER DETAIL PIECHART');

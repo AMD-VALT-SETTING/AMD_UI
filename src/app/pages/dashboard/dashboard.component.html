@@ -3,19 +3,19 @@
       <div class="alert alert-danger" *ngIf="dashboardError">
         
         <span *ngIf="!dashboardError.error !== undefined && !dashboardError.error.error !== undefined">
-          {{ loginError.error.error }}
+          {{ dashboardError.error.error }}
         </span>
           Errore recupero dati dispositivi
       </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="card ">
+<div class="row" id="rowDashboard">
+  <div class="col-md-6" id="col1-dashboard">
+    <div class="card" id="card1-dashboard">
       <div class="card-header ">
         <h5 class="card-title">Stato delle utenze</h5>
-        <p class="card-category">Dati dispositivi:</p>
+        <p class="card-category"></p>
       </div>
       <div class="card-body ">
         <canvas id="chartEmail"></canvas>
@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6" id="col2-dashboard">
     <app-pie-table [userArraySelected]="pieChartTableArray"></app-pie-table>
   </div>
 </div>

@@ -1,3 +1,10 @@
+<div class="alert alert-danger" *ngIf="barChartError">
+
+    <span *ngIf="barChartError.error !== undefined || barChartError.error.error !== undefined">
+        {{ this.barChartError.error.description}}
+    </span>
+
+</div>
 <div class="row">
     <div class="col">
         <div class="card ">

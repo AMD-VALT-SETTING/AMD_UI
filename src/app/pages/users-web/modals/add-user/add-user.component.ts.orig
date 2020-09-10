@@ -28,7 +28,7 @@ export class AddUserComponent implements OnInit {
     this.usersWebFormAdd = this.fb.group(
       {
         userName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-        userPassword: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+        userPassword: [' ', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]], 
         userEmail: [' ', [Validators.required,Validators.email]],
         userAlias: [' ', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
@@ -58,11 +58,10 @@ export class AddUserComponent implements OnInit {
   }
 
   openModal(content) {
-    this.usersWebFormAdd.reset();
     this.modalService.open(content);
   }
   closeModal(content) {
-    this.usersWebFormAdd.reset();
+    this._user = null;
     this.modalService.dismissAll(content);
   }
 
@@ -75,6 +74,11 @@ export class AddUserComponent implements OnInit {
     }
     
     this.userWebService.addUser(userWeb).subscribe(res => {
+      console.log('User Added');
+<<<<<<< HEAD
+=======
+    
+>>>>>>> feature/Andrea
       this.usersWebFormAdd.reset();
       this.feedbackEvent.emit(new FeedbackMessage(true,
         'User aggiunto con successo.'));

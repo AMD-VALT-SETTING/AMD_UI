@@ -43,6 +43,8 @@ export class BarChartComponent implements OnInit, OnDestroy {
   alarmsDateOrdered: string[]; //LE DATE SONO ORDINATE?
   dates: string[] = [];
 
+  barChartError:any;
+
   constructor(private dashboardService: DashboardService) { }
 
   ngOnInit() {
@@ -91,9 +93,6 @@ export class BarChartComponent implements OnInit, OnDestroy {
     });
     this.sub = interval(86400000)//24h
       .subscribe((val) => {
-        console.log('refresh BarChart called');
-        console.log(val);
-
         this.drawBarChart();
       });
   }
@@ -112,13 +111,14 @@ export class BarChartComponent implements OnInit, OnDestroy {
 
 
       this.barChart.update();
-    },
-      (error) => {
-        console.log('ERRORE NEL SUBMIT');
+    },(error) => {
+      console.log('ERRORE RECUPERO BAR CHART');
+      this.barChartError = error;
         this.barChartError = error;
 
 
       });
+    
   }
 
   groupSorter(alarmsSorter: AlarmsBarChart[], datesSorter: string[]) {//crea array di number per ogni tipo di allarme
