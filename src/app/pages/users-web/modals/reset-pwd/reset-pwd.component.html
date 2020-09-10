@@ -6,7 +6,25 @@
     </div>
     <div class="modal-body">
         <form [formGroup]="usersWebFormReset" class="form" (ngSubmit)="resetPwd()">
+            
+            <div class="row" *ngIf="userpwdError">
+                <div class="col">
+                    <div class="alert alert-danger">
+                        {{ userpwdError }}
+                    </div>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label for="oldPassword">Vecchia password</label>
+                    <input id="oldPassword" class="form-control" type="text" formControlName="oldPassword">
+                    <div class="alert alert-danger"
+                        *ngIf="!usersWebFormReset.get('oldPassword').valid && !usersWebFormReset.get('oldPassword').pristine">
+                        Il campo deve avere una lunghezza compresa tra 1 e 50 caratteri.
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -20,7 +38,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="confirmPassword">Confirm password</label>
+                    <label for="confirmPassword">Conferma password</label>
                     <input id="confirmPassword" class="form-control" type="text" formControlName="confirmPassword">
                     <div class="alert alert-danger"
                         *ngIf="!usersWebFormReset.get('confirmPassword').valid && !usersWebFormReset.get('confirmPassword').pristine">
@@ -32,10 +50,10 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-#e26868"
-                            (click)="modal.dismiss('Cross click')">Close</button>
+                            (click)="modal.dismiss('Cross click')">Chiudi</button>
 
                         <button type="button" class="btn btn-outline-#e26868" [disabled]="!usersWebFormReset.valid"
-                            (click)="resetPwd()">Save
+                            (click)="resetPwd()">Reset
                         </button>
                     </div>
                 </div>
@@ -45,5 +63,5 @@
 
 </ng-template>
 
-
-<button class="btn btn-outline-danger mb-2 mr-2" (click)="openModal(resetPwdModal)">Reset</button>
+<a (click)="openModal(resetPwdModal)">Reset password</a>
+<!--<button class="btn btn-outline-danger mb-2 mr-2" (click)="openModal(resetPwdModal)">Reset password</button>-->

@@ -1,0 +1,11 @@
+.linkresetPwd:hover {
+    color: #ffffff;
+}
+
+
+.dropdown-menu a:hover
+{
+  color: #fff;
+  background-color: #ef8157;
+  border-color: #fff;
+}

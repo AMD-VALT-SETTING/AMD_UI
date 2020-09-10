@@ -29,6 +29,7 @@ export class UsersWebService {
     return this.httpClient.post<string>(`${AppConstants.SERVICES_BASE_URL}/rest/users/delete`, idUser).pipe(catchError(this.handleError));
 
   }
+
   private handleError(error: HttpErrorResponse) {
     this.userError = error;
     if (error.error instanceof ErrorEvent) {

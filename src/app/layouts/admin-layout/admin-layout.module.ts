@@ -19,11 +19,11 @@ import { MobModConfDetailComponent } from 'app/pages/mobile-models-configuration
 import { AlarmsComponent } from 'app/pages/dashboard/alarms/alarms.component';
 import { UsersWebComponent } from 'app/pages/users-web/users-web.component';
 import { AddUserComponent } from 'app/pages/users-web/modals/add-user/add-user.component';
-import { ResetPwdComponent } from 'app/pages/users-web/modals/reset-pwd/reset-pwd.component';
 import { CloudLicenseComponent } from 'app/pages/license/modals/cloud-license/cloud-license.component';
 import { MobileLicenseComponent } from 'app/pages/license/modals/mobile-license/mobile-license.component';
 import { ModalarmsComponent } from 'app/pages/dashboard/alarms/modalarms/modalarms.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CommonPwdModule } from 'app/shared/common-pwd/common-pwd.module';
 
 @NgModule({
   imports: [
@@ -33,7 +33,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CommonPwdModule
   ],
   declarations: [
     DashboardComponent,
