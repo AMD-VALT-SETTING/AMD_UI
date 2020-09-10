@@ -1,0 +1,69 @@
+<div class="row" *ngIf="feedbackReceived && feedbackReceived.success">
+    <div class="col">
+        <div class="alert alert-success">
+            {{ feedbackReceived.message }}
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="feedbackReceived && !feedbackReceived.success">
+    <div class="col">
+        <div class="alert alert-danger">
+            {{ feedbackReceived.message }}
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header ">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="card-title">Utenti Web</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-end">
+                            <app-add-user (feedbackEvent)="feedbackReceivedHandler($event)"></app-add-user>
+                        </div>
+                    </div>
+                </div>
+<<<<<<< HEAD
+               
+=======
+>>>>>>> feature/giuseppe
+
+            </div>
+            <div class="card-body ">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Nome cognome</th>
+                                <th>Ruolo</th>
+                                <th>Elimina</th>
+                                <th>Reset</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let u of usersWeb">
+                                <td>{{ u.dsUsername }}</td>
+                                <td>{{ u.dsUseremail }}</td>
+                                <td>{{ u.dsUseralias }}</td>
+                                <td>{{ u.idValue }}</td>
+                                <td><app-confirm-delete-user (feedbackEvent)="feedbackReceivedHandler($event)" [idUserDelete]="u.idUser"></app-confirm-delete-user>
+                                </td>
+                                <td><button class="btn btn-danger"><app-reset-pwd [user] = "u"></app-reset-pwd></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

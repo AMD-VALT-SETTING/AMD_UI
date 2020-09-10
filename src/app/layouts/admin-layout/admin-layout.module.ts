@@ -53,8 +53,7 @@ import { CommonPwdModule } from 'app/shared/common-pwd/common-pwd.module';
     MobileLicenseComponent,
     AlarmsComponent,
     AddUserComponent,
-    ModalarmsComponent,
-    ResetPwdComponent
+    ModalarmsComponent
   ]
 })
 
