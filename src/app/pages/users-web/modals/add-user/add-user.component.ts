@@ -73,7 +73,6 @@ export class AddUserComponent implements OnInit {
     for (let s of userWeb.role) {
       userWeb.role = s;
     }
-    
     this.userWebService.addUser(userWeb).subscribe(res => {
       this.usersWebFormAdd.reset();
       this.feedbackEvent.emit(new FeedbackMessage(true,
@@ -82,14 +81,22 @@ export class AddUserComponent implements OnInit {
       this.modalService.dismissAll();
     },
       (error) => {
-        console.log('ERRORE NELL AGGIUNGERE UN UTENTE');
+        console.log('ERRORE AGGIUNTA UTENTE');
         this.addUserError = error;
-        
-
+        if (error.status === 401) {
+          if (error.error.errorCode === 102) {
+            this.addUserError = 'Utente non valido';
+          } else if (error.error.errorCode === 103) {
+            this.addUserError = 'Password e Conferma Password non coincidono';
+          } else if (error.error.errorCode === 120) {
+            this.addUserError = 'Errore imprevisto';
+          }
+        } else {
+          this.addUserError = 'Errore imprevisto';
+        }
       }
 
     );
-    
   }
 
 

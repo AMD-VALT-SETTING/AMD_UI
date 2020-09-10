@@ -1,3 +1,11 @@
+<div class="row" *ngIf="userWebError">
+    <div class="col">
+        <div class="alert alert-danger">
+            {{ userWebError }}
+        </div>
+    </div>
+  </div>
+
 <div class="row" *ngIf="feedbackReceived && feedbackReceived.success">
     <div class="col">
         <div class="alert alert-success">

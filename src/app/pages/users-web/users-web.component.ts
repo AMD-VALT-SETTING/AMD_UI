@@ -22,6 +22,8 @@ export class UsersWebComponent implements OnInit {
   @Output()
   feedbackEvent: EventEmitter<FeedbackMessage>;
 
+  userWebError: any;
+
   constructor(private userWebService: UsersWebService, private modalService: NgbModal, private fb: FormBuilder,) {
     this.feedbackEvent = new EventEmitter();
   }
@@ -38,10 +40,18 @@ export class UsersWebComponent implements OnInit {
   loadAllUsersWeb() {
     this.userWebService.loadAllUsersWeb().subscribe((res) => {
       this.usersWeb = res['listaUtenti'];
+    },
+    (error) => {
+      this.userWebError = error;
+      if (error.status === 401) {
+        if (error.error.errorCode === 120) {
+          this.userWebError = 'Errore imprevisto';
+        }
+      } else {
+        this.userWebError = 'Errore imprevisto';
+      }
     });
   }
-
-  
 
   feedbackReceivedHandler(fm: FeedbackMessage) {
     this.feedbackReceived = fm;

@@ -132,14 +132,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.error('ERRORE RECUPERO PIECHART');
       this.dashboardError = error;
       if (error.status === 401) {
-        if (error.code === 120) {
-          this.dashboardError.message = 'Errore imprevisto';
-          alert(this.dashboardError.message);
+        if (error.error.errorCode === 120) {
+          this.dashboardError = 'Errore imprevisto';
+//          alert(this.dashboardError);
         }
-        if (error.code === 102) {
-          this.dashboardError.message = 'Utente non valido';
-          alert(this.dashboardError.message);
+        if (error.error.errorCode === 102) {
+          this.dashboardError = 'Utente non valido';
+//          alert(this.dashboardError.message);
         }
+      } else {
+        this.dashboardError = 'Errore imprevisto';
       }
     });
   }
@@ -152,10 +154,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.error('ERRORE RECUPERO USER DETAIL PIECHART');
       this.dashboardError = error;
       if (error.status === 401) {
-        if (error.code === 120) {
-          this.dashboardError.message = 'Errore imprevisto';
-          alert(this.dashboardError.message);
+        if (error.error.errorCode === 120) {
+          this.dashboardError = 'Errore imprevisto';
         }
+      } else {
+        this.dashboardError = 'Errore imprevisto';
       }
     });
   }

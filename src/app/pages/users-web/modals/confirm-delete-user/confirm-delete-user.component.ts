@@ -46,6 +46,15 @@ export class ConfirmDeleteUserComponent implements OnInit {
     (error) => {
       console.log('ERRORE NEL CONFERMARE LA CANCELLAZIONE UTENTE');
       this.confDeleteError = error;
+      if (error.status === 401) {
+        if (error.error.errorCode === 102) {
+          this.confDeleteError = 'Utente non valido';
+        } else if (error.error.errorCode === 120) {
+          this.confDeleteError = 'Errore imprevisto';
+        }
+      } else {
+        this.confDeleteError = 'Errore imprevisto';
+      }
     });
   }
 }

@@ -25,17 +25,13 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="usersAppError">
     <div class="col">
-        <div class="alert alert-danger" *ngIf="usersAppError">
-
-            <span *ngIf="!usersAppError.error !== undefined && !usersAppError.error.error !== undefined">
-                {{ usersAppError.error.error }}
-            </span>
-            Errore recupero Utenti App
+        <div class="alert alert-danger">
+            {{ usersAppError }}
         </div>
     </div>
-</div>
+  </div>
 
 <ng-template #userModalReset let-modal>
     <div>

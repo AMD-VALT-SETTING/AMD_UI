@@ -1,21 +1,18 @@
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="alert alert-danger" *ngIf="licenseError">
-              
-              <span *ngIf="licenseError.error !== undefined || licenseError.error.error !== undefined">
-                {{ this.licenseError.error.description}}
-              </span>
-            
-            </div>
-        </div>
+  <div class="row" *ngIf="licenseError">
+    <div class="col">
+      <div class="alert alert-danger">
+        {{ licenseError }}
       </div>
-    <app-cloud-license [licenseCloud]="licenseCloudTableArray"></app-cloud-license>
-    
+    </div>
+  </div>
 
-    <br>
-    
-    <app-mobile-license [licenseMobile]="licenseMobileTableArray"></app-mobile-license>
+  <app-cloud-license [licenseCloud]="licenseCloudTableArray"></app-cloud-license>
+
+
+  <br>
+
+  <app-mobile-license [licenseMobile]="licenseMobileTableArray"></app-mobile-license>
 
 
 </div>
