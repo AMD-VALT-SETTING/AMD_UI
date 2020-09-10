@@ -24,6 +24,7 @@ import { MobileLicenseComponent } from 'app/pages/license/modals/mobile-license/
 import { ModalarmsComponent } from 'app/pages/dashboard/alarms/modalarms/modalarms.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CommonPwdModule } from 'app/shared/common-pwd/common-pwd.module';
+import { ConfirmDeleteUserComponent } from 'app/pages/users-web/modals/confirm-delete-user/confirm-delete-user.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import { CommonPwdModule } from 'app/shared/common-pwd/common-pwd.module';
     MobileLicenseComponent,
     AlarmsComponent,
     AddUserComponent,
-    ModalarmsComponent
+    ModalarmsComponent,
+    ConfirmDeleteUserComponent
   ]
 })
 
