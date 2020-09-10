@@ -7,17 +7,13 @@
     </div>
     <div class="modal-body">
         
-        <div class="row">
+        <div class="row" *ngIf="addUserError">
             <div class="col">
-                <div class="alert alert-danger" *ngIf="addUserError">
-
-                    <span *ngIf="addUserError.error !== undefined || addUserError.error.error !== undefined">
-                        {{ this.addUserError.error.description}}
-                    </span>
-
+                <div class="alert alert-danger">
+                    {{ addUserError }}
                 </div>
             </div>
-        </div>
+          </div>
 
         <form [formGroup]="usersWebFormAdd" class="form" (ngSubmit)="save()">
             <div class="form-group">

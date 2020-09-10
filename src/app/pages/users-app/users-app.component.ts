@@ -60,9 +60,8 @@ export class UsersAPPComponent implements OnInit {
       console.error('ERRORE RECUPERO USERAPP DETAIL');
       this.usersAppError = error;
       if (error.status === 401) {
-        if (error.code === 102) {
-          this.usersAppError.message = 'Utente non valido';
-          alert(this.usersAppError.message);
+        if (error.error.errorCode === 102) {
+          this.usersAppError = 'Utente non valido';
         }
       }
     });
@@ -77,17 +76,14 @@ export class UsersAPPComponent implements OnInit {
       console.error('ERRORE DISABILITAZIONE LICENZA');
       this.usersAppError = error;
       if (error.status === 401) {
-        if (error.code === 102) {
-          this.usersAppError.message = 'Utente non valido';
-          alert(this.usersAppError.message);
+        if (error.error.errorCode === 102) {
+          this.usersAppError = 'Utente non valido';
         }
-        if (error.code === 107) {
-          this.usersAppError.message = 'Licenza ha raggiunto la max capacità';
-          alert(this.usersAppError.message);
+        if (error.error.errorCode === 107) {
+          this.usersAppError = 'Licenza ha raggiunto la max capacità';
         }
-        if (error.code === 120) {
-          this.usersAppError.message = 'Errore imprevisto';
-          alert(this.usersAppError.message);
+        if (error.error.errorCode === 120) {
+          this.usersAppError = 'Errore imprevisto';
         }
       }
     });
@@ -101,17 +97,14 @@ export class UsersAPPComponent implements OnInit {
       console.error('ERRORE ABILITAZIONE LICENZA');
       this.usersAppError = error;
       if (error.status === 401) {
-        if (error.code === 102) {
-          this.usersAppError.message = 'Utente non valido';
-          alert(this.usersAppError.message);
+        if (error.error.errorCode === 102) {
+          this.usersAppError = 'Utente non valido';
         }
-        if (error.code === 107) {
-          this.usersAppError.message = 'Licenza ha raggiunto la max capacità';
-          alert(this.usersAppError.message);
+        if (error.error.errorCode === 107) {
+          this.usersAppError = 'Licenza ha raggiunto la max capacità';
         }
-        if (error.code === 120) {
-          this.usersAppError.message = 'Errore imprevisto';
-          alert(this.usersAppError.message);
+        if (error.error.errorCode === 120) {
+          this.usersAppError = 'Errore imprevisto';
         }
       }
     });
@@ -131,17 +124,14 @@ export class UsersAPPComponent implements OnInit {
       console.error('ERRORE RESET PASSWORD');
       this.usersAppError = error;
       if (error.status === 401) {
-        if (error.code === 102) {
-          this.usersAppError.message = 'Utente non valido';
-          alert(this.usersAppError.message);
+        if (error.error.errorCode === 102) {
+          this.usersAppError = 'Utente non valido';
         }
-        if (error.code === 107) {
-          this.usersAppError.message = 'Licenza ha raggiunto la max capacità';
-          alert(this.usersAppError.message);
+        if (error.error.errorCode === 107) {
+          this.usersAppError = 'Licenza ha raggiunto la max capacità';
         }
-        if (error.code === 120) {
-          this.usersAppError.message = 'Errore imprevisto';
-          alert(this.usersAppError.message);
+        if (error.error.errorCode === 120) {
+          this.usersAppError = 'Errore imprevisto';
         }
       }
     });

@@ -10,13 +10,13 @@ import { FeedbackMessage } from 'app/FeedbackMessage';
   styleUrls: ['./confirm-delete-user.component.css']
 })
 export class ConfirmDeleteUserComponent implements OnInit {
-  
+
   _idUserDelete: string;
   confDeleteError: any;
   @Output()
   feedbackEvent: EventEmitter<FeedbackMessage>;
 
-  constructor(private userWebService: UsersWebService,private modalService: NgbModal ) {
+  constructor(private userWebService: UsersWebService, private modalService: NgbModal ) {
     this.feedbackEvent = new EventEmitter();
    }
 
@@ -37,7 +37,7 @@ export class ConfirmDeleteUserComponent implements OnInit {
     let userDelete = new UserDeleteRequest;
     userDelete.idUser = this.idUserDelete;
     this.userWebService.deleteUserWeb(userDelete).subscribe(res => {
-     
+
       this.feedbackEvent.emit(new FeedbackMessage(true,
         'Utente eliminato'));
 
@@ -46,8 +46,15 @@ export class ConfirmDeleteUserComponent implements OnInit {
     (error) => {
       console.log('ERRORE NEL CONFERMARE LA CANCELLAZIONE UTENTE');
       this.confDeleteError = error;
-      
-
+      if (error.status === 401) {
+        if (error.error.errorCode === 102) {
+          this.confDeleteError = 'Utente non valido';
+        } else if (error.error.errorCode === 120) {
+          this.confDeleteError = 'Errore imprevisto';
+        }
+      } else {
+        this.confDeleteError = 'Errore imprevisto';
+      }
     });
   }
 }

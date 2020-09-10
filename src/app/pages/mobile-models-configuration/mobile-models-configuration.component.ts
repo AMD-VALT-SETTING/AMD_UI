@@ -25,8 +25,18 @@ export class MobileModelsConfigurationComponent implements OnInit {
       this.mobModConfTableArray = res['modelList'];
     },
       (error) => {
-        console.log('ERRORE NELL NEL CARICARE I MOBILE MODELS');
+        console.log('ERRORE RECUPERO MOBILE');
         this.mobModConError = error;
+        if (error.status === 401) {
+          if (error.error.errorCode === 102) {
+            this.mobModConError = 'Utente non valido';
+          }
+          if (error.error.errorCode === 120) {
+            this.mobModConError = 'Errore imprevisto';
+          }
+        } else {
+          this.mobModConError = 'Errore imprevisto';
+        }
       });
   }
 
@@ -35,8 +45,8 @@ export class MobileModelsConfigurationComponent implements OnInit {
       this.mobModConfDetailSelected = res;
     },
       (error) => {
-        console.log('ERRORE NELL NEL CARICARE I DETAILS DEI MOBILE MODELS');
-        this.mobModConError = error;
+        console.log('ERRORE RECUPERO DETTAGLI MOBILE');
+        this.mobModConError = 'ERRORE RECUPERO DETTAGLI MOBILE';
       });
   }
 

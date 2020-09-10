@@ -1,12 +1,15 @@
 <ng-template #deleteConf let-modal>
     <div class="modal-header">
-        <div class="alert alert-danger" *ngIf="deleteConfError">
-            <span *ngIf="deleteConfError.error !== undefined || deleteConfError.error.error !== undefined">
-                {{ deleteConfError.statusText}}
-            </span>
+
+        <div class="row" *ngIf="confDeleteError">
+            <div class="col">
+                <div class="alert alert-danger">
+                    {{ confDeleteError }}
+                </div>
+            </div>
         </div>
 
-      
+
     </div>
     <div class="modal-body">
         <div class="row">

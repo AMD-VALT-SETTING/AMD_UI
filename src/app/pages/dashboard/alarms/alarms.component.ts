@@ -26,7 +26,6 @@ export class AlarmsComponent implements OnInit, OnDestroy {
       .subscribe((val) => {
         this.loadAllarms();
       }, (error) => {
-        console.log('ERRORE NEL SUBMIT');
         this.alarmsError = error;
       });
   }
@@ -34,6 +33,16 @@ export class AlarmsComponent implements OnInit, OnDestroy {
   loadAllarms() {
     this.dashboardService.getDataAllarms().subscribe((res: any) => {
       this.alarms = res.listaAlarms;
+    },
+    (error) => {
+      this.alarmsError = error;
+      if (error.status === 401) {
+        if (error.error.errorCode === 120) {
+          this.alarmsError = 'Errore imprevisto';
+        }
+      } else {
+        this.alarmsError = 'Errore imprevisto';
+      }
     });
 
   }

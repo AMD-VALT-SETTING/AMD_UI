@@ -111,14 +111,16 @@ export class BarChartComponent implements OnInit, OnDestroy {
 
 
       this.barChart.update();
-    },(error) => {
-      console.log('ERRORE RECUPERO BAR CHART');
+    }, (error) => {
       this.barChartError = error;
-        this.barChartError = error;
-
-
+      if (error.status === 401) {
+        if (error.error.errorCode === 120) {
+          this.barChartError = 'Errore imprevisto';
+        }
+      } else {
+        this.barChartError = 'Errore imprevisto';
+      }
       });
-    
   }
 
   groupSorter(alarmsSorter: AlarmsBarChart[], datesSorter: string[]) {//crea array di number per ogni tipo di allarme

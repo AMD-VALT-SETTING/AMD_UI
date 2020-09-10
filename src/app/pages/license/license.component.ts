@@ -34,12 +34,16 @@ export class LicenseComponent implements OnInit {
       this.licenseTableArray = res;
       this.licenseCloudTableArray = this.licenseTableArray.mainLicense;
       this.licenseMobileTableArray = this.licenseTableArray.mobileLicense;
-
-
     },
       (error) => {
-        console.log('ERRORE NELL ACQUISIZIONE DELLE LICENSE');
         this.licenseError = error;
+        if (error.status === 401) {
+          if (error.error.errorCode === 120) {
+            this.licenseError = 'ERRORE IMPREVISTO';
+          } else {
+            this.licenseError = 'ERRORE RECUPERO LICENZE';
+          }
+        }
       });
   }
 

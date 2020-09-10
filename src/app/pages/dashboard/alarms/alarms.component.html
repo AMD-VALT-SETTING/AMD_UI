@@ -1,10 +1,11 @@
-<div class="alert alert-danger" *ngIf="alarmsError">
-
-  <span *ngIf="alarmsError.error !== undefined || alarmsError.error.error !== undefined">
-    {{ this.alarmsError.error.description}}
-  </span>
-
+<div class="row" *ngIf="alarmsError">
+  <div class="col">
+      <div class="alert alert-danger">
+          {{ alarmsError }}
+      </div>
+  </div>
 </div>
+
 <div class="row">
   <div class="col-md-12">
     <div class="card">
