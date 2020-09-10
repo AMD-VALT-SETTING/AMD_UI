@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="oldPassword">Vecchia password</label>
-                    <input id="oldPassword" class="form-control" type="text" formControlName="oldPassword">
+                    <input id="oldPassword" class="form-control" type="password" formControlName="oldPassword">
                     <div class="alert alert-danger"
                         *ngIf="!usersWebFormReset.get('oldPassword').valid && !usersWebFormReset.get('oldPassword').pristine">
                         Il campo deve avere una lunghezza compresa tra 1 e 50 caratteri.
@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="userPassword">Password</label>
-                    <input id="userPassword" class="form-control" type="text" formControlName="userPassword">
+                    <input id="userPassword" class="form-control" type="password" formControlName="userPassword">
                     <div class="alert alert-danger"
                         *ngIf="!usersWebFormReset.get('userPassword').valid && !usersWebFormReset.get('userPassword').pristine">
                         Il campo deve avere una lunghezza compresa tra 1 e 50 caratteri.
@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="confirmPassword">Conferma password</label>
-                    <input id="confirmPassword" class="form-control" type="text" formControlName="confirmPassword">
+                    <input id="confirmPassword" class="form-control" type="password" formControlName="confirmPassword">
                     <div class="alert alert-danger"
                         *ngIf="!usersWebFormReset.get('confirmPassword').valid && !usersWebFormReset.get('confirmPassword').pristine">
                         Il campo deve avere una lunghezza compresa tra 1 e 50 caratteri.
