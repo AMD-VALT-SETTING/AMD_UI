@@ -5,6 +5,7 @@ import { isNgTemplate } from '@angular/compiler';
 import { Alarms } from '../model/Alarms';
 import { unique } from 'jquery';
 import { Observable, Subscription, interval } from 'rxjs';
+import { AlarmsBarChart } from '../model/AlarmsBarChart';
 
 @Component({
   selector: 'app-bar-chart',
@@ -17,19 +18,30 @@ export class BarChartComponent implements OnInit, OnDestroy {
   public ctx;
   public barChart;
   private sub: Subscription;
+  barChartError: any;
 
-  allarmFalls = new Array<number>();
-  allarmFallsCounter: number;
+  alarmFallsTrue = new Array<number>();
+  alarmFallsFalse = new Array<number>();
+  alarmFallsCounterTrue: number;
+  alarmFallsCounterFalse: number;
 
-  allarmImmobilities = new Array<number>();
-  allarmImmobilitiesCounter: number;
+  alarmImmobilitiesTrue = new Array<number>();
+  alarmImmobilitiesFalse = new Array<number>();
+  alarmImmobilitiesCounterTrue: number;
+  alarmImmobilitiesCounterFalse: number;
 
-  allarmCrashes = new Array<number>();
-  allarmCrashesCounter: number;
+  alarmCrashesTrue = new Array<number>();
+  alarmCrashesFalse = new Array<number>();
+  alarmCrashesCounterTrue: number;
+  alarmCrashesCounterFalse: number;
 
-  allarms: Alarms[];
-  datesU: string[];
-  allarmsDateOrdered: string[];
+
+
+  alarms: AlarmsBarChart[];
+  datesU: string[] = [];
+
+  alarmsDateOrdered: string[]; //LE DATE SONO ORDINATE?
+  dates: string[] = [];
 
   constructor(private dashboardService: DashboardService) { }
 
@@ -43,12 +55,17 @@ export class BarChartComponent implements OnInit, OnDestroy {
       type: 'bar',
 
       data: {
-        labels: [],
+        labels: this.dates,//[]
         datasets: [
 
-          { label: 'Caduta', backgroundColor: '#FF0000', data: this.allarmFalls },
-          { label: 'Immmobilità', backgroundColor: '#666362', data: this.allarmImmobilities },
-          { label: 'Schianto', backgroundColor: '#000000', data: this.allarmCrashes },
+          { label: 'Caduta-false', backgroundColor: '#0000cc', data: this.alarmFallsFalse },//#FF0000
+          { label: 'Caduta-true', backgroundColor: '#ff6600', data: this.alarmFallsTrue },
+
+          { label: 'Immmobilità-false', backgroundColor: '#b3b3b3', data: this.alarmImmobilitiesFalse },//#666362
+          { label: 'Immmobilità-true', backgroundColor: '#ffd633', data: this.alarmImmobilitiesTrue },
+
+          { label: 'Schianto-false', backgroundColor: '#00ccff', data: this.alarmCrashesFalse },//#000000
+          { label: 'Schianto-true', backgroundColor: '#000000', data: this.alarmCrashesTrue },
 
         ]
 
@@ -82,32 +99,105 @@ export class BarChartComponent implements OnInit, OnDestroy {
   }
 
   drawBarChart() {
-    this.dashboardService.getDataAllarms().subscribe((res) => {
-      this.allarms = res['listaAlarms'];
-      let dates: string[] = this.allarms.map((item) => item.date);
-      const datesY = this.datesOrder(this.datesNoDuplicateDate(dates));
-      this.allarmsCouter(this.allarms, dates);
-      this.barChart.data.labels = datesY;
+    this.dashboardService.getDataForBarChart().subscribe((res) => {
+      this.alarms = res['listaAlarms'];
+      
+      let dateRes = this.alarms.map((item) => item.date);
+
+      if (dateRes != undefined) {
+        this.dates = this.datesOrder(this.datesNoDuplicateDate(dateRes));
+        this.groupSorter(this.alarms, this.dates);
+        this.barChart.data.labels = this.dates;
+      }
+
+
       this.barChart.update();
-    });
+    },
+      (error) => {
+        console.log('ERRORE NEL SUBMIT');
+        this.barChartError = error;
+
+
+      });
   }
 
+  groupSorter(alarmsSorter: AlarmsBarChart[], datesSorter: string[]) {//crea array di number per ogni tipo di allarme
+    
+    this.alarmFallsCounterTrue = 0;
+    this.alarmFallsCounterFalse = 0;
+
+    this.alarmImmobilitiesCounterTrue = 0;
+    this.alarmImmobilitiesCounterFalse = 0;
+
+    this.alarmCrashesCounterTrue = 0;
+    this.alarmCrashesCounterFalse = 0;
+
+    for (let d of datesSorter) { //per ogni data
+
+      for (let a of alarmsSorter) { //per ogni allarme
+        if (a.date === d && a.alarmType === 'Caduta') {
+
+          if (a.status) {
+            this.alarmFallsCounterTrue = a.number;
 
 
-  datesNoDuplicateDate(dates: string[]): string[] {
+          }
+          else {
 
-    // Prima rimuovo i doppioni
-    for (let d = 0; d < dates.length; d++) {
+            this.alarmFallsCounterFalse = a.number;
+          }
 
-      if (this.datesU == undefined) { this.datesU = [dates[d]] }
-      else if (this.datesU.includes(dates[d])) { }
-      else { this.datesU.push(dates[d]); }
+        }
+        else if (a.date === d && a.alarmType === 'Immobilità') {
+
+          if (a.status) {
+
+            this.alarmImmobilitiesCounterTrue = a.number;
+          }
+          else {
+
+            this.alarmImmobilitiesCounterFalse = a.number;
+
+          }
+
+        }
+        else if (a.date === d && a.alarmType === 'Schianto') {
+          if (a.status) {
+
+            this.alarmCrashesCounterTrue = a.number;
+          }
+          else {
+
+            this.alarmCrashesCounterFalse = a.number;
+          }
+
+
+
+        }
+
+      }
+      //prima di passare alla data successiva aggiungo ad un array di number dello specifico evento il numero di eventi di quel tipo del giorno
+
+      this.alarmFallsTrue.push(this.alarmFallsCounterTrue);
+      this.alarmFallsFalse.push(this.alarmFallsCounterFalse);
+      this.alarmFallsCounterTrue = 0;
+      this.alarmFallsCounterFalse = 0;
+
+      this.alarmImmobilitiesTrue.push(this.alarmImmobilitiesCounterTrue);
+      this.alarmImmobilitiesFalse.push(this.alarmImmobilitiesCounterFalse);
+      this.alarmImmobilitiesCounterTrue = 0;
+      this.alarmImmobilitiesCounterFalse = 0;
+
+      this.alarmCrashesTrue.push(this.alarmCrashesCounterTrue);
+      this.alarmCrashesFalse.push(this.alarmCrashesCounterFalse);
+      this.alarmCrashesCounterTrue = 0;
+      this.alarmCrashesCounterFalse = 0;
+
     }
 
-    return this.datesU;
-  }
 
-  datesOrder(dates: string[]): string[] {
+  }
+  datesOrder(dates: string[]): string[] {//mette in ordine crescente le date
     for (let i = 0; i < dates.length; i++) {
       for (let j = 0; j < dates.length - 1; j++) {
 
@@ -121,34 +211,17 @@ export class BarChartComponent implements OnInit, OnDestroy {
     return dates;
   }
 
-  allarmsCouter(allarms8Gg: Alarms[], datesO: string[]) {
-    this.allarmFallsCounter = 0;
-    this.allarmImmobilitiesCounter = 0;
-    this.allarmCrashesCounter = 0;
+  datesNoDuplicateDate(dates: string[]): string[] {//tolgo le date uguali che arrivano dal servizio
 
-    for (let d of datesO) { //per ogni data
+    // Prima rimuovo i doppioni
+    for (let d = 0; d < dates.length; d++) {
 
-      for (let a of allarms8Gg) { //per ogni allarme
-        if (a.date === d && a.alarmType === 'Caduta') {
-          this.allarmFallsCounter++;
-        }
-        else if (a.date === d && a.alarmType === 'Immobilità') {
-
-          this.allarmImmobilitiesCounter++;
-
-        }
-        else if (a.date === d && a.alarmType === 'Schianto') {
-          this.allarmCrashesCounter++;
-        }
-
-      }
-      this.allarmFalls.push(this.allarmFallsCounter);
-      this.allarmFallsCounter = 0;
-      this.allarmImmobilities.push(this.allarmImmobilitiesCounter);
-      this.allarmImmobilitiesCounter = 0;
-      this.allarmCrashes.push(this.allarmCrashesCounter);
-      this.allarmCrashesCounter = 0;
+      if (this.datesU == undefined) { this.datesU = [dates[d]] }
+      else if (this.datesU.includes(dates[d])) { }
+      else { this.datesU.push(dates[d]); }
     }
+    
+    return this.datesU;
   }
 
   ngOnDestroy() {

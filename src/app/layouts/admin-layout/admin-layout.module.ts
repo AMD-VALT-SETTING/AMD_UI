@@ -53,6 +53,7 @@ import { ConfirmDeleteUserComponent } from 'app/pages/users-web/modals/confirm-d
     AddUserComponent,
     ConfirmDeleteUserComponent,
     ModalarmsComponent,
+    ResetPwdComponent
   ]
 })
 

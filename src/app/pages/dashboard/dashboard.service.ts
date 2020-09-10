@@ -3,10 +3,11 @@ import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular
 import { Observable, throwError } from 'rxjs';
 import { User } from 'app/model/User';
 import { PieChartData } from './model/PieChartData';
-import { Alarms } from './model/Alarms';
+import { Alarms} from './model/Alarms';
 import { AppConstants } from 'app/app.constants';
 import { UpdateAlarm } from './model/UpdateAlarm';
 import { catchError } from 'rxjs/operators';
+import { AlarmsBarChart } from './model/AlarmsBarChart';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,9 @@ export class DashboardService {
   getDataForPieChart (): Observable<PieChartData[]> {
     return this.httpClient.get<PieChartData[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/pie`);
   }
+  getDataForBarChart (): Observable<AlarmsBarChart[]> {
+    return this.httpClient.get<AlarmsBarChart[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/history`);
+  }
 
   findUsersForLabelPieTable(selectedCategory: number): Observable<any> {
     return this.httpClient.get<User[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/detail/` + selectedCategory);
@@ -28,7 +32,7 @@ export class DashboardService {
   getDataAllarms (): Observable<Alarms[]> {
     return this.httpClient.get<Alarms[]>(`${AppConstants.SERVICES_BASE_URL}/rest/dashboard/alarms`);
   }
-
+  
   updateAlarm(idAlarm: UpdateAlarm): Observable<UpdateAlarm> {
     return this.httpClient.put<UpdateAlarm>(`${AppConstants.SERVICES_BASE_URL}`, idAlarm).pipe(catchError(this.handleError));
   }
