@@ -31,7 +31,6 @@
                         </div>
                     </div>
                 </div>
-               
 
             </div>
             <div class="card-body ">
@@ -44,7 +43,7 @@
                                 <th>Nome cognome</th>
                                 <th>Ruolo</th>
                                 <th>Elimina</th>
-
+                                <th>Reset</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,6 +54,7 @@
                                 <td>{{ u.idValue }}</td>
                                 <td><app-confirm-delete-user (feedbackEvent)="feedbackReceivedHandler($event)" [idUserDelete]="u.idUser"></app-confirm-delete-user>
                                 </td>
+                                <td><button class="btn btn-danger"><app-reset-pwd [user] = "u"></app-reset-pwd></button></td>
                             </tr>
                         </tbody>
                     </table>
