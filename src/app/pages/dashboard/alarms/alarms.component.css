@@ -67,3 +67,8 @@ color:black;
 a {
     color: black;
 }
+
+a:link {
+    color: #51cbce;
+    text-decoration: underline;
+  }
