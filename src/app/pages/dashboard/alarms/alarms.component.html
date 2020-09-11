@@ -51,7 +51,7 @@
                   <td>{{u.username}}</td>
                   <td>{{u.alias}}</td>
                   <td>{{u.phone}}</td>
-                  <td><a href="https://www.google.com/maps/search/?api=1&query={{u.position}}">posizione</a>
+                  <td><a id="link-position" target="_blank" href="https://www.google.com/maps/search/?api=1&query={{u.position}}">posizione</a>
                   </td>
                   <td>
                     <app-modalarms [selectedUpdateAlarm]="u.idValueAlarm">
