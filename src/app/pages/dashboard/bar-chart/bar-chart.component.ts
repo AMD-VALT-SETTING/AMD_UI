@@ -101,6 +101,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
   drawBarChart() {
     this.dashboardService.getDataForBarChart().subscribe((res) => {
       this.alarms = res['listaAlarms'];
+      console.log(this.alarms);
       
       let dateRes = this.alarms.map((item) => item.date);
 
@@ -138,8 +139,8 @@ export class BarChartComponent implements OnInit, OnDestroy {
     for (let d of datesSorter) { //per ogni data
 
       for (let a of alarmsSorter) { //per ogni allarme
-        if (a.date === d && a.alarmType === 'Caduta') {
-
+        if (a.date === d && a.alarmtype === 'Caduta') {
+          console.log('sono in caduta');
           if (a.status) {
             this.alarmFallsCounterTrue = a.number;
 
@@ -151,8 +152,8 @@ export class BarChartComponent implements OnInit, OnDestroy {
           }
 
         }
-        else if (a.date === d && a.alarmType === 'Immobilità') {
-
+        else if (a.date === d && a.alarmtype === 'Immobilità') {
+          console.log('sono in immobilita');
           if (a.status) {
 
             this.alarmImmobilitiesCounterTrue = a.number;
@@ -164,7 +165,8 @@ export class BarChartComponent implements OnInit, OnDestroy {
           }
 
         }
-        else if (a.date === d && a.alarmType === 'Schianto') {
+        else if (a.date === d && a.alarmtype === 'Schianto') {
+          console.log('sono in schianto');
           if (a.status) {
 
             this.alarmCrashesCounterTrue = a.number;

@@ -1,8 +1,8 @@
 export interface AlarmsBarChart {
-
+  rownum: number;
   date: string;
   status: boolean;
   number: number;
-  alarmType: string;
+  alarmtype: string;
 
 }
