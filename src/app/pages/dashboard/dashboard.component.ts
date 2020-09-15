@@ -25,7 +25,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   pos: number;
   charts: PieChartData[];
   dashboardError: any;
-
+  label: string;
+  
   constructor(private dashboardService: DashboardService) {
   }
 
@@ -147,6 +148,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   buildPieChartTable(label: any, index: number) {
+    this.label = label;
     this.dashboardService.findUsersForLabelPieTable(index + 1).subscribe((res: any) => {
       this.pieChartTableArray = res.listaUserCategory;
     },
