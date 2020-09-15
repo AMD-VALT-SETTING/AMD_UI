@@ -3,6 +3,7 @@ import { User } from 'app/model/User';
 import { DashboardService } from '../dashboard.service';
 import { DashboardEvent } from '../DashboardEvent';
 import { Input } from '@angular/core';
+import { getLocaleDateFormat } from '@angular/common';
 
 @Component({
   selector: 'app-pie-table',
@@ -13,6 +14,7 @@ export class PieTableComponent {
 
   dashboardfeedbackReceived: DashboardEvent;
   _userArraySelected: User[];
+  _labelPie: string;
 
   get userArraySelected() {
     return this._userArraySelected;
@@ -21,6 +23,15 @@ export class PieTableComponent {
   @Input()
   set userArraySelected(u: User[]) {
     this._userArraySelected = u;
+  }
+
+  get labelPie() {
+    return this._labelPie;
+  }
+
+  @Input()
+  set labelPie(label: string) {
+    this._labelPie = label;
   }
 
   feedbackReceivedHandler(dEvent: DashboardEvent) {
