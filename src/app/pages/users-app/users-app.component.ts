@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FeedbackMessage } from 'app/FeedbackMessage';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -6,6 +6,7 @@ import { UsersAppService } from './users-app.service';
 import { UserAppRequest } from './model/userAppRequest';
 import { UsersApp } from './model/userApp'
 import { Clist } from './model/clist';
+import { Subscription } from 'rxjs';
 
 
 
@@ -14,7 +15,7 @@ import { Clist } from './model/clist';
   templateUrl: './users-app.component.html',
   styleUrls: ['./users-app.component.css']
 })
-export class UsersAPPComponent implements OnInit {
+export class UsersAPPComponent implements OnInit, OnDestroy {
 
   private employeeForm: FormGroup;
   private userAppRequest: UserAppRequest;
@@ -38,9 +39,12 @@ export class UsersAPPComponent implements OnInit {
   totalRecords: number;
   page: number = 1;
 
+  private sub: Subscription;
+
   constructor(private modalService: NgbModal, private fb: FormBuilder, private userAppService: UsersAppService) {
     this.feedbackEvent = new EventEmitter();
   }
+
 
   ngOnInit(): void {
 
@@ -141,6 +145,10 @@ export class UsersAPPComponent implements OnInit {
   selectedUser(u: UsersApp, userSelected) {
     this.userSelect = u;
     this.modalService.open(userSelected);
+  }
+
+  ngOnDestroy(): void {
+    console.log('distrutto')
   }
 
 }

@@ -175,8 +175,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div>
-                        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                    <div *ngIf="usersApp">
+                        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event" autoHide="true"></pagination-controls>
                     </div>
                 </div>
             </div>
