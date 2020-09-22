@@ -50,7 +50,7 @@
                                 <th>Email</th>
                                 <th>Nome cognome</th>
                                 <th>Ruolo</th>
-                                <th>Elimina</th>
+                                <th *ngIf='verifyUser()'>Elimina</th>
                                 <th>Reset</th>
                             </tr>
                         </thead>
@@ -60,7 +60,8 @@
                                 <td>{{ u.dsUseremail }}</td>
                                 <td>{{ u.dsUseralias }}</td>
                                 <td>{{ u.idValue }}</td>
-                                <td><app-confirm-delete-user (feedbackEvent)="feedbackReceivedHandler($event)" [idUserDelete]="u.idUser"></app-confirm-delete-user>
+                                <td *ngIf='verifyUser()'>
+                                    <app-confirm-delete-user (feedbackEvent)="feedbackReceivedHandler($event)" [idUserDelete]="u.idUser"></app-confirm-delete-user>
                                 </td>
                                 <td><button class="btn btn-danger"><app-reset-pwd [user] = "u"></app-reset-pwd></button></td>
                             </tr>

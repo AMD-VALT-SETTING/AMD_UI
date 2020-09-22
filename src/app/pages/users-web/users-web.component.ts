@@ -5,6 +5,7 @@ import { FeedbackMessage } from 'app/FeedbackMessage';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserDeleteRequest } from './model/UserDeleteRequest';
+import { AppConstants } from 'app/app.constants';
 
 @Component({
   selector: 'app-users-web',
@@ -16,6 +17,7 @@ export class UsersWebComponent implements OnInit {
   usersWeb: UsersWebList[];
   userWeb: UsersWebList;
   _user: UsersWebList;
+  userLogged: any;
 
   usersWebForm: FormGroup;
   feedbackReceived: FeedbackMessage;
@@ -31,6 +33,13 @@ export class UsersWebComponent implements OnInit {
   ngOnInit(): void {
     this.loadAllUsersWeb();
     this.loadAllUsersWeb();
+    this.userLogged = JSON.parse(localStorage.getItem(AppConstants.LOGIN_STORAGE));
+  }
+
+  verifyUser(): boolean {
+    if (this.userLogged.username === 'Admin') {
+      return true;
+    }
   }
 
   openModal(content) {
