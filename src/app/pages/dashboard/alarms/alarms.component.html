@@ -30,7 +30,7 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>Allarme vero?</th>
                   <th>DATA</th>
                   <th>ORA</th>
                   <th>TIPO DI ALLARME</th>
@@ -44,7 +44,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let u of alarms">
-                  <td>{{u.idValueAlarm}}</td>
+                  <td>{{u.isRealAlarm}}</td>
                   <td>{{u.date}}</td>
                   <td>{{u.time}}</td>
                   <td>{{u.alarmType}}</td>

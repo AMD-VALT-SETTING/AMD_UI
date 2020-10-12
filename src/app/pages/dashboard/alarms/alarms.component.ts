@@ -33,6 +33,8 @@ export class AlarmsComponent implements OnInit, OnDestroy {
   loadAllarms() {
     this.dashboardService.getDataAllarms().subscribe((res: any) => {
       this.alarms = res.listaAlarms;
+
+      this.orderDates();
     },
     (error) => {
       this.alarmsError = error;
@@ -45,6 +47,12 @@ export class AlarmsComponent implements OnInit, OnDestroy {
       }
     });
 
+  }
+
+  orderDates(): void {
+    this.alarms.sort((a: Alarms, b: Alarms) => {
+      return +new Date(b.date) - +new Date(a.date);
+    })
   }
 
   ngOnDestroy() {

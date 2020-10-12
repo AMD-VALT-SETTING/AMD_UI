@@ -9,6 +9,7 @@ export interface Alarms {
     position:string;
     accuracy:string;
     isRealAlarm:boolean;
+    realData?: Date;
    
   }
   
